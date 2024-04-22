@@ -5,8 +5,8 @@ repo_url: https://github.com/SBD1/2024.1-Pokemon
 
 theme:
   name: material
-  logo: images/logo.png
-  favicon: images/logo-pokebola.png
+  logo: docs/images/logo.png
+  favicon: docs/images/logo-pokebola.png
   language: pt-BR
   icon:
     repo: fontawesome/brands/github
