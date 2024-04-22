@@ -1,0 +1,31 @@
+site_name: Pokémon Mystery Dungeon
+
+repo_name: 2024.1-Pokemon
+repo_url: https://github.com/SBD1/2024.1-Pokemon
+
+theme:
+  name: material
+  logo: images/logo.png
+  favicon: images/logo-pokebola.png
+  language: pt-BR
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+  palette: 
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra_css:
+  - stylesheets/extra.css
+    
+nav:
+  - Início: index.md
