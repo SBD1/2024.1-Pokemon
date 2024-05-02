@@ -10,20 +10,20 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 **Observação**:
 
-|  Nome Variável  |  Tipo   |    Descrição    | Valores permitidos | Permite valores nulos? | É chave? |
-| :-------------: | :-----: | :-------------: | :----------------: | :--------------------: | :------: |
-|      nome       | VARCHAR | Nome do Pokemón |         -          |           -            |    PK    |
-|     id_tipo     |   INT   |        -        |         -          |           -            |    FK    |
-|      nivel      |   INT   |        -        |         -          |           -            |    -     |
-|      vida       |   INT   |        -        |         -          |           -            |    -     |
-|  ataque_fisico  |   INT   |        -        |         -          |           -            |    -     |
-|  defesa_fisica  |   INT   |        -        |         -          |           -            |    -     |
-| ataque_especial |   INT   |        -        |         -          |           -            |    -     |
-| defesa_especial |   INT   |        -        |         -          |           -            |    -     |
-|   velocidade    |   INT   |        -        |         -          |           -            |    -     |
-|    acuracia     |   INT   |        -        |         -          |           -            |    -     |
-|     evasao      |   INT   |        -        |         -          |           -            |    -     |
-|     status      | VARCHAR |        -        |         -          |           -            |    -     |
+|  Nome Variável  |  Tipo   |               Descrição                | Valores permitidos | Permite valores nulos? | É chave? |
+| :-------------: | :-----: | :------------------------------------: | :----------------: | :--------------------: | :------: |
+|      nome       | VARCHAR |            Nome do Pokemón             |      a-z, A-Z      |          não           |    PK    |
+|     id_tipo     |   INT   |                   -                    |       1-5000       |          não           |    FK    |
+|      nivel      |   INT   |            Nível do Pokemón            |       1-5000       |          não           |    -     |
+|      vida       |   INT   |            Vida do Pokemón             |       1-5000       |          não           |    -     |
+|  ataque_fisico  |   INT   |   Valor do ataque físico do Pokemón    |       1-5000       |          sim           |    -     |
+|  defesa_fisica  |   INT   |   Valor da defesa físico do Pokemón    |       1-5000       |          sim           |    -     |
+| ataque_especial |   INT   |  Valor do ataque especial do Pokemón   |       1-5000       |          sim           |    -     |
+| defesa_especial |   INT   |  Valor da defesa especial do Pokemón   |       1-5000       |          sim           |    -     |
+|   velocidade    |   INT   |     Valor da velocidade do Pokemón     |       1-5000       |          sim           |    -     |
+|    acuracia     |   INT   | Valor da precisão do ataque do Pokemón |       1-5000       |          sim           |    -     |
+|     evasao      |   INT   |                   -                    |       1-5000       |          sim           |    -     |
+|     status      | VARCHAR |                   -                    |       1-5000       |          sim           |    -     |
 
 ## Entidade: Player
 
@@ -33,17 +33,9 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 | Nome Variável |    Tipo     |              Descrição               | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :----------------------------------: | :----------------: | :--------------------: | :------: |
-| id_inventario |     int     |     Identificador do inventário      |       1-5000       |          não           |    FK    |
-|      xxx      | varchar[50] |           Nome do jogador            |      a-z, A-Z      |          não           |          |
-|      xxx      |     int     |      Itdentificador do equipado      |       1-5000       |          sim           |    FK    |
-|      xxx      |     int     |     Itdentificador do inventário     |       1-5000       |          não           |    FK    |
-|      xxx      |     int     |       Identificador do diálogo       |       1-5000       |          sim           |    FK    |
-|      xxx      |     int     |    Identificador do cenario-atual    |       1-5000       |          não           |    FK    |
-|      xxx      |     int     |    Identificador da missao-atual     |       1-5000       |          sim           |    FK    |
-|      xxx      |     int     |      Identificador da afinidade      |       1-5000       |          sim           |    FK    |
-|      xxx      |     int     |           Nível do jogador           |       1-100        |          não           |          |
-|      xxx      |     int     | Quantidade de experiência do jogador |       1-100        |          não           |          |
-|      xxx      |     int     |      Limite de vida do jogador       |       1-100        |          não           |          |
+| id_player |     INT     |     Identificador do player      |       1-5000       |          não           |    FK    |
+|      tamanho_inventario      | INT |           Tamanho do inventário            |      1-5000      |          não           |     FK     |
+
 
 ## Entidade: Missão
 
@@ -56,8 +48,8 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 |    id_npc     |     INT     |  Código de identificação do mapa  |       1-5000       |          não           |    FK    |
 |    id_loot    |     INT     |  Código de identificação do loot  |       1-5000       |          não           |    FK    |
 |  dificuldade  |     INT     |  Nível de dificuldade da missão   |       1-5000       |          não           |    -     |
-|   objetivo    | VARCHAR[50] |                xx                 |         xx         |           xx           |    -     |
-|  tipo_missao  |     INT     |                xx                 |         xx         |           xx           |    -     |
+|   objetivo    | VARCHAR[50] |        Objetivo da missão         |      a-z, A-Z      |          não           |    -     |
+|  tipo_missao  |     INT     | Tipo da missão(principal ou não)  |       1-5000       |          não           |    -     |
 
 ## Entidade: Inventário
 
@@ -67,7 +59,7 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 | Nome Variável | Tipo |        Descrição        | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :--: | :---------------------: | :----------------: | :--------------------: | :------: |
-|    id_item    | int  | Identificador dos itens |       1-5000       |          não           |    FK    |
+|    id_item    | INT  | Identificador dos itens |       1-5000       |          não           |    FK    |
 
 ## Entidade: NPC
 
@@ -77,8 +69,8 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 | Nome Variável | Tipo | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :--: | :-------: | :----------------: | :--------------------: | :------: |
-|      id_npc      |  int  |   Identificação do NPC     |        1-5000         |           Não           |    PK    |
-|      nome      |  varchar[50]  |   Nome do NPC     |      a-z, A-Z             |           Não           |        |
+|      id      |  INT  |   Identificação do NPC     |        1-5000         |           Não           |    PK    |
+|      nome      |  VARCHAR[50]  |   Nome do NPC     |      a-z, A-Z             |           Não           |        |
 
 ## Entidade: Item
 
@@ -86,9 +78,9 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 | Nome Variável |    Tipo     |            Descrição            | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-----------------------------: | :----------------: | :--------------------: | :------: |
-|    id-item    |     int     | Código de Identificação do item |       1-5000       |          não           |    PK    |
-|     nome      | varchar[50] |          Nome do item           |      a-z, A-Z      |          não           |          |
-|  quantidade   |     int     |        Descrição do item        |      a-z, A-Z      |          sim           |          |
+|    id-item    |     INT     | Código de Identificação do item |       1-5000       |          não           |    PK    |
+|     nome      | VARCHAR[50] |          Nome do item           |      a-z, A-Z      |          não           |          |
+|  quantidade   |     INT     |        Descrição do item        |      a-z, A-Z      |          sim           |          |
 
 ## Entidade: Habilidade
 
@@ -98,10 +90,10 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 | Nome Variável |    Tipo     |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-------------------------: | :----------------: | :--------------------: | :------: |
-| id-habilidade |     int     | Identificador da habilidade |       1-5000       |          não           |    PK    |
-|     nome      | varchar[50] |     Nome da habilidade      |      a-z, A-Z      |          não           |          |
-|     tipo      |     int     | Dano que a habilidade causa |       1-5000       |          não           |          |
-|   acuracia    |     int     |      Precisão do dano       |       1-5000       |          sim           |          |
+| id-habilidade |     INT     | Identificador da habilidade |       1-5000       |          não           |    PK    |
+|     nome      | VARCHAR[50] |     Nome da habilidade      |      a-z, A-Z      |          não           |          |
+|     tipo      |     INT     | Dano que a habilidade causa |       1-5000       |          não           |          |
+|   acuracia    |     INT     |      Precisão do dano       |       1-5000       |          sim           |          |
 
 ## Entidade: Pokemon-Habilidade
 
@@ -111,8 +103,8 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 | Nome Variável | Tipo |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :--: | :-------------------------: | :----------------: | :--------------------: | :------: |
-| id_habilidade | int  | Identificador da habilidade |       1-5000       |          não           |    PK    |
-|  id_pokemon   | int  |  Identificador de pokemon   |       1-5000       |          não           |    FK    |
+| id_habilidade | INT  | Identificador da habilidade |       1-5000       |          não           |    PK    |
+|  id_pokemon   | INT  |  Identificador de pokemon   |       1-5000       |          não           |    FK    |
 
 ## Entidade: Andar
 
@@ -122,7 +114,7 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 | Nome Variável | Tipo |       Descrição        | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :--: | :--------------------: | :----------------: | :--------------------: | :------: |
-|      id       | INT  | Identificador do andar |       1-5000       |          não           |    PK    |
+|      id    | INT  | Identificador do andar |       1-5000       |          não           |    PK    |
 |    id_mapa    | INT  | Identificador do mapa  |       1-5000       |          não           |    FK    |
 
 ## Entidade: Tipo-Terreno
@@ -133,8 +125,8 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 | Nome Variável |    Tipo     |        Descrição         | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :----------------------: | :----------------: | :--------------------: | :------: |
-|  id_terreno   |     int     | Identificador de terreno |       1-5000       |          não           |    PK    |
-|   descricao   | varchar[50] |   Descrição de terreno   |       1-5000       |          não           |    FK    |
+|  id   |     INT     | Identificador de terreno |       1-5000       |          não           |    PK    |
+|   descricao   | VARCHAR[50] |   Descrição de terreno   |       1-5000       |          não           |    FK    |
 
 ## Entidade: Terreno
 
