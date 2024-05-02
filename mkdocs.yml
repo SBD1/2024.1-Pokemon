@@ -29,5 +29,6 @@ extra_css:
     
 nav:
   - Início: index.md
+  - Dicionário de dados: dicionario_dados.md
   - Diagramas: 
-    - Diagrama Entidade-Relacionamento: docs/diagrama-entidade.md
+    - Diagrama Entidade-Relacionamento: diagrama-entidade.md
