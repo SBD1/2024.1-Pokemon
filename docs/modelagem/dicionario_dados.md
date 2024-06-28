@@ -1,14 +1,10 @@
-## Dicionário de dados
-
----
-
-O dicionário de dados consiste numa lista organizada de todos os elementos de dados que são pertinentes para o sistema.
+O dicionário de dados são informações sobre os dados armazenados que são pertinentes para o banco de dados. Ele documenta a estrutura, os tipos, os relacionamentos e outras características dos dados, servindo como uma referência essencial para o desenvolvimento.
 
 ## Entidade: Pokemon
 
-**Descrição**: A entidade representa um Pokemón podendo ser ele, um Player ou NPC:
+**Descrição**: A entidade representa um Pokemón podendo ser ele, um Player ou NPC.
 
-**Observação**:
+**Observação**: Essa tabela possuí chaves estrangeiras da entidade Tipo.
 
 |  Nome Variável  |  Tipo   |               Descrição                | Valores permitidos | Permite valores nulos? | É chave? |
 | :-------------: | :-----: | :------------------------------------: | :----------------: | :--------------------: | :------: |
@@ -27,19 +23,18 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 ## Entidade: Player
 
-**Descrição**: A entidade player descreve as informações ligadas ao personagem jogável, como:
+**Descrição**: A entidade player descreve as informações ligadas ao personagem jogável.
 
-**Observação**: Essa tabela possui chaves estrangeiras das entidades...
-
-| Nome Variável |    Tipo     |              Descrição               | Valores permitidos | Permite valores nulos? | É chave? |
-| :-----------: | :---------: | :----------------------------------: | :----------------: | :--------------------: | :------: |
-| id_player |     INT     |     Identificador do player      |       1-5000       |          não           |    FK    |
-|      tamanho_inventario      | INT |           Tamanho do inventário            |      1-5000      |          não           |     FK     |
-
+|   Nome Variável    | Tipo |        Descrição        | Valores permitidos | Permite valores nulos? | É chave? |
+| :----------------: | :--: | :---------------------: | :----------------: | :--------------------: | :------: |
+|         id         | INT  | Identificador do player |       1-5000       |          não           |    FK    |
+| tamanho_inventario | INT  |  Tamanho do inventário  |       1-5000       |          não           |    FK    |
 
 ## Entidade: Missão
 
-**Descrição**: A entidade Missão relaciona o número de identificação da missão, mapa, loot.
+**Descrição**: A entidade Missão relaciona o número de identificação da missão, mapa, loot e npc.
+
+**Observação**: Essa tabela possuí chaves estrangeiras das entidades Mapa, Npc e Loot.
 
 | Nome Variável |    Tipo     |             Descrição             | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-------------------------------: | :----------------: | :--------------------: | :------: |
@@ -53,7 +48,7 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 ## Entidade: Inventário
 
-**Descrição**: A entidade Inventário relaciona...
+**Descrição**: A entidade Inventário relaciona o loot com o player.
 
 **Observação**: Essa tabela possui chave estrangeira da entidade `Item`.
 
@@ -63,22 +58,20 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 ## Entidade: NPC
 
-**Descrição**: A entidade NPC guarda as informações relacionada...
+**Descrição**: A entidade NPC guarda as informações relacionada ao nome do personagem não jogável.
 
-**Observação**: Essa tabela possui chaves estrangeiras das entidade...
-
-| Nome Variável | Tipo | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
-| :-----------: | :--: | :-------: | :----------------: | :--------------------: | :------: |
-|      id      |  INT  |   Identificação do NPC     |        1-5000         |           Não           |    PK    |
-|      nome      |  VARCHAR[50]  |   Nome do NPC     |      a-z, A-Z             |           Não           |        |
+| Nome Variável |    Tipo     |      Descrição       | Valores permitidos | Permite valores nulos? | É chave? |
+| :-----------: | :---------: | :------------------: | :----------------: | :--------------------: | :------: |
+|      id       |     INT     | Identificação do NPC |       1-5000       |          Não           |    PK    |
+|     nome      | VARCHAR[50] |     Nome do NPC      |      a-z, A-Z      |          Não           |          |
 
 ## Entidade: Item
 
-**Descrição**: A entidade Item armazena as informações de identificação do item, nome e quantidade de itens.
+**Descrição**: A entidade Item armazena as informações relacionadas aos itens que podem ter no iventário do player.
 
 | Nome Variável |    Tipo     |            Descrição            | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-----------------------------: | :----------------: | :--------------------: | :------: |
-|    id-item    |     INT     | Código de Identificação do item |       1-5000       |          não           |    PK    |
+|      id       |     INT     | Código de Identificação do item |       1-5000       |          não           |    PK    |
 |     nome      | VARCHAR[50] |          Nome do item           |      a-z, A-Z      |          não           |          |
 |  quantidade   |     INT     |        Descrição do item        |      a-z, A-Z      |          sim           |          |
 
@@ -86,20 +79,18 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 **Descrição**: Descreve as habilidades disponíveis no jogo, o identificador da habilidade, seu nome, dano e a acurácia.
 
-**Observação**: xxxx
-
 | Nome Variável |    Tipo     |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-------------------------: | :----------------: | :--------------------: | :------: |
-| id-habilidade |     INT     | Identificador da habilidade |       1-5000       |          não           |    PK    |
+|      id       |     INT     | Identificador da habilidade |       1-5000       |          não           |    PK    |
 |     nome      | VARCHAR[50] |     Nome da habilidade      |      a-z, A-Z      |          não           |          |
 |     tipo      |     INT     | Dano que a habilidade causa |       1-5000       |          não           |          |
 |   acuracia    |     INT     |      Precisão do dano       |       1-5000       |          sim           |          |
 
 ## Entidade: Pokemon-Habilidade
 
-**Descrição**: Descreve as habilidades disponíveis no jogo, o identificador da habilidade, seu nome, dano e a acurácia.
+**Descrição**: Tabela auxiliar para armazernar as habilidades relacionadas ao pokemon.
 
-**Observação**: xxxx
+**Observação**: Essa tabela possui chaves estrangeiras das entidades `Habilidade` e `Pokemon`.
 
 | Nome Variável | Tipo |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :--: | :-------------------------: | :----------------: | :--------------------: | :------: |
@@ -108,31 +99,29 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 ## Entidade: Andar
 
-**Descrição**: Descreve a entidade andar.
+**Descrição**: Descreve a entidade, que se refere ao andar do mapa.
 
-**Observação**: xxxx
+**Observação**: Essa tabela possui chave estrangeira da entidade `Mapa`.
 
 | Nome Variável | Tipo |       Descrição        | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :--: | :--------------------: | :----------------: | :--------------------: | :------: |
-|      id    | INT  | Identificador do andar |       1-5000       |          não           |    PK    |
+|      id       | INT  | Identificador do andar |       1-5000       |          não           |    PK    |
 |    id_mapa    | INT  | Identificador do mapa  |       1-5000       |          não           |    FK    |
 
 ## Entidade: Tipo-Terreno
 
 **Descrição**: Descreve o tipo de terreno.
 
-**Observação**: xxxx
-
 | Nome Variável |    Tipo     |        Descrição         | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :----------------------: | :----------------: | :--------------------: | :------: |
-|  id   |     INT     | Identificador de terreno |       1-5000       |          não           |    PK    |
+|      id       |     INT     | Identificador de terreno |       1-5000       |          não           |    PK    |
 |   descricao   | VARCHAR[50] |   Descrição de terreno   |       1-5000       |          não           |    FK    |
 
 ## Entidade: Terreno
 
-**Descrição**: Descreve a entidade terreno.
+**Descrição**: Descreve a entidade terreno, que são as coordenadas do player.
 
-**Observação**: xxxx
+**Observação**: Essa tabela possui chave estrangeira da entidade `Tipo-Terreno`.
 
 |  Nome Variável  | Tipo |            Descrição             | Valores permitidos | Permite valores nulos? | É chave? |
 | :-------------: | :--: | :------------------------------: | :----------------: | :--------------------: | :------: |
@@ -140,7 +129,6 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 |        x        | INT  |      Coordenada do terreno       |       1-5000       |          não           |    -     |
 |        y        | INT  |      Coordenada do terreno       |       1-5000       |          não           |    -     |
 | id_tipo_terreno | INT  | Identificador do tipo de terreno |       1-5000       |          não           |    FK    |
-
 
 ## Entidade: Tipo
 
@@ -156,6 +144,7 @@ O dicionário de dados consiste numa lista organizada de todos os elementos de d
 
 ## Histórico de Versão
 
-| Versão |    Data    |               Descrição                |                                                 Autor(es)                                                  |
-| :----: | :--------: | :------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
-| `1.0`  | 22/04/2024 | Primeira versão do dicionário de dados | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+| Versão |    Data    |                  Descrição                   |                                                 Autor(es)                                                  |
+| :----: | :--------: | :------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+| `1.0`  | 22/04/2024 |    Primeira versão do dicionário de dados    | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+| `1.1`  | 27/06/2024 | Ajustando e corrigindo o dinionário de dados | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |

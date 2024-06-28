@@ -1,17 +1,10 @@
-# Welcome to MkDocs
+# Pokemón
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Sobre
 
-## Commands
+Trabalho da disciplina de Sistemas de Banco de Dados 1.
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## Integrantes
 
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+| [<img src="https://avatars.githubusercontent.com/u/61991357?v=4" width=115><br><sub>Gabriel Marcolino</sub>](https://github.com/GabrielMR360) | [<img src="https://avatars.githubusercontent.com/u/87617726?v=4" width=115><br><sub>Shaíne Oliveira</sub>](https://github.com/ShaineOliveira)    | [<img src="https://avatars.githubusercontent.com/u/88348501?v=4" width=115><br><sub>José Filipi</sub>](https://github.com/JoseFilipi)    |  [<img src="https://avatars.githubusercontent.com/u/124631520?v=4" width=115><br><sub>Leonardo Bonetti</sub>](https://github.com/LeoFacB)   |
+| :-------------------------------------------------------------------------------------------------------------------------------------------: | :-: | :-: | :-: |
