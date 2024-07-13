@@ -6,20 +6,20 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 
 **Observação**: Essa tabela possuí chaves estrangeiras da entidade Tipo.
 
-|  Nome Variável  |  Tipo   |               Descrição                | Valores permitidos | Permite valores nulos? | É chave? |
-| :-------------: | :-----: | :------------------------------------: | :----------------: | :--------------------: | :------: |
-|      nome       | VARCHAR |            Nome do Pokemón             |      a-z, A-Z      |          não           |    PK    |
-|     id_tipo     |   INT   |                   -                    |       1-5000       |          não           |    FK    |
-|      nivel      |   INT   |            Nível do Pokemón            |       1-5000       |          não           |    -     |
-|      vida       |   INT   |            Vida do Pokemón             |       1-5000       |          não           |    -     |
-|  ataque_fisico  |   INT   |   Valor do ataque físico do Pokemón    |       1-5000       |          sim           |    -     |
-|  defesa_fisica  |   INT   |   Valor da defesa físico do Pokemón    |       1-5000       |          sim           |    -     |
-| ataque_especial |   INT   |  Valor do ataque especial do Pokemón   |       1-5000       |          sim           |    -     |
-| defesa_especial |   INT   |  Valor da defesa especial do Pokemón   |       1-5000       |          sim           |    -     |
-|   velocidade    |   INT   |     Valor da velocidade do Pokemón     |       1-5000       |          sim           |    -     |
-|    acuracia     |   INT   | Valor da precisão do ataque do Pokemón |       1-5000       |          sim           |    -     |
-|     evasao      |   INT   |                   -                    |       1-5000       |          sim           |    -     |
-|     status      | VARCHAR |                   -                    |       1-5000       |          sim           |    -     |
+|  Nome Variável  |  Tipo   |                         Descrição                         | Valores permitidos | Permite valores nulos? | É chave? |
+| :-------------: | :-----: | :-------------------------------------------------------: | :----------------: | :--------------------: | :------: |
+|      nome       | VARCHAR |                      Nome do Pokemón                      |      a-z, A-Z      |          não           |    PK    |
+|     id_tipo     |   INT   |           Característica fundamental do Pokemón           |       1-5000       |          não           |    FK    |
+|      nivel      |   INT   |                     Nível do Pokemón                      |       1-5000       |          não           |    -     |
+|      vida       |   INT   |                      Vida do Pokemón                      |       1-5000       |          não           |    -     |
+|  ataque_fisico  |   INT   |             Valor do ataque físico do Pokemón             |       1-5000       |          sim           |    -     |
+|  defesa_fisica  |   INT   |             Valor da defesa físico do Pokemón             |       1-5000       |          sim           |    -     |
+| ataque_especial |   INT   |            Valor do ataque especial do Pokemón            |       1-5000       |          sim           |    -     |
+| defesa_especial |   INT   |            Valor da defesa especial do Pokemón            |       1-5000       |          sim           |    -     |
+|   velocidade    |   INT   |              Valor da velocidade do Pokemón               |       1-5000       |          sim           |    -     |
+|    acuracia     |   INT   |          Valor da precisão do ataque do Pokemón           |       1-5000       |          sim           |    -     |
+|     evasao      |   INT   |             Capacidade de esquivar do ataque              |       1-5000       |          sim           |    -     |
+|     status      | VARCHAR | Condições que podem afetar um Pokémon durante as batalhas |       1-5000       |          sim           |    -     |
 
 ## Entidade: Player
 
@@ -27,7 +27,7 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 
 |   Nome Variável    | Tipo |        Descrição        | Valores permitidos | Permite valores nulos? | É chave? |
 | :----------------: | :--: | :---------------------: | :----------------: | :--------------------: | :------: |
-|         id         | INT  | Identificador do player |       1-5000       |          não           |    FK    |
+|         id         | INT  | Identificador do player |       1-5000       |          não           |    PK    |
 | tamanho_inventario | INT  |  Tamanho do inventário  |       1-5000       |          não           |    FK    |
 
 ## Entidade: Missão
@@ -77,14 +77,16 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 
 ## Entidade: Habilidade
 
-**Descrição**: Descreve as habilidades disponíveis no jogo, o identificador da habilidade, seu nome, dano e a acurácia.
+**Descrição**: Descreve as habilidades disponíveis no jogo, o identificador da habilidade, seu nome, dano, tipo, efeito e a acurácia.
 
 | Nome Variável |    Tipo     |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-------------------------: | :----------------: | :--------------------: | :------: |
 |      id       |     INT     | Identificador da habilidade |       1-5000       |          não           |    PK    |
 |     nome      | VARCHAR[50] |     Nome da habilidade      |      a-z, A-Z      |          não           |          |
-|     tipo      |     INT     | Dano que a habilidade causa |       1-5000       |          não           |          |
+|    id_tipo    |     INT     | Dano que a habilidade causa |       1-5000       |          não           |    FK    |
 |   acuracia    |     INT     |      Precisão do dano       |       1-5000       |          sim           |          |
+|     dano      |     INT     |                             |                    |                        |          |
+|   id_efeito   |     INT     |                             |                    |          não           |    FK    |
 
 ## Entidade: Pokemon-Habilidade
 
@@ -108,20 +110,21 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 |      id       | INT  | Identificador do andar |       1-5000       |          não           |    PK    |
 |    id_mapa    | INT  | Identificador do mapa  |       1-5000       |          não           |    FK    |
 
-## Entidade: Tipo-Terreno
+## Entidade: Tipo_Terreno
 
 **Descrição**: Descreve o tipo de terreno.
 
 | Nome Variável |    Tipo     |        Descrição         | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :----------------------: | :----------------: | :--------------------: | :------: |
 |      id       |     INT     | Identificador de terreno |       1-5000       |          não           |    PK    |
-|   descricao   | VARCHAR[50] |   Descrição de terreno   |       1-5000       |          não           |    FK    |
+|   descricao   | VARCHAR[50] |   Descrição de terreno   |       1-5000       |          não           |          |
+|   movimento   |             |                          |                    |                        |          |
 
 ## Entidade: Terreno
 
 **Descrição**: Descreve a entidade terreno, que são as coordenadas do player.
 
-**Observação**: Essa tabela possui chave estrangeira da entidade `Tipo-Terreno`.
+**Observação**: Essa tabela possui chave estrangeira da entidade `Tipo_Terreno`.
 
 |  Nome Variável  | Tipo |            Descrição             | Valores permitidos | Permite valores nulos? | É chave? |
 | :-------------: | :--: | :------------------------------: | :----------------: | :--------------------: | :------: |
@@ -132,15 +135,62 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 
 ## Entidade: Tipo
 
-**Descrição**: xxx
+**Descrição**: Característica fundamental que define suas habilidades, forças e fraquezas do Pokemón.
+
+**Observação**: Essa tabela possui chave estrangeira da entidade `Interação`.
+
+| Nome Variável |    Tipo     |             Descrição              | Valores permitidos | Permite valores nulos? | É chave? |
+| :-----------: | :---------: | :--------------------------------: | :----------------: | :--------------------: | :------: |
+|     nome      | VARCHAR[50] |            Nome do tipo            |      a-z, A-Z      |          não           |    PK    |
+| id_interacao  |     INT     | Indetificador da interação do tipo |       1-5000       |          não           |    FK    |
+
+## Entidade: Interação
+
+**Descrição**: A entidade Interação armazena as relações de eficácia entre diferentes tipos de ataques e defesas do Pokémon.
 
 **Observação**: xxxx
 
-| Nome Variável | Tipo |        Descrição        | Valores permitidos | Permite valores nulos? | É chave? |
-| :-----------: | :--: | :---------------------: | :----------------: | :--------------------: | :------: |
-|     nome      | INT  |      Nome do tipo       |       1-5000       |          não           |    PK    |
-|   id_ataque   | INT  | Indetificador do ataque |       1-5000       |          não           |    FK    |
-|   id_defesa   | INT  | Indetificador do defesa |       1-5000       |          não           |    FK    |
+|  Nome Variável   | Tipo |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
+| :--------------: | :--: | :------------------------: | :----------------: | :--------------------: | :------: |
+|        id        | INT  | Identificador da interação |       1-5000       |          não           |    PK    |
+| id_tipo_atacante | INT  |                            |       1-5000       |          não           |    FK    |
+| id_tipo_defensor | INT  |                            |       1-5000       |          não           |    FK    |
+|      valor       | INT  |                            |       1-5000       |          não           |          |
+
+## Entidade: Efeito
+
+**Descrição**: Representa o efeito que uma habilidade pode causar
+
+**Observação**: xxxx
+
+| Nome Variável |    Tipo     | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
+| :-----------: | :---------: | :-------: | :----------------: | :--------------------: | :------: |
+|     nome      | VARCHAR[50] |           |      a-z, A-Z      |          não           |    PK    |
+|     dano      |     INT     |           |       1-5000       |          não           |          |
+
+## Entidade: Terreno_NPC
+
+**Descrição**: Tabela auxiliar para indicar onde o npc está no terreno.
+
+**Observação**: Essa tabela possui chaves estrangeiras das entidades `Terreno` e `NPC`.
+
+| Nome Variável | Tipo | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
+| :-----------: | :--: | :-------: | :----------------: | :--------------------: | :------: |
+|      id       | INT  |           |       1-5000       |          não           |    PK    |
+|  id_terreno   | INT  |           |       1-5000       |          não           |    FK    |
+|    id_npc     | INT  |           |       1-5000       |          não           |    FK    |
+
+## Entidade: Terreno_Loot
+
+**Descrição**: Tabela auxiliar para indicar qual loot está no terreno.
+
+**Observação**: Essa tabela possui chaves estrangeiras das entidades `Terreno` e `Loot`.
+
+| Nome Variável | Tipo | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
+| :-----------: | :--: | :-------: | :----------------: | :--------------------: | :------: |
+|      id       | INT  |           |       1-5000       |          não           |    PK    |
+|  id_terreno   | INT  |           |       1-5000       |          não           |    FK    |
+|    id_loot    | INT  |           |       1-5000       |          não           |    FK    |
 
 ## Histórico de Versão
 
@@ -148,3 +198,4 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | :----: | :--------: | :------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
 | `1.0`  | 22/04/2024 |    Primeira versão do dicionário de dados    | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
 | `1.1`  | 27/06/2024 | Ajustando e corrigindo o dinionário de dados | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+| `1.2`  | 12/07/2024 |       Adicionando atributos e tabelas        | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
