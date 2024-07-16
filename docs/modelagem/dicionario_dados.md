@@ -148,8 +148,6 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 
 **Descrição**: A entidade Interação armazena as relações de eficácia entre diferentes tipos de ataques e defesas do Pokémon.
 
-**Observação**: xxxx
-
 |  Nome Variável   | Tipo |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :--------------: | :--: | :------------------------: | :----------------: | :--------------------: | :------: |
 |        id        | INT  | Identificador da interação |       1-5000       |          não           |    PK    |
@@ -160,8 +158,6 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 ## Entidade: Efeito
 
 **Descrição**: Representa o efeito que uma habilidade pode causar
-
-**Observação**: xxxx
 
 | Nome Variável |    Tipo     | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-------: | :----------------: | :--------------------: | :------: |
