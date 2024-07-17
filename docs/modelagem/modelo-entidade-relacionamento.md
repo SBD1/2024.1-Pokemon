@@ -2,7 +2,7 @@ O Modelo Entidade-Relacionamento (ER) organiza os dados essenciais em diversas t
 
 Abaixo temos a imagem do modelo de entidade relacionamento:
 
-![Diagrama](../images/MER-pokemon.png)
+![Diagrama](../images/modelo-entidade-relacionamento.png)
 
 [Link para o Modelo Entidade-Relacionamento]()
 
