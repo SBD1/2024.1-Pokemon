@@ -2,11 +2,7 @@ O Diagrama de Entidade-Relacionamento (DER) destaca as principais entidades e se
 
 Abaixo temos a imagem do diagrama de entidade relacionamento:
 
-<<<<<<< HEAD
 ![Diagrama](../images/diagrama-entidade-relacionamento.png)
-=======
-![Diagrama](../images/diagrama-pokemon_v2.png)
->>>>>>> bbbcce43179e627005366aaaa57fb9fb453d3930
 
 ## Histórico de Versão
 
