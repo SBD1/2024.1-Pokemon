@@ -2,7 +2,11 @@ O Diagrama de Entidade-Relacionamento (DER) destaca as principais entidades e se
 
 Abaixo temos a imagem do diagrama de entidade relacionamento:
 
+<<<<<<< HEAD
 ![Diagrama](../images/diagrama-entidade-relacionamento.png)
+=======
+![Diagrama](../images/diagrama-pokemon_v2.png)
+>>>>>>> bbbcce43179e627005366aaaa57fb9fb453d3930
 
 ## Histórico de Versão
 
@@ -11,3 +15,4 @@ Abaixo temos a imagem do diagrama de entidade relacionamento:
 | `1.0`  | 22/04/2024 | Primeira versão do modelo entidade relacionanemto | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
 | `1.1`  | 27/06/2024 |               Adicionando descrição               | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
 | `1.2`  | 16/07/2024 |               Atualizando diagrama                | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+| `1.3`  | 17/07/2024 |               Atualizando diagrama                | [José Filipi](https://github.com/JoseFilipi)  |
