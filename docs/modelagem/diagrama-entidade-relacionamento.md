@@ -6,7 +6,7 @@ Abaixo temos a imagem do diagrama de entidade relacionamento:
 
 ![Diagrama](../images/DER/diagrama-entidade-relacionamento-1.5.png)
 
-[Link para o Diagrama Entidade-Relacionamento]()
+[Link para o Diagrama Entidade-Relacionamento](https://drive.google.com/file/d/12w4accHQpZcQpmwkR-kGVqPnGBe0pZWg/view?usp=sharing)
 
 ## Histórico de Versão
 

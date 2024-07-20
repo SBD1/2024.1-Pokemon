@@ -6,7 +6,7 @@ Abaixo temos a imagem do modelo de entidade relacionamento:
 
 ![Diagrama](../images/MER/modelo-entidade-relacionamento.png)
 
-[Link para o Modelo Entidade-Relacionamento]()
+[Link para o Modelo Entidade-Relacionamento](https://drive.google.com/file/d/1nllkrmmWlrq3KmpdA-dB0EknChRtXsTk/view?usp=sharing)
 
 ## Histórico de Versão
 
