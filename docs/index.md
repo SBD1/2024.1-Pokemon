@@ -1,8 +1,8 @@
-# Pokemón
+# <b>Pokemón</b>
 
-## Sobre
+## Sobre o projeto
 
-Trabalho da disciplina de Sistemas de Banco de Dados 1.
+Trabalho da disciplina de Sistemas de Banco de Dados 1. O projeto tem como objetivo a criação de um jogo baseado no Pokemon Mistery Dungeons, onde o jogador controla um Pokemón com o objetivo de explorar dungeons e completar missões.
 
 ## Integrantes
 

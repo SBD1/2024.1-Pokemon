@@ -1,3 +1,5 @@
+# <b>Dicionário de Dados</b>
+
 O dicionário de dados são informações sobre os dados armazenados que são pertinentes para o banco de dados. Ele documenta a estrutura, os tipos, os relacionamentos e outras características dos dados, servindo como uma referência essencial para o desenvolvimento.
 
 ## Entidade: Pokemon

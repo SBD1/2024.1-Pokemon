@@ -1,8 +1,10 @@
+# <b>Diagrama Entidade Relacionamento</b>
+
 O Diagrama de Entidade-Relacionamento (DER) destaca as principais entidades e seus relacionamentos. Esse diagrama organizacional ilustra as informações que fundamenta o funcionamento do jogo, detalhando a estrutura de dados essencial para o desenvolvimento.
 
 Abaixo temos a imagem do diagrama de entidade relacionamento:
 
-![Diagrama](../images/DER/diagrama-entidade-relacionamento-1.4.png)
+![Diagrama](../images/DER/diagrama-entidade-relacionamento-1.5.png)
 
 ## Histórico de Versão
 
