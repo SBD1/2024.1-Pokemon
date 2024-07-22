@@ -165,7 +165,7 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | Nome Variável |    Tipo     | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-------: | :----------------: | :--------------------: | :------: |
 |     nome      | VARCHAR |           |      a-z, A-Z      |          não           |    PK    |
-|     dano      |     INT     |           |       1-5000       |          não           |          |
+|     dano      |     INT     |           |       1-5000       |          não           |     -     |
 
 ## Entidade: Terreno_NPC
 
