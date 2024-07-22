@@ -65,7 +65,7 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | Nome Variável |    Tipo     |      Descrição       | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :------------------: | :----------------: | :--------------------: | :------: |
 |      id       |     INT     | Identificação do NPC |       1-5000       |          Não           |    PK    |
-|     nome      | VARCHAR |     Nome do NPC      |      a-z, A-Z      |          Não           |          |
+|     nome      | VARCHAR |     Nome do NPC      |      a-z, A-Z      |          Não           |     -     |
 
 ## Entidade: Item
 
@@ -74,8 +74,8 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | Nome Variável |    Tipo     |            Descrição            | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-----------------------------: | :----------------: | :--------------------: | :------: |
 |      id       |     INT     | Código de Identificação do item |       1-5000       |          não           |    PK    |
-|     nome      | VARCHAR |          Nome do item           |      a-z, A-Z      |          não           |          |
-|  quantidade   |     INT     |        Descrição do item        |      1-5000      |          sim           |          |
+|     nome      | VARCHAR |          Nome do item           |      a-z, A-Z      |          não           |     -     |
+|  quantidade   |     INT     |        Descrição do item        |      1-5000      |          sim           |     -     |
 
 ## Entidade: Habilidade
 
@@ -84,10 +84,10 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | Nome Variável |    Tipo     |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :-------------------------: | :----------------: | :--------------------: | :------: |
 |      id       |     INT     | Identificador da habilidade |       1-5000       |          não           |    PK    |
-|     nome      | VARCHAR |     Nome da habilidade      |      a-z, A-Z      |          não           |          |
+|     nome      | VARCHAR |     Nome da habilidade      |      a-z, A-Z      |          não           |     -     |
 |    id_tipo    |     INT     | Dano que a habilidade causa |       1-5000       |          não           |    FK    |
-|   acuracia    |     INT     |      Precisão do dano       |       1-5000       |          sim           |          |
-|     dano      |     INT     |       Dano causado pelo pokemón                      |      1-5000              |          sim              |          |
+|   acuracia    |     INT     |      Precisão do dano       |       1-5000       |          sim           |     -     |
+|     dano      |     INT     |       Dano causado pelo pokemón                      |      1-5000              |          sim              |     -     |
 |   id_efeito   |     INT     |         Identicador de efeito para a entidade Efeito                    |      1-5000              |          não           |    FK    |
 
 ## Entidade: Pokemon-Habilidade
@@ -119,8 +119,8 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | Nome Variável |    Tipo     |        Descrição         | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :---------: | :----------------------: | :----------------: | :--------------------: | :------: |
 |      id       |     INT     | Identificador de terreno |       1-5000       |          não           |    PK    |
-|   descricao   | VARCHAR[50] |   Descrição de terreno   |       1-5000       |          não           |          |
-|   movimento   |             |                          |                    |                        |          |
+|   descricao   | VARCHAR[50] |   Descrição de terreno   |       1-5000       |          não           |     -     |
+|   movimento   |      INT       | Identificador da possibilidade de se mover em um terreno |       0-1         |            não            |     -     |
 
 ## Entidade: Terreno
 
@@ -134,6 +134,7 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 |        x        | INT  |      Coordenada do terreno       |       1-5000       |          não           |    -     |
 |        y        | INT  |      Coordenada do terreno       |       1-5000       |          não           |    -     |
 | id_tipo_terreno | INT  | Identificador do tipo de terreno |       1-5000       |          não           |    FK    |
+| id_andar | INT  | Identificador do andar onde o terreno está inserido |       1-5000       |          não           |    FK    |
 
 ## Entidade: Tipo
 
@@ -153,9 +154,9 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 |  Nome Variável   | Tipo |         Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :--------------: | :--: | :------------------------: | :----------------: | :--------------------: | :------: |
 |        id        | INT  | Identificador da interação |       1-5000       |          não           |    PK    |
-| id_tipo_atacante | INT  |                            |       1-5000       |          não           |    FK    |
-| id_tipo_defensor | INT  |                            |       1-5000       |          não           |    FK    |
-|      valor       | INT  |                            |       1-5000       |          não           |          |
+| id_tipo_atacante | INT  | Tipo elemental da habilidade do atacante |       1-5000       |          não           |    FK    |
+| id_tipo_defensor | INT  | Tipo elemental do pokemon defensor |       1-5000       |          não           |    FK    |
+|      valor       | INT  | Fator multiplicativo do dano |       1-5000       |          não           |    -      |
 
 ## Entidade: Efeito
 
@@ -174,9 +175,9 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 
 | Nome Variável | Tipo | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :--: | :-------: | :----------------: | :--------------------: | :------: |
-|      id       | INT  |           |       1-5000       |          não           |    PK    |
-|  id_terreno   | INT  |           |       1-5000       |          não           |    FK    |
-|    id_npc     | INT  |           |       1-5000       |          não           |    FK    |
+|      id       | INT  |     Identificador do local do NPC      |       1-5000       |          não           |    PK    |
+|  id_terreno   | INT  |     Identificador do terreno onde o NPC está      |       1-5000       |          não           |    FK    |
+|    id_npc     | INT  |     Identificador do NPC que está no terreno      |       1-5000       |          não           |    FK    |
 
 ## Entidade: Terreno_Loot
 
@@ -186,9 +187,9 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 
 | Nome Variável | Tipo | Descrição | Valores permitidos | Permite valores nulos? | É chave? |
 | :-----------: | :--: | :-------: | :----------------: | :--------------------: | :------: |
-|      id       | INT  |           |       1-5000       |          não           |    PK    |
-|  id_terreno   | INT  |           |       1-5000       |          não           |    FK    |
-|    id_loot    | INT  |           |       1-5000       |          não           |    FK    |
+|      id       | INT  |     Identificador do local onde está o loot      |       1-5000       |          não           |    PK    |
+|  id_terreno   | INT  |     Identificador do terreno onde o loot está      |       1-5000       |          não           |    FK    |
+|    id_loot    | INT  |     Identificador do loot que está no terreno      |       1-5000       |          não           |    FK    |
 
 ## Histórico de Versão
 
