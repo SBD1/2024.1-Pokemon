@@ -1,10 +1,12 @@
+# <b>Modelo Entidade Relacionamento</b>
+
 O Modelo Entidade-Relacionamento (ER) organiza os dados essenciais em diversas tabelas inter-relacionadas, cada uma com atributos específicos e chaves para definir as relações entre elas.
 
 Abaixo temos a imagem do modelo de entidade relacionamento:
 
-![Diagrama](../images/MER-pokemon.png)
+![Diagrama](../images/MER/modelo-entidade-relacionamento.png)
 
-[Link para o Modelo Entidade-Relacionamento]()
+[Link para o Modelo Entidade-Relacionamento](https://drive.google.com/file/d/1nllkrmmWlrq3KmpdA-dB0EknChRtXsTk/view?usp=sharing)
 
 ## Histórico de Versão
 
