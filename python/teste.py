@@ -8,20 +8,22 @@ DB_NAME = 'pokemon'
 DB_USER = 'empreender_local'
 DB_PASSWORD = '123456'
 
+
 # Função para conectar ao banco de dados
 def connect_db():
     return psycopg2.connect(host=DB_HOST, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD)
 
+
 # Função para obter terrenos com base no andar atual
 def fetch_terrains(current_floor):
     conn = connect_db()
-    cursor = conn.cursor()
+    cursor = conn.cursor() # OBS1. Tem que fazer join com o mapa também a ordem seria mapa -> andar -> terreno
     cursor.execute("""
         SELECT t.x, t.y, tt.descricao
         FROM terreno t
         JOIN tipo_terreno tt ON t.id_tipo_terreno = tt.id_tipo_terreno
         WHERE t.id_andar = %s
-    """, (current_floor,))
+    """, (current_floor,)) # OBS2. Tem que guardar na tabela de andar qual o spawn point do jogador (pode colocar um FK para o id_terreno)
     terrains = cursor.fetchall()
     cursor.close()
     conn.close()

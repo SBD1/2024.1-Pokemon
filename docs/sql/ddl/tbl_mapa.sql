@@ -1,5 +1,6 @@
-CREATE TABLE andar (
-    id SERIAL PRIMARY KEY,
-    nome_mapa VARCHAR(255), 
-    FOREIGN KEY (nome_mapa) REFERENCES mapa (nome) 
-);
+CREATE TABLE IF NOT EXISTS public.mapa
+(
+    nome VARCHAR(255) COLLATE pg_catalog."default" NOT NULL,
+    quantidade_andares integer NOT NULL,
+    CONSTRAINT mapa_pkey PRIMARY KEY (nome)
+)

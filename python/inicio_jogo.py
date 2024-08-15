@@ -10,6 +10,7 @@ DB_PASSWORD = '123456'
 conn = psycopg2.connect(host=DB_HOST, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD)
 cursor = conn.cursor()
 
+
 def get_narrator_dialogue():
     cursor.execute("""
         SELECT fala FROM dialogo WHERE personagem = 'Narrador' ORDER BY ordem
@@ -20,6 +21,7 @@ def get_narrator_dialogue():
     for dialogue in dialogues:
         print(dialogue[0])
         input("Pressione Enter para continuar...")
+
 
 def check_existing_player():
     cursor.execute("SELECT COUNT(*) FROM jogador")
@@ -35,6 +37,7 @@ def list_pokemon():
     for pokemon in pokemons:
         print(f"{pokemon[0]}: {pokemon[1]}")
     return pokemons
+
 
 # Função para criar o jogador e associar o Pokémon
 def create_player(pokemon_id):
