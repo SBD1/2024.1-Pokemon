@@ -1,4 +1,5 @@
-CREATE TABLE mapa (
-    nome VARCHAR(255) PRIMARY KEY,
-    quantidade_andares INT NOT NULL
+CREATE TABLE andar (
+    id SERIAL PRIMARY KEY,
+    nome_mapa VARCHAR(255), 
+    FOREIGN KEY (nome_mapa) REFERENCES mapa (nome) 
 );
