@@ -72,10 +72,6 @@ if check_existing_player():
     choice = input("Já existe um progresso salvo. Deseja continuar com o jogador existente? (s/n): ").strip().lower()
     if choice == 's':
         print("Continuando o progresso existente...")
-        # Adicione aqui o código para carregar o progresso do jogador existente
-        # Por exemplo, carregar o estado atual do jogador do banco de dados
-        # Isso pode incluir informações como nível, inventário, etc.
-        # Para simplificação, isso não está detalhado aqui.
         pass
     else:
         # Exibir as falas do narrador
