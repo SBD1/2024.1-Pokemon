@@ -1,8 +1,44 @@
 # 2024.1-Pokemon
 
+Tabela de conteúdos
+=================
+<!--ts-->
+   * [Sobre o Jogo](#Sobre-o-jogo)
+   * [Requisitos](#Requisitos)
+      * [Criando o .env](#Criando-o-.env)
+   * [Contribuidores](#Contribuidores)
+<!--te-->
+
 ## Sobre o jogo
 
 O projeto tem como objetivo a criação de um jogo baseado no Pokemon Mistery Dungeons, onde o jogador controla um Pokemón com o objetivo de explorar dungeons e completar missões.
+
+## Requisitos
+
+### Criando o .env
+
+Para rodar o projeto é necessário adicionar na raiz do projeto um arquivo .env como demonstrado:
+``` shell
+2024.1-Pokemon
+    ├───.github
+    │   └───workflows
+    ├───docs
+    │   ├───apresentacoes
+    │   ├───images
+    │   ├───modelagem
+    │   ├───script
+    │   │   └───tbl_pokemon
+    │   └───stylesheets
+    ├─── .env <-------------Aqui
+    └───script
+```
+
+O arquivo .env deve ter este formato:
+
+```
+POSTGRES_USER=<usuário do postgres>
+POSTGRES_PASSWORD=<senha deste user>
+```
 
 ## Contribuidores
 
