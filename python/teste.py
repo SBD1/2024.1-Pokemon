@@ -15,19 +15,21 @@ def connect_db():
 
 
 # Função para obter terrenos com base no andar atual
-def fetch_terrains(current_floor):
+def fetch_terrains(map, current_floor):
     conn = connect_db()
-    cursor = conn.cursor() # OBS1. Tem que fazer join com o mapa também a ordem seria mapa -> andar -> terreno
+    cursor = conn.cursor()  # OBS1. Tem que fazer join com o mapa também a ordem seria mapa -> andar -> terreno
     cursor.execute("""
-        SELECT t.x, t.y, tt.descricao
-        FROM terreno t
-        JOIN tipo_terreno tt ON t.id_tipo_terreno = tt.id_tipo_terreno
-        WHERE t.id_andar = %s
-    """, (current_floor,)) # OBS2. Tem que guardar na tabela de andar qual o spawn point do jogador (pode colocar um FK para o id_terreno)
+    SELECT t.id_terreno , t.x, t.y, tt.descricao
+    FROM terreno t
+    JOIN tipo_terreno tt ON t.id_tipo_terreno = tt.id_tipo_terreno
+    JOIN andar a ON t.id_andar = a.id_andar AND a.nome_mapa = %s
+    WHERE a.num_andar = %s
+""", (map, current_floor))  # OBS2. Tem que guardar na tabela de andar qual o spawn point do jogador (pode colocar um FK para o id_terreno)
     terrains = cursor.fetchall()
     cursor.close()
     conn.close()
     return terrains
+
 
 # Função para obter o próximo andar
 def get_next_floor(current_floor):
@@ -41,38 +43,43 @@ def get_next_floor(current_floor):
     conn.close()
     return min(current_floor + 1, max_floor)  # Não exceder o andar máximo
 
+
 # Função para inicializar o pygame
 def initialize_pygame():
     pygame.init()
     return pygame.display.set_mode((window_width, window_height), pygame.RESIZABLE)
 
+
 # Função para desenhar o jogador
 def draw_player(surface, offset_x, offset_y):
     pygame.draw.rect(surface, RED, (player_x - offset_x, player_y - offset_y, square_size, square_size))
 
+
 # Função para verificar colisão com obstáculos
 def check_collision(x, y):
     player_rect = pygame.Rect(x, y, square_size, square_size)
-    for (tx, ty, descricao) in terrains:
+    for (_, tx, ty, descricao) in terrains:
         terrain_rect = pygame.Rect(tx * square_size, ty * square_size, square_size, square_size)
         if player_rect.colliderect(terrain_rect):
             if descricao in ['Parede', 'Água']:
                 return True
     return False
 
+
 # Função para verificar se o jogador está sobre a escada
 def check_on_ladder():
     player_rect = pygame.Rect(player_x, player_y, square_size, square_size)
-    for (tx, ty, descricao) in terrains:
+    for (_, tx, ty, descricao) in terrains:
         if descricao == 'Escada':
             ladder_rect = pygame.Rect(tx * square_size, ty * square_size, square_size, square_size)
             if player_rect.colliderect(ladder_rect):
                 return True
     return False
 
+
 # Função para desenhar os terrenos
 def draw_terrains(surface):
-    for (x, y, descricao) in terrains:
+    for (_, x, y, descricao) in terrains:
         if descricao == 'Parede':
             color = BLACK
         elif descricao == 'Água':
@@ -87,6 +94,7 @@ def draw_terrains(surface):
         rect_x = x * square_size
         rect_y = y * square_size
         pygame.draw.rect(surface, color, (rect_x, rect_y, square_size, square_size))
+
 
 # Definir as cores
 WHITE = (255, 255, 255)
@@ -114,7 +122,7 @@ current_floor = 1
 window = initialize_pygame()
 
 # Obter os terrenos do andar atual
-terrains = fetch_terrains(current_floor)
+terrains = fetch_terrains('Teste',current_floor)
 
 # Criar uma superfície para o mapa
 revealed_surface = pygame.Surface((movement_limit_width, movement_limit_height))
@@ -128,16 +136,18 @@ draw_terrains(revealed_surface)
 # Coordenadas iniciais do jogador
 player_x, player_y = (movement_limit_width // 4) // square_size * square_size, (movement_limit_height // 2) // square_size * square_size
 
+
 # Função para mudar de andar
 def change_floor():
     global current_floor, terrains
     next_floor = get_next_floor(current_floor)
     if next_floor != current_floor:
         current_floor = next_floor
-        terrains = fetch_terrains(current_floor)
+        terrains = fetch_terrains('Teste', current_floor)
         revealed_surface.fill(WHITE)
         draw_terrains(revealed_surface)
         print(f"Subiu para o andar {current_floor}")
+
 
 # Loop principal do jogo
 running = True
@@ -176,17 +186,17 @@ while running:
     # Limitar o movimento do jogador à área definida
     player_x = max(0, min(player_x, movement_limit_width - square_size))
     player_y = max(0, min(player_y, movement_limit_height - square_size))
-    
+
     # Calcular o deslocamento da "câmera" para manter o jogador no centro da tela
     offset_x = max(0, min(player_x - window_width // 2, movement_limit_width - window_width))
     offset_y = max(0, min(player_y - window_height // 2, movement_limit_height - window_height))
-    
+
     # Preencher a janela
     window.fill(WHITE)
-    
+
     # Desenhar a superfície de áreas reveladas com deslocamento
     window.blit(revealed_surface, (-offset_x, -offset_y))
-    
+
     # Desenhar o jogador
     draw_player(window, offset_x, offset_y)
 
