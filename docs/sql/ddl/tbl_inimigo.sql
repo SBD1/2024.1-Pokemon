@@ -1,5 +1,6 @@
-CREATE TABLE jogador (
-    id_jogador SERIAL PRIMARY KEY,
+CREATE TABLE vendedor (
+    id_npc INT,
+    id_inimigo SERIAL PRIMARY KEY,
     nivel INT NOT NULL,
     vida INT NOT NULL,
     ataque_fisico INT NOT NULL,
@@ -11,9 +12,8 @@ CREATE TABLE jogador (
     status VARCHAR(255) NOT NULL,
     nome VARCHAR(255) NOT NULL,
     id_pokemon INT,
-    id_inventario INT,
-    id_correio INT,
+    posicao INT, 
     FOREIGN KEY (id_pokemon) REFERENCES pokemon(id_pokemon),
-    FOREIGN KEY (id_inventario) REFERENCES inventario(id_inventario)
-    FOREIGN KEY (id_correio) REFERENCES correio(id_correio)
+    FOREIGN KEY (posicao) REFERENCES terreno(id_terreno),
+    FOREIGN KEY (id_vendedor) REFERENCES npc(id_npc)
 );
