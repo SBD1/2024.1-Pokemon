@@ -4,7 +4,13 @@ O Modelo Entidade-Relacionamento (ER) organiza os dados essenciais em diversas t
 
 Abaixo temos a imagem do modelo de entidade relacionamento:
 
-![Diagrama](../images/MER/modelo-entidade-relacionamento.png)
+<figure markdown="span">
+  ![Modelo Entidade Relacionamento](../images/MER/modelo-entidade-relacionamento.png)
+  <figcaption>Modelo entidade relacionamento</figcaption>
+</figure>
+
+<!-- ![Image title](../images/MER/modelo-entidade-relacionamento.png/#only-light)
+![Image title](../images/MER/modelo-entidade-relacionamento-dark.png/#only-dark) -->
 
 [Link para o Modelo Entidade-Relacionamento](https://drive.google.com/file/d/1nllkrmmWlrq3KmpdA-dB0EknChRtXsTk/view?usp=sharing)
 

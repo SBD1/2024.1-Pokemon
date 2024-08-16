@@ -32,6 +32,11 @@ markdown_extensions:
       auto_title: true
       linenums: true
   - pymdownx.superfences
+  - attr_list
+  - md_in_html
+
+plugins:
+  - glightbox
 
 extra_css:
   - stylesheets/extra.css
