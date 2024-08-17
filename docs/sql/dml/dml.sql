@@ -89,11 +89,11 @@ INSERT INTO loot_item (id_item, id_loot, quantidade) VALUES (3, 3, 1);
 
 -- Inserindo dados na tabela 'missoes'
 INSERT INTO missoes (id_mapa, id_correio, id_loot, id_jogador, dificuldade, objetivo, tipo_missao)
-VALUES ('Floresta Sombra', 1, 1, 1, 3, 'Resgatar Pokémon', 1);
+VALUES ('Floresta Sombra', 1, 1, 1, 3, 'Resgatar Pokémon', true);
 INSERT INTO missoes (id_mapa, id_correio, id_loot, id_jogador, dificuldade, objetivo, tipo_missao)
-VALUES ('Caverna Cristal', 2, 2, 2, 5, 'Derrotar Chefão', 2);
+VALUES ('Caverna Cristal', 2, 2, 2, 5, 'Derrotar Chefão', false);
 INSERT INTO missoes (id_mapa, id_correio, id_loot, id_jogador, dificuldade, objetivo, tipo_missao)
-VALUES ('Montanha Fogo', 3, 3, 3, 7, 'Coletar Itens', 3);
+VALUES ('Montanha Fogo', 3, 3, 3, 7, 'Coletar Itens', true);
 
 -- Inserindo dados na tabela 'pokemon_habilidade'
 INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (1, 1);

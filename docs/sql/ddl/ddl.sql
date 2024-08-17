@@ -161,7 +161,7 @@ CREATE TABLE missao
     id_jogador  INT,
     dificuldade INT                   NOT NULL,
     objetivo    VARCHAR(255)          NOT NULL,
-    tipo_missao INT                   NOT NULL,
+    tipo_missao BOOLEAN               NOT NULL,
     concluida   BOOLEAN DEFAULT false NOT NULL,
 
     FOREIGN KEY (id_mapa) REFERENCES mapa (nome),
