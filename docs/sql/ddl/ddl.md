@@ -74,8 +74,10 @@ CREATE TABLE habilidade
     nome           VARCHAR(255) NOT NULL,
     dano           INT          NOT NULL,
     acuracia       INT          NOT NULL,
+    nome_efeito    VARCHAR,
     tipo_elemental VARCHAR,
 
+    FOREIGN KEY (nome) REFERENCES efeito (nome),
     FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome)
 );
 ~~~
@@ -201,21 +203,8 @@ CREATE TABLE loot_item
 ~~~sql
 CREATE TABLE npc
 (
-    id_npc          SERIAL PRIMARY KEY,
-    nivel           INT          NOT NULL,
-    vida            INT          NOT NULL,
-    ataque_fisico   INT          NOT NULL,
-    defesa_fisica   INT          NOT NULL,
-    ataque_especial INT          NOT NULL,
-    velocidade      INT          NOT NULL,
-    acuracia        INT          NOT NULL,
-    evasao          INT          NOT NULL,
-    status          VARCHAR(255) NOT NULL,
-    nome            VARCHAR(255) NOT NULL,
-    id_pokemon      INT, -- Adicione a coluna id_pokemon
-    posicao         INT, -- Adicione a coluna posicao
-    FOREIGN KEY (id_pokemon) REFERENCES pokemon (id_pokemon),
-    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno)
+    id_npc      SERIAL PRIMARY KEY,
+    id_tipo_npc INT
 );
 ~~~
 
@@ -264,6 +253,61 @@ CREATE TABLE terreno_loot
 
     FOREIGN KEY (id_terreno) REFERENCES terreno (id_terreno),
     FOREIGN KEY (id_loot) REFERENCES loot (id_loot)
+);
+~~~
+
+#### Criação da tabela vendedor
+~~~sql
+CREATE TABLE vendedor
+(
+    id_vendendor    SERIAL PRIMARY KEY,
+    id_pokemon      INT,
+    nivel           INT          NOT NULL,
+    vida            INT          NOT NULL,
+    ataque_fisico   INT          NOT NULL,
+    defesa_fisica   INT          NOT NULL,
+    ataque_especial INT          NOT NULL,
+    velocidade      INT          NOT NULL,
+    acuracia        INT          NOT NULL,
+    evasao          INT          NOT NULL,
+    status          VARCHAR(255) NOT NULL,
+    nome            VARCHAR(255) NOT NULL,
+    posicao         INT,
+    item_1          INT,
+    item_2          INT,
+    item_3          INT,
+
+    FOREIGN KEY (item_1) REFERENCES item (id_item),
+    FOREIGN KEY (item_2) REFERENCES item (id_item),
+    FOREIGN KEY (item_3) REFERENCES item (id_item),
+    FOREIGN KEY (id_pokemon) REFERENCES pokemon (id_pokemon),
+    FOREIGN KEY (id_vendendor) REFERENCES npc (id_npc),
+    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno)
+);
+~~~
+
+#### Criação da tabela inimigo
+~~~sql
+CREATE TABLE inimigo
+(
+    id_inimigo      SERIAL PRIMARY KEY,
+    id_npc          INT,
+    nivel           INT          NOT NULL,
+    vida            INT          NOT NULL,
+    ataque_fisico   INT          NOT NULL,
+    defesa_fisica   INT          NOT NULL,
+    ataque_especial INT          NOT NULL,
+    velocidade      INT          NOT NULL,
+    acuracia        INT          NOT NULL,
+    evasao          INT          NOT NULL,
+    status          VARCHAR(255) NOT NULL,
+    nome            VARCHAR(255) NOT NULL,
+    id_pokemon      INT,
+    posicao         INT,
+
+    FOREIGN KEY (id_pokemon) REFERENCES pokemon (id_pokemon),
+    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno),
+    FOREIGN KEY (id_npc) REFERENCES npc (id_npc)
 );
 ~~~
 
