@@ -152,16 +152,17 @@ CREATE TABLE npc
     FOREIGN KEY (id_npc) REFERENCES pokemon (id_pokemon)
 );
 
-CREATE TABLE missoes
+CREATE TABLE missao
 (
     id_missao   SERIAL PRIMARY KEY,
-    id_mapa     VARCHAR, -- Adicione a coluna id_mapa
-    id_correio  INT,     -- Adicione a coluna id_npc
-    id_loot     INT,     -- Adicione a coluna id_loot
+    id_mapa     VARCHAR,
+    id_correio  INT,
+    id_loot     INT,
     id_jogador  INT,
-    dificuldade INT          NOT NULL,
-    objetivo    VARCHAR(255) NOT NULL,
-    tipo_missao INT          NOT NULL,
+    dificuldade INT                   NOT NULL,
+    objetivo    VARCHAR(255)          NOT NULL,
+    tipo_missao INT                   NOT NULL,
+    concluida   BOOLEAN DEFAULT false NOT NULL,
 
     FOREIGN KEY (id_mapa) REFERENCES mapa (nome),
     FOREIGN KEY (id_correio) REFERENCES correio (id),

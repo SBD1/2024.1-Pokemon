@@ -2,19 +2,20 @@
 
 DDL (Data Definition Language), é um subconjunto da linguagem SQL (Structured Query Language) utilizado para definir e gerenciar a estrutura de bancos de dados. Os comandos DDL são usados para criar, alterar e excluir informações em um banco de dados, como tabelas, índices, esquemas, entre outros. Em resumo, DDL é essencial para a criação e gerenciamento da estrutura dos dados em um banco de dados relacional.
 
-
 #### Criação da tabela mapa
-~~~sql
+
+```sql
 CREATE TABLE mapa
 (
     nome               VARCHAR(255) COLLATE pg_catalog."default" NOT NULL,
     quantidade_andares integer                                   NOT NULL,
     CONSTRAINT mapa_pkey PRIMARY KEY (nome)
 );
-~~~
+```
 
 #### Criação da tabela andar
-~~~sql
+
+```sql
 CREATE TABLE andar
 (
     id_andar  SERIAL PRIMARY KEY,
@@ -22,20 +23,22 @@ CREATE TABLE andar
 
     FOREIGN KEY (nome_mapa) REFERENCES mapa (nome)
 );
-~~~
+```
 
 #### Criação da tabela tipo_terreno
-~~~sql
+
+```sql
 CREATE TABLE tipo_terreno
 (
     id_tipo_terreno SERIAL PRIMARY KEY,
     descricao       VARCHAR(50) NOT NULL,
     movimento       BOOLEAN     NOT NULL
 );
-~~~
+```
 
 #### Criação da tabela terreno
-~~~sql
+
+```sql
 CREATE TABLE terreno
 (
     id_terreno      SERIAL PRIMARY KEY,
@@ -47,27 +50,30 @@ CREATE TABLE terreno
     FOREIGN KEY (id_tipo_terreno) REFERENCES tipo_terreno (id_tipo_terreno),
     FOREIGN KEY (id_andar) REFERENCES andar (id_andar)
 );
-~~~
+```
 
 #### Criação da tabela efeito
-~~~sql
+
+```sql
 CREATE TABLE efeito
 (
     nome VARCHAR(255) PRIMARY KEY,
     dano INT NOT NULL
 );
-~~~
+```
 
 #### Criação da tabela tipo_elemental
-~~~sql
+
+```sql
 CREATE TABLE tipo_elemental
 (
     nome VARCHAR(255) PRIMARY KEY
 );
-~~~
+```
 
 #### Criação da tabela habilidade
-~~~sql
+
+```sql
 CREATE TABLE habilidade
 (
     id_habilidade  SERIAL PRIMARY KEY,
@@ -80,10 +86,11 @@ CREATE TABLE habilidade
     FOREIGN KEY (nome_efeito) REFERENCES efeito (nome),
     FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome)
 );
-~~~
+```
 
 #### Criação da tabela interação
-~~~sql
+
+```sql
 CREATE TABLE interacao
 (
     id            SERIAL PRIMARY KEY,
@@ -94,10 +101,11 @@ CREATE TABLE interacao
     FOREIGN KEY (tipo_atacante) REFERENCES tipo_elemental (nome), -- Ajuste a tabela e coluna referenciadas
     FOREIGN KEY (tipo_defensor) REFERENCES tipo_elemental (nome)  -- Ajuste a tabela e coluna referenciadas
 );
-~~~
+```
 
 #### Criação da tabela item
-~~~sql
+
+```sql
 CREATE TABLE item
 (
     id_item    SERIAL PRIMARY KEY,
@@ -107,10 +115,11 @@ CREATE TABLE item
     quantidade INT          NOT NULL,
     valor      INT          NOT NULL
 );
-~~~
+```
 
 #### Criação da tabela inventário
-~~~sql
+
+```sql
 CREATE TABLE inventario
 (
     id_inventario SERIAL PRIMARY KEY, -- Defina a coluna id_inventario como chave primária
@@ -119,10 +128,11 @@ CREATE TABLE inventario
 
     FOREIGN KEY (id_item) REFERENCES item (id_item)
 );
-~~~
+```
 
 #### Criação da tabela correio
-~~~sql
+
+```sql
 CREATE TABLE correio
 (
     id         SERIAL PRIMARY KEY,
@@ -131,19 +141,21 @@ CREATE TABLE correio
 
     FOREIGN KEY (terreno_id) REFERENCES terreno (id_terreno)
 );
-~~~
+```
 
 #### Criação da tabela pokemón
-~~~sql
+
+```sql
 CREATE TABLE pokemon
 (
     id_pokemon      SERIAL PRIMARY KEY,
     id_tipo_pokemon INT
 );
-~~~
+```
 
 #### Criação da tabela jogador
-~~~sql
+
+```sql
 CREATE TABLE jogador
 (
     id_jogador      INT PRIMARY KEY,
@@ -161,22 +173,24 @@ CREATE TABLE jogador
     id_correio      INT,
     saldo           BIGINT       NOT NULL,
     tam_inventario  INT          NOT NULL,
-    
+
     FOREIGN KEY (id_jogador) REFERENCES pokemon (id_pokemon),
     FOREIGN KEY (id_inventario) REFERENCES inventario (id_inventario),
     FOREIGN KEY (id_correio) REFERENCES correio (id)
 );
-~~~
+```
 
 #### Alteração da tabela correio
-~~~sql
+
+```sql
 ALTER TABLE correio
     ADD CONSTRAINT correio_id_jogador_fkey FOREIGN KEY (jogador_id) REFERENCES jogador (id_jogador);
 
-~~~
+```
 
 #### Criação da tabela loot
-~~~sql
+
+```sql
 CREATE TABLE loot
 (
     id_loot    SERIAL PRIMARY KEY,
@@ -184,10 +198,11 @@ CREATE TABLE loot
 
     FOREIGN KEY (id_terreno) REFERENCES terreno (id_terreno)
 );
-~~~
+```
 
 #### Criação da tabela loo_item
-~~~sql
+
+```sql
 CREATE TABLE loot_item
 (
     id_loot_item SERIAL PRIMARY KEY, -- Adiciona uma chave primária
@@ -198,43 +213,45 @@ CREATE TABLE loot_item
     FOREIGN KEY (id_item) REFERENCES item (id_item),
     FOREIGN KEY (id_loot) REFERENCES loot (id_loot)
 );
-~~~
+```
 
 #### Criação da tabela npc
-~~~sql
+
+```sql
 CREATE TABLE npc
 (
     id_npc      INT PRIMARY KEY,
     id_tipo_npc INT,
-    
+
     FOREIGN KEY (id_npc) REFERENCES pokemon (id_pokemon)
 );
-~~~
-
+```
 
 #### Criação da tabela missoes
-~~~sql
-CREATE TABLE missoes
+
+```sql
+CREATE TABLE missao
 (
     id_missao   SERIAL PRIMARY KEY,
-    id_mapa     VARCHAR, -- Adicione a coluna id_mapa
-    id_correio  INT,     -- Adicione a coluna id_npc
-    id_loot     INT,     -- Adicione a coluna id_loot
+    id_mapa     VARCHAR,
+    id_correio  INT,
+    id_loot     INT,
     id_jogador  INT,
-    dificuldade INT          NOT NULL,
-    objetivo    VARCHAR(255) NOT NULL,
-    tipo_missao INT          NOT NULL,
+    dificuldade INT                   NOT NULL,
+    objetivo    VARCHAR(255)          NOT NULL,
+    tipo_missao INT                   NOT NULL,
+    concluida   BOOLEAN DEFAULT false NOT NULL,
 
     FOREIGN KEY (id_mapa) REFERENCES mapa (nome),
     FOREIGN KEY (id_correio) REFERENCES correio (id),
     FOREIGN KEY (id_jogador) REFERENCES jogador (id_jogador),
     FOREIGN KEY (id_loot) REFERENCES loot (id_loot)
 );
-~~~
-
+```
 
 #### Criação da tabela pokemom_habilidade
-~~~sql
+
+```sql
 CREATE TABLE pokemon_habilidade
 (
     id_pokemon_habilidade SERIAL PRIMARY KEY,
@@ -244,10 +261,11 @@ CREATE TABLE pokemon_habilidade
     FOREIGN KEY (id_pokemon) REFERENCES pokemon (id_pokemon),
     FOREIGN KEY (id_habilidade) REFERENCES habilidade (id_habilidade)
 );
-~~~
+```
 
 #### Criação da tabela terreno_loot
-~~~sql
+
+```sql
 CREATE TABLE terreno_loot
 (
     id_terreno_loot SERIAL PRIMARY KEY,
@@ -257,10 +275,11 @@ CREATE TABLE terreno_loot
     FOREIGN KEY (id_terreno) REFERENCES terreno (id_terreno),
     FOREIGN KEY (id_loot) REFERENCES loot (id_loot)
 );
-~~~
+```
 
 #### Criação da tabela vendedor
-~~~sql
+
+```sql
 CREATE TABLE vendedor
 (
     id_vendendor    INT PRIMARY KEY,
@@ -285,10 +304,11 @@ CREATE TABLE vendedor
     FOREIGN KEY (item_2) REFERENCES item (id_item),
     FOREIGN KEY (item_3) REFERENCES item (id_item)
 );
-~~~
+```
 
 #### Criação da tabela inimigo
-~~~sql
+
+```sql
 CREATE TABLE inimigo
 (
     id_inimigo      INT PRIMARY KEY,
@@ -307,11 +327,11 @@ CREATE TABLE inimigo
     FOREIGN KEY (id_inimigo) REFERENCES npc (id_npc),
     FOREIGN KEY (posicao) REFERENCES terreno (id_terreno)
 );
-~~~
-
+```
 
 #### Criação da tabela dialogo
-~~~sql
+
+```sql
 CREATE TABLE dialogo
 (
     id         SERIAL PRIMARY KEY,
@@ -319,10 +339,11 @@ CREATE TABLE dialogo
     fala       text COLLATE pg_catalog."default" NOT NULL,
     ordem      INT
 );
-~~~
+```
 
 ## Histórico de Versão
 
-| Versão |    Data    |                     Descrição                     |                                                                                                Autor(es)                                                                                                 |
-| :----: | :--------: | :-----------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| `1.0`  | 16/08/2024 | Criação das tabelas | [Gabriel Marcolino](https://github.com/GabrielMR360), [Shaíne Oliveira](ttps://github.com/ShaineOliveira), [José Filipi](https://github.com/JoseFilipi) e [Leonardo Bonetti](https://github.com/LeoFacB) |
+| Versão |    Data    |         Descrição          |                                                                                                Autor(es)                                                                                                 |
+| :----: | :--------: | :------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| `1.0`  | 16/08/2024 |    Criação das tabelas     | [Gabriel Marcolino](https://github.com/GabrielMR360), [Shaíne Oliveira](ttps://github.com/ShaineOliveira), [José Filipi](https://github.com/JoseFilipi) e [Leonardo Bonetti](https://github.com/LeoFacB) |
+| `1.1`  | 17/08/2024 | Alterando tabela de missão |                                                                           [Gabriel Marcolino](https://github.com/GabrielMR360)                                                                           |
