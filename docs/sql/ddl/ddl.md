@@ -77,7 +77,7 @@ CREATE TABLE habilidade
     nome_efeito    VARCHAR,
     tipo_elemental VARCHAR,
 
-    FOREIGN KEY (nome) REFERENCES efeito (nome),
+    FOREIGN KEY (nome_efeito) REFERENCES efeito (nome),
     FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome)
 );
 ~~~
