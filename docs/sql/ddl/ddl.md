@@ -233,7 +233,7 @@ CREATE TABLE npc
 CREATE TABLE missao
 (
     id_missao   SERIAL PRIMARY KEY,
-    id_mapa     VARCHAR,
+    nome_mapa   VARCHAR(255),
     id_correio  INT,
     id_loot     INT,
     id_jogador  INT,
@@ -242,7 +242,7 @@ CREATE TABLE missao
     tipo_missao BOOLEAN               NOT NULL,
     concluida   BOOLEAN DEFAULT false NOT NULL,
 
-    FOREIGN KEY (id_mapa) REFERENCES mapa (nome),
+    FOREIGN KEY (nome_mapa) REFERENCES mapa (nome),
     FOREIGN KEY (id_correio) REFERENCES correio (id),
     FOREIGN KEY (id_jogador) REFERENCES jogador (id_jogador),
     FOREIGN KEY (id_loot) REFERENCES loot (id_loot)
