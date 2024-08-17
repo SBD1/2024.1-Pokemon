@@ -29,9 +29,12 @@ INSERT INTO tipo_elemental (nome) VALUES ('Água');
 INSERT INTO tipo_elemental (nome) VALUES ('Elétrico');
 
 -- Inserindo dados na tabela 'habilidade'
-INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental) VALUES ('Lança Chamas', 70, 90, 'Chamas', 'Fogo');
-INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental) VALUES ('Hidro Bomba', 80, 85, 'Vento Cortante', 'Água');
-INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental) VALUES ('Choque do Trovão', 60, 95, 'Trovão', 'Elétrico');
+INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental) 
+VALUES ('Lança Chamas', 70, 90, 'Chamas', 'Fogo');
+INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental) 
+VALUES ('Hidro Bomba', 80, 85, 'Vento Cortante', 'Água');
+INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental) 
+VALUES ('Choque do Trovão', 60, 95, 'Trovão', 'Elétrico');
 
 -- Inserindo dados na tabela 'interacao'
 INSERT INTO interacao (valor, tipo_atacante, tipo_defensor) VALUES (2, 'Fogo', 'Água');
@@ -39,32 +42,43 @@ INSERT INTO interacao (valor, tipo_atacante, tipo_defensor) VALUES (1, 'Água', 
 INSERT INTO interacao (valor, tipo_atacante, tipo_defensor) VALUES (3, 'Elétrico', 'Fogo');
 
 -- Inserindo dados na tabela 'item'
-INSERT INTO item (nome, descricao, efeito, quantidade, valor) VALUES ('Poção', 'Recupera vida', 'Recupera 50 HP', 5, 100);
-INSERT INTO item (nome, descricao, efeito, quantidade, valor) VALUES ('Elixir', 'Recupera PP', 'Recupera todos os PP', 3, 200);
-INSERT INTO item (nome, descricao, efeito, quantidade, valor) VALUES ('Reviver', 'Revive Pokémon', 'Revive com metade da vida', 2, 300);
+INSERT INTO item (nome, descricao, efeito, valor) 
+VALUES ('Poção', 'Recupera vida', 'Recupera 50 HP', 100);
+INSERT INTO item (nome, descricao, efeito, valor) 
+VALUES ('Elixir', 'Recupera PP', 'Recupera todos os PP', 200);
+INSERT INTO item (nome, descricao, efeito, valor) 
+VALUES ('Reviver', 'Revive Pokémon', 'Revive com metade da vida', 300);
+
+-- Inserindo dados na tabela 'instancia_item'
+INSERT INTO instancia_item (id_item) VALUES (1);
+INSERT INTO instancia_item (id_item) VALUES (2);
+INSERT INTO instancia_item (id_item) VALUES (3);
 
 -- Inserindo dados na tabela 'inventario'
-INSERT INTO inventario (id_item, quantidade) VALUES (1, 2);
-INSERT INTO inventario (id_item, quantidade) VALUES (2, 1);
-INSERT INTO inventario (id_item, quantidade) VALUES (3, 5);
+INSERT INTO inventario (id_inventario, id_instancia_item) VALUES (1, 1);
+INSERT INTO inventario (id_inventario, id_instancia_item) VALUES (2, 2);
+INSERT INTO inventario (id_inventario, id_instancia_item) VALUES (3, 3);
+
+-- Inserindo dados na tabela 'instancia_item'
+INSERT INTO instancia_item (id_item) VALUES (1); 
+INSERT INTO instancia_item (id_item) VALUES (2);
+INSERT INTO instancia_item (id_item) VALUES (3);
 
 -- Inserindo dados na tabela 'pokemon'
-INSERT INTO pokemon (id_tipo_pokemon) VALUES (1);
-INSERT INTO pokemon (id_tipo_pokemon) VALUES (2);
-INSERT INTO pokemon (id_tipo_pokemon) VALUES (3);
+INSERT INTO pokemon (id_tipo_pokemon) VALUES (1); -- Player
+INSERT INTO pokemon (id_tipo_pokemon) VALUES (2); -- NPC
 
 -- Inserindo dados na tabela 'npc'
-INSERT INTO npc (id_tipo_npc) VALUES (1);
-INSERT INTO npc (id_tipo_npc) VALUES (2);
-INSERT INTO npc (id_tipo_npc) VALUES (3);
+INSERT INTO npc (id_tipo_npc) VALUES (1); -- Vendedor
+INSERT INTO npc (id_tipo_npc) VALUES (2); -- Inimigo
 
 -- Inserindo dados na tabela 'jogador'
-INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, id_inventario, id_correio, saldo)
-VALUES (5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1, 1, NULL, 1000);
-INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, id_inventario, id_correio, saldo)
-VALUES (10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2, 2, NULL, 2000);
-INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, id_inventario, id_correio, saldo)
-VALUES (15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3, 3, NULL, 3000);
+INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, saldo)
+VALUES (5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1, 1000);
+INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, saldo)
+VALUES (10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2, 2000);
+INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, saldo)
+VALUES (15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3, 3000);
 
 -- Inserindo dados na tabela 'correio'
 INSERT INTO correio (jogador_id, terreno_id) VALUES (1, 1);
@@ -75,7 +89,6 @@ INSERT INTO correio (jogador_id, terreno_id) VALUES (3, 3);
 UPDATE jogador SET id_correio = 1 WHERE id_jogador = 1;
 UPDATE jogador SET id_correio = 2 WHERE id_jogador = 2;
 UPDATE jogador SET id_correio = 3 WHERE id_jogador = 3;
-
 
 -- Inserindo dados na tabela 'loot'
 INSERT INTO loot (id_terreno) VALUES (1);
@@ -89,11 +102,11 @@ INSERT INTO loot_item (id_item, id_loot, quantidade) VALUES (3, 3, 1);
 
 -- Inserindo dados na tabela 'missoes'
 INSERT INTO missoes (id_mapa, id_correio, id_loot, id_jogador, dificuldade, objetivo, tipo_missao)
-VALUES ('Floresta Sombra', 1, 1, 1, 3, 'Resgatar Pokémon', 1);
+VALUES (1, 1, 1, 1, 3, 'Resgatar Pokémon', 1);
 INSERT INTO missoes (id_mapa, id_correio, id_loot, id_jogador, dificuldade, objetivo, tipo_missao)
-VALUES ('Caverna Cristal', 2, 2, 2, 5, 'Derrotar Chefão', 2);
+VALUES (2, 2, 2, 2, 5, 'Derrotar Chefão', 2);
 INSERT INTO missoes (id_mapa, id_correio, id_loot, id_jogador, dificuldade, objetivo, tipo_missao)
-VALUES ('Montanha Fogo', 3, 3, 3, 7, 'Coletar Itens', 3);
+VALUES (3, 3, 3, 3, 7, 'Coletar Itens', 3);
 
 -- Inserindo dados na tabela 'pokemon_habilidade'
 INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (1, 1);
@@ -110,5 +123,3 @@ INSERT INTO vendedor (id_pokemon, nivel, vida, ataque_fisico, defesa_fisica, ata
 VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Disponível', 'Vendedor 1', 1, 1, 2, 3);
 INSERT INTO vendedor (id_pokemon, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, item_1, item_2, item_3)
 VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Vendedor 2', 2, 1, 2, 3);
-INSERT INTO vendedor (id_pokemon, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, item_1, item_2, item_3)
-VALUES (3, 20, 400, 120, 100, 150, 130, 110, 90, 'Ativo', 'Vendedor 4', 2, 1, 2, 3);

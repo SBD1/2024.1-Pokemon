@@ -88,7 +88,6 @@ INSERT INTO inventario (id_item, quantidade) VALUES (3, 5);
 ```sql
 INSERT INTO pokemon (id_tipo_pokemon) VALUES (1);
 INSERT INTO pokemon (id_tipo_pokemon) VALUES (2);
-INSERT INTO pokemon (id_tipo_pokemon) VALUES (3);
 ```
 
 #### Inserindo dados na tabela 'npc'
@@ -96,18 +95,17 @@ INSERT INTO pokemon (id_tipo_pokemon) VALUES (3);
 ```sql
 INSERT INTO npc (id_tipo_npc) VALUES (1);
 INSERT INTO npc (id_tipo_npc) VALUES (2);
-INSERT INTO npc (id_tipo_npc) VALUES (3);
 ```
 
 #### Inserindo dados na tabela 'jogador'
 
 ```sql
 INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, id_inventario, id_correio, saldo)
-VALUES (5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1, 1, NULL, 1000);
+VALUES (5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1, 1, 1, 1000);
 INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, id_inventario, id_correio, saldo)
-VALUES (10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2, 2, NULL, 2000);
+VALUES (10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2, 2, 2, 2000);
 INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_pokemon, id_inventario, id_correio, saldo)
-VALUES (15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3, 3, NULL, 3000);
+VALUES (15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3, 3, 3, 3000);
 ```
 
 #### Inserindo dados na tabela 'correio'
