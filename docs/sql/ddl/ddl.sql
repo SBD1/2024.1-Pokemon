@@ -79,12 +79,13 @@ CREATE TABLE item
 
 CREATE TABLE inventario
 (
-    id_inventario SERIAL PRIMARY KEY, -- Defina a coluna id_inventario como chave primária
-    id_item       INT,
-    quantidade    INT,
+    id_inventario     INT PRIMARY KEY,
+    id_instancia_item INT,
 
-    FOREIGN KEY (id_item) REFERENCES item (id_item)
+    FOREIGN KEY (id_instancia_item) REFERENCES instancia_item (id_instancia_item),
+    FOREIGN KEY (id_inventario) REFERENCES jogador (id_jogador)
 );
+
 
 CREATE TABLE correio
 (
@@ -103,7 +104,7 @@ CREATE TABLE pokemon
 
 CREATE TABLE jogador
 (
-    id_jogador      SERIAL PRIMARY KEY,
+    id_jogador      INT PRIMARY KEY,
     nivel           INT          NOT NULL,
     vida            INT          NOT NULL,
     ataque_fisico   INT          NOT NULL,
@@ -114,17 +115,14 @@ CREATE TABLE jogador
     evasao          INT          NOT NULL,
     status          VARCHAR(255) NOT NULL,
     nome            VARCHAR(255) NOT NULL,
-    id_pokemon      INT,
-    id_inventario   INT,
     id_correio      INT,
     saldo           BIGINT       NOT NULL,
-    FOREIGN KEY (id_pokemon) REFERENCES pokemon (id_pokemon),
-    FOREIGN KEY (id_inventario) REFERENCES inventario (id_inventario),
+    tam_inventario  INT          NOT NULL,
+    
+    FOREIGN KEY (id_jogador) REFERENCES pokemon (id_pokemon),
     FOREIGN KEY (id_correio) REFERENCES correio (id)
 );
 
-ALTER TABLE correio
-    ADD CONSTRAINT correio_id_jogador_fkey FOREIGN KEY (jogador_id) REFERENCES jogador (id_jogador);
 
 CREATE TABLE loot
 (
@@ -148,8 +146,10 @@ CREATE TABLE loot_item
 
 CREATE TABLE npc
 (
-    id_npc      SERIAL PRIMARY KEY,
-    id_tipo_npc INT
+    id_npc      INT PRIMARY KEY,
+    id_tipo_npc INT,
+    
+    FOREIGN KEY (id_npc) REFERENCES pokemon (id_pokemon)
 );
 
 CREATE TABLE missoes
@@ -191,8 +191,7 @@ CREATE TABLE terreno_loot
 
 CREATE TABLE vendedor
 (
-    id_vendendor    SERIAL PRIMARY KEY,
-    id_pokemon      INT,
+    id_vendendor    INT PRIMARY KEY,
     nivel           INT          NOT NULL,
     vida            INT          NOT NULL,
     ataque_fisico   INT          NOT NULL,
@@ -208,18 +207,16 @@ CREATE TABLE vendedor
     item_2          INT,
     item_3          INT,
 
+    FOREIGN KEY (id_vendendor) REFERENCES npc (id_npc),
+    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno),
     FOREIGN KEY (item_1) REFERENCES item (id_item),
     FOREIGN KEY (item_2) REFERENCES item (id_item),
-    FOREIGN KEY (item_3) REFERENCES item (id_item),
-    FOREIGN KEY (id_pokemon) REFERENCES pokemon (id_pokemon),
-    FOREIGN KEY (id_vendendor) REFERENCES npc (id_npc),
-    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno)
+    FOREIGN KEY (item_3) REFERENCES item (id_item)
 );
 
 CREATE TABLE inimigo
 (
-    id_inimigo      SERIAL PRIMARY KEY,
-    id_npc          INT,
+    id_inimigo      INT PRIMARY KEY,
     nivel           INT          NOT NULL,
     vida            INT          NOT NULL,
     ataque_fisico   INT          NOT NULL,
@@ -230,12 +227,10 @@ CREATE TABLE inimigo
     evasao          INT          NOT NULL,
     status          VARCHAR(255) NOT NULL,
     nome            VARCHAR(255) NOT NULL,
-    id_pokemon      INT,
     posicao         INT,
 
-    FOREIGN KEY (id_pokemon) REFERENCES pokemon (id_pokemon),
-    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno),
-    FOREIGN KEY (id_npc) REFERENCES npc (id_npc)
+    FOREIGN KEY (id_inimigo) REFERENCES npc (id_npc),
+    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno)
 );
 
 CREATE TABLE dialogo
@@ -243,6 +238,13 @@ CREATE TABLE dialogo
     id         SERIAL PRIMARY KEY,
     personagem VARCHAR(50)                       NOT NULL,
     fala       text COLLATE pg_catalog."default" NOT NULL,
---     contexto   character varying(100) COLLATE pg_catalog."default",
     ordem      INT
+);
+
+CREATE TABLE instancia_item
+(
+    id_instancia_item SERIAL PRIMARY KEY,
+    id_item           INT,
+
+    FOREIGN KEY (id_item) REFERENCES item (id_item)
 );
