@@ -13,6 +13,7 @@ CREATE TABLE jogador (
     id_pokemon INT,
     id_inventario INT,
     id_correio INT,
+    saldo BIGINT NOT NULL,
     FOREIGN KEY (id_pokemon) REFERENCES pokemon(id_pokemon),
     FOREIGN KEY (id_inventario) REFERENCES inventario(id_inventario)
     FOREIGN KEY (id_correio) REFERENCES correio(id_correio)
