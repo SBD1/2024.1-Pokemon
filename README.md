@@ -5,8 +5,9 @@ Tabela de conteúdos
 <!--ts-->
    * [Sobre o Jogo](#Sobre-o-jogo)
    * [Requisitos](#Requisitos)
-      * [Criando o .env](#Criando-o-.env)
+   * [Como executar o jogo](#Como-executar-o-jogo)
    * [Contribuidores](#Contribuidores)
+     
 <!--te-->
 
 ## Sobre o jogo
@@ -15,29 +16,11 @@ O projeto tem como objetivo a criação de um jogo baseado no Pokemon Mistery Du
 
 ## Requisitos
 
-### Criando o .env
+## Como executar o jogo
 
-Para rodar o projeto é necessário adicionar na raiz do projeto um arquivo .env como demonstrado:
-``` shell
-2024.1-Pokemon
-    ├───.github
-    │   └───workflows
-    ├───docs
-    │   ├───apresentacoes
-    │   ├───images
-    │   ├───modelagem
-    │   ├───script
-    │   │   └───tbl_pokemon
-    │   └───stylesheets
-    ├─── .env <-------------Aqui
-    └───script
+Para jogar a aplicação é necessário acessar a raiz do diretório e executar o comando
 ```
-
-O arquivo .env deve ter este formato:
-
-```
-POSTGRES_USER=<usuário do postgres>
-POSTGRES_PASSWORD=<senha deste user>
+python python/game.py
 ```
 
 ## Contribuidores
