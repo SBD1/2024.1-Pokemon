@@ -102,15 +102,12 @@ INSERT INTO correio (jogador_id, terreno_id)
 VALUES (3, 3);
 
 -- Inserindo dados na tabela 'jogador'
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia,
-                     evasao, status, nome, id_correio, saldo, tam_inventario, posicao)
-VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1, 1000, 4, 1);
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia,
-                     evasao, status, nome, id_correio, saldo, tam_inventario, posicao)
-VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2, 2000, 3, 2);
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia,
-                     evasao, status, nome, id_correio, saldo, tam_inventario, posicao)
-VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3, 3000, 7, 3);
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_correio, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1, 1000, 4, 1, 'Elétrico');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_correio, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2, 2000, 3, 2, 'Fogo');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_correio, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3, 3000, 7, 3, 'Água');
 
 -- Inserindo dados na tabela 'inventario'
 INSERT INTO inventario (id_inventario, id_instancia_item)
@@ -189,11 +186,11 @@ INSERT INTO terreno_loot (id_terreno, id_loot)
 VALUES (3, 3);
 
 -- Inserindo dados na tabela 'vendedor'
-INSERT INTO vendedor (id_vendendor, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, item_1, item_2, item_3)
-VALUES (4, 5, 100, 50, 40, 60, 70, 80, 90, 'Disponível', 'Vendedor 1', 1, 1, 2, 3);
-INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao)
-VALUES (5, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 1', 2);
-INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao)
-VALUES (6, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 2', 2);
+INSERT INTO vendedor (id_vendendor, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, item_1, item_2, item_3, tipo_elemental)
+VALUES (4, 5, 100, 50, 40, 60, 70, 80, 90, 'Disponível', 'Vendedor 1', 1, 1, 2, 3, 'Fogo');
+INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, tipo_elemental)
+VALUES (5, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 1', 2, 'Água');
+INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, tipo_elemental)
+VALUES (6, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 2', 2, 'Elétrico');
 
 
