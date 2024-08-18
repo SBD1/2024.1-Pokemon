@@ -114,7 +114,6 @@ CREATE TABLE jogador
     evasao          INT          NOT NULL,
     status          VARCHAR(255) NOT NULL,
     nome            VARCHAR(255) NOT NULL,
-    id_correio      INT,
     saldo           BIGINT       NOT NULL,
     tam_inventario  INT          NOT NULL,
     posicao         INT          NOT NULL,
@@ -250,4 +249,21 @@ CREATE TABLE dialogo
     personagem VARCHAR(50)                       NOT NULL,
     fala       text COLLATE pg_catalog."default" NOT NULL,
     ordem      INT
+);
+
+CREATE TABLE IF NOT EXISTS pokemon_base
+(
+    id_pokemon SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    tipo VARCHAR(255) NOT NULL,
+    vida_base INTEGER NOT NULL,
+    ataque_fisico_base INTEGER NOT NULL,
+    defesa_fisica_base INTEGER NOT NULL,
+    ataque_especial_base INTEGER NOT NULL,
+    velocidade_base INTEGER NOT NULL,
+    acuracia_base INTEGER NOT NULL,
+    evasao_base INTEGER NOT NULL,
+    status_base VARCHAR(255) NOT NULL,
+    evolui_de VARCHAR(255),
+    evolui_para VARCHAR(255)
 );

@@ -7,7 +7,7 @@ SELECT m.id_missao,
        ma.nome AS mapa_nome,
        c.id AS correio_id
 FROM missao m
-JOIN mapa ma ON m.id_mapa = ma.nome
+JOIN mapa ma ON m.nome_mapa = ma.nome
 JOIN correio c ON m.id_correio = c.id
 WHERE m.concluida = false;
 
