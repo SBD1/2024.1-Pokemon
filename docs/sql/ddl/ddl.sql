@@ -117,10 +117,12 @@ CREATE TABLE jogador
     saldo           BIGINT       NOT NULL,
     tam_inventario  INT          NOT NULL,
     posicao         INT          NOT NULL,
+    tipo_elemental  VARCHAR(255) NOT NULL,
 
     FOREIGN KEY (id_jogador) REFERENCES pokemon (id_pokemon),
     FOREIGN KEY (id_correio) REFERENCES correio (id),
-    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno)
+    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno),
+    FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome)
 );
 
 CREATE TABLE inventario
@@ -216,12 +218,14 @@ CREATE TABLE vendedor
     item_1          INT,
     item_2          INT,
     item_3          INT,
+    tipo_elemental  VARCHAR(255) NOT NULL,
 
     FOREIGN KEY (id_vendendor) REFERENCES npc (id_npc),
     FOREIGN KEY (posicao) REFERENCES terreno (id_terreno),
     FOREIGN KEY (item_1) REFERENCES item (id_item),
     FOREIGN KEY (item_2) REFERENCES item (id_item),
-    FOREIGN KEY (item_3) REFERENCES item (id_item)
+    FOREIGN KEY (item_3) REFERENCES item (id_item),
+    FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome)
 );
 
 CREATE TABLE inimigo
@@ -238,9 +242,11 @@ CREATE TABLE inimigo
     status          VARCHAR(255) NOT NULL,
     nome            VARCHAR(255) NOT NULL,
     posicao         INT,
+    tipo_elemental  VARCHAR(255) NOT NULL,
 
     FOREIGN KEY (id_inimigo) REFERENCES npc (id_npc),
-    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno)
+    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno),
+    FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome)
 );
 
 CREATE TABLE dialogo
