@@ -1,176 +1,203 @@
 import pygame
 import sys
+import psycopg2
+from tabulate import tabulate
 
-# Inicialize o pygame
-pygame.init()
+# Configurações do banco de dados
+DB_HOST = '172.19.0.2'
+DB_NAME = 'db_pokemon'
+DB_USER = 'pokemon'
+DB_PASSWORD = '123456'
 
-# Defina as dimensões da janela e a área de movimentação
-window_width, window_height = 800, 600
-movement_limit_width, movement_limit_height = 1600, 1200  # Área de movimentação maior que a tela
+# Conectar ao banco de dados
+conn = psycopg2.connect(host=DB_HOST, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, port=5434)
+cursor = conn.cursor()
 
-# Criar a janela com opção de redimensionamento
-window = pygame.display.set_mode((window_width, window_height), pygame.RESIZABLE)
+# Dicionários de tipos e cores de Pokémon
+tipo_traducao = {
+    'fire': 'Fogo', 'water': 'Água', 'grass': 'Grama', 'electric': 'Elétrico',
+    'ground': 'Terra', 'rock': 'Pedra', 'ice': 'Gelo', 'psychic': 'Psíquico',
+    'dark': 'Sombrio', 'fairy': 'Fada', 'dragon': 'Dragão', 'ghost': 'Fantasma',
+    'bug': 'Inseto', 'flying': 'Voador', 'steel': 'Aço', 'fighting': 'Lutador',
+    'poison': 'Veneno', 'normal': 'Normal'
+}
 
-# Defina as cores
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-GREEN = (0, 255, 0)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-BROWN = (139, 69, 19)
+cor_tipo = {
+    'fire': '\033[41m', 'water': '\033[44m', 'grass': '\033[42m', 'electric': '\033[43m',
+    'ground': '\033[48;5;94m', 'rock': '\033[48;5;237m', 'ice': '\033[46m',
+    'psychic': '\033[45m', 'dark': '\033[48;5;235m', 'fairy': '\033[48;5;209m',
+    'dragon': '\033[48;5;18m', 'ghost': '\033[48;5;57m', 'bug': '\033[48;5;22m',
+    'flying': '\033[48;5;14m', 'steel': '\033[48;5;244m', 'fighting': '\033[41m',
+    'poison': '\033[45m', 'normal': '\033[37m', 'reset': '\033[0m'
+}
 
-# Defina as coordenadas iniciais do jogador
-player_x, player_y = movement_limit_width // 2, movement_limit_height // 2
+# Funções do banco de dados para criar jogador e obter diálogos
+def get_narrator_dialogue():
+    cursor.execute("SELECT fala FROM dialogo WHERE personagem = 'Narrador' ORDER BY ordem")
+    dialogues = cursor.fetchall()
+    if not dialogues:
+        print("Nenhuma fala encontrada para o narrador.")
+    for dialogue in dialogues:
+        print(dialogue[0])
+        input("Pressione Enter para continuar...")
 
-# Defina as coordenadas iniciais do NPC e escada
-npc_x, npc_y = 700, 500
-npc_size = 50
+def check_existing_player():
+    cursor.execute("SELECT COUNT(*) FROM jogador")
+    count = cursor.fetchone()[0]
+    return count > 0
 
-# Defina as coordenadas e tamanho da escada
-stairs_x, stairs_y = 400, 300
-stairs_size = 50
+def list_pokemon():
+    cursor.execute("SELECT id_pokemon, nome, tipo FROM pokemon_base WHERE evolui_de = 'None' AND evolui_para <> 'None'")
+    pokemons = cursor.fetchall()
+    tabela = []
+    for pokemon in pokemons:
+        tipo_pt = tipo_traducao.get(pokemon[2], pokemon[2])
+        cor = cor_tipo.get(pokemon[2], cor_tipo['normal'])
+        linha = [f"{cor}{pokemon[0]}{cor_tipo['reset']}", f"{cor}{pokemon[1]}{cor_tipo['reset']}", f"{cor}{tipo_pt}{cor_tipo['reset']}"]
+        tabela.append(linha)
+    print("Escolha o Pokémon que você quer ser:")
+    print(tabulate(tabela, headers=["ID", "Nome", "Tipo"], tablefmt="grid"))
+    return pokemons
 
-# Defina o tamanho do quadrado do mapa
+def create_player(pokemon_id):
+    cursor.execute("""
+        SELECT nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base,
+               velocidade_base, acuracia_base, evasao_base, status_base
+        FROM pokemon_base WHERE id_pokemon = %s
+    """, (pokemon_id,))
+    pokemon_data = cursor.fetchone()
+    if pokemon_data is None:
+        print("Pokémon não encontrado.")
+        return
+    cursor.execute("INSERT INTO pokemon (id_tipo_pokemon) VALUES (1) RETURNING id_pokemon")
+    new_pokemon_id = cursor.fetchone()[0]
+    cursor.execute("""
+        INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_jogador, saldo, tam_inventario, posicao, tipo_elemental)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """, (1, pokemon_data[2], pokemon_data[3], pokemon_data[4],
+          pokemon_data[5], pokemon_data[6], pokemon_data[7], pokemon_data[8],
+          pokemon_data[9], pokemon_data[0], new_pokemon_id, 0, 20, 17902, pokemon_data[1]))
+    cursor.execute("INSERT INTO instancia_item (id_item) VALUES (1) RETURNING id_instancia_item")
+    id_instancia_item = cursor.fetchone()[0]
+    cursor.execute("INSERT INTO inventario (id_inventario, id_instancia_item) VALUES (%s, %s) RETURNING id_inventario", (new_pokemon_id, id_instancia_item))
+    cursor.execute("INSERT INTO correio (jogador_id, terreno_id) VALUES (%s, %s)", (new_pokemon_id, 17903))
+    conn.commit()
+    print(f"Você agora é o Pokémon {pokemon_data[0]}!")
+
+# Inicializar Pygame e começar o jogo
+def initialize_pygame():
+    pygame.init()
+    return pygame.display.set_mode((window_width, window_height), pygame.RESIZABLE)
+
+def fetch_terrains(player_id):
+    query = """
+    WITH jogador_posicao AS (
+        SELECT posicao
+        FROM jogador
+        WHERE id_jogador = %s
+    ),
+    andar_atual AS (
+        SELECT t.id_andar
+        FROM terreno t
+        JOIN jogador_posicao jp ON t.id_terreno = jp.posicao
+    ),
+    terrenos_no_andar AS (
+        SELECT t.id_terreno, t.x, t.y, tt.descricao
+        FROM terreno t
+        JOIN tipo_terreno tt ON t.id_tipo_terreno = tt.id_tipo_terreno
+        JOIN andar_atual aa ON t.id_andar = aa.id_andar
+    )
+    SELECT * FROM terrenos_no_andar;
+    """
+    cursor.execute(query, (player_id,))
+    return cursor.fetchall()
+
+def draw_terrains(surface, terrains):
+    for (_, x, y, descricao) in terrains:
+        if descricao == 'Parede':
+            color = BLACK
+        elif descricao == 'Água':
+            color = BLUE
+        elif descricao == 'Chão':
+            color = BROWN
+        elif descricao == 'Escada':
+            color = GREY
+        elif descricao == 'Árvore':
+            color = DARK_GREEN
+        elif descricao == 'Grama':
+            color = LIGHT_GREEN
+        else:
+            color = WHITE
+        rect_x, rect_y = x * square_size, y * square_size
+        pygame.draw.rect(surface, color, (rect_x, rect_y, square_size, square_size))
+
+def get_terreno_id(x, y):
+    query = """
+    SELECT id_terreno
+    FROM terreno
+    WHERE x = %s AND y = %s
+    """
+    cursor.execute(query, (x, y))
+    result = cursor.fetchone()
+    return result[0] if result else None
+
+# Configurações de cores e do mapa
+WHITE, BLACK, BLUE, BROWN, GREY, LIGHT_GREEN, DARK_GREEN = (255, 255, 255), (0, 0, 0), (0, 0, 255), (139, 69, 19), (128, 128, 128), (144, 238, 144), (34, 139, 34)
 square_size = 50
+window_width, window_height = 800, 600
 
-# Defina a fonte para o texto
-font = pygame.font.Font(None, 24)
-
-# Criar uma superfície para áreas reveladas
-revealed_surface = pygame.Surface((movement_limit_width, movement_limit_height), pygame.SRCALPHA)
-revealed_surface.fill((0, 0, 0, 255))  # Preenchendo com preto opaco
-
-# Definir as áreas do mapa (parede, água, escada)
-walls = [(100, 100, square_size, square_size), (150, 100, square_size, square_size)]
-water = [(200, 200, square_size, square_size), (250, 200, square_size, square_size)]
-stairs = (stairs_x, stairs_y, stairs_size, stairs_size)
-
-# Função para desenhar o mapa
-def draw_map(surface, offset_x, offset_y):
-    for x in range(0, movement_limit_width, square_size):
-        for y in range(0, movement_limit_height, square_size):
-            pygame.draw.rect(surface, WHITE, (x - offset_x, y - offset_y, square_size, square_size), 1)
-
-# Função para desenhar o jogador
-def draw_player(surface, offset_x, offset_y):
-    pygame.draw.rect(surface, BLACK, (player_x - offset_x, player_y - offset_y, square_size, square_size))
-
-# Função para desenhar o NPC
-def draw_npc(surface, offset_x, offset_y):
-    pygame.draw.rect(surface, GREEN, (npc_x - offset_x, npc_y - offset_y, npc_size, npc_size))
-
-# Função para desenhar a escada
-def draw_stairs(surface, offset_x, offset_y):
-    pygame.draw.rect(surface, RED, (stairs_x - offset_x, stairs_y - offset_y, stairs_size, stairs_size))
-
-# Função para desenhar as paredes
-def draw_walls(surface, offset_x, offset_y):
-    for wall in walls:
-        pygame.draw.rect(surface, BROWN, (wall[0] - offset_x, wall[1] - offset_y, wall[2], wall[3]))
-
-# Função para desenhar a água
-def draw_water(surface, offset_x, offset_y):
-    for w in water:
-        pygame.draw.rect(surface, BLUE, (w[0] - offset_x, w[1] - offset_y, w[2], w[3]))
-
-# Função para exibir texto na tela
-def draw_text(text, font, color, surface, x, y):
-    text_obj = font.render(text, True, color)
-    text_rect = text_obj.get_rect()
-    text_rect.topleft = (x, y)
-    surface.blit(text_obj, text_rect)
-
-# Função para atualizar a superfície de áreas reveladas
-def update_revealed_area():
-    visibility_radius = 100
-    pygame.draw.circle(revealed_surface, (0, 0, 0, 0), (player_x, player_y), visibility_radius)
-
-# Função para verificar colisão com obstáculos
-def check_collision(x, y):
-    player_rect = pygame.Rect(x, y, square_size, square_size)
-    for wall in walls:
-        if player_rect.colliderect(wall):
-            return True
-    for w in water:
-        if player_rect.colliderect(w):
-            return True
-    return False
-
-# Função para interação com o NPC no terminal
-def interact_with_npc():
-    print("Olá, seja bem-vindo à minha loja, o que deseja comprar?")
-    print("1 - Faca")
-    print("2 - Corda")
-    
-    choice = input("Escolha uma opção: ")
-    
-    if choice == '1':
-        print("Você comprou uma Faca.")
-    elif choice == '2':
-        print("Você comprou uma Corda.")
+# Função principal
+def main():
+    if check_existing_player():
+        choice = input("Já existe um progresso salvo. Deseja continuar com o jogador existente? (s/n): ").strip().lower()
+        if choice != 's':
+            get_narrator_dialogue()
+            list_pokemon()
+            global pokemon_id
+            pokemon_id = int(input("Digite o número do Pokémon que deseja ser: "))
+            create_player(pokemon_id)
     else:
-        print("Opção inválida.")
+        get_narrator_dialogue()
+        list_pokemon()
+        pokemon_id = int(input("Digite o número do Pokémon que deseja ser: "))
+        create_player(pokemon_id)
     
-    print("Muito obrigado! Até mais!")
+    window = initialize_pygame()
+    terrains = fetch_terrains(pokemon_id)
+    revealed_surface = pygame.Surface((window_width, window_height))
+    revealed_surface.fill(WHITE)
+    draw_terrains(revealed_surface, terrains)
 
-# Loop principal do jogo
-running = True
-while running:
-    # Captura de eventos
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.VIDEORESIZE:
-            window_width, window_height = event.w, event.h
-            window = pygame.display.set_mode((window_width, window_height), pygame.RESIZABLE)
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                if not check_collision(player_x - square_size, player_y):
-                    player_x -= square_size
-            elif event.key == pygame.K_RIGHT:
-                if not check_collision(player_x + square_size, player_y):
-                    player_x += square_size
-            elif event.key == pygame.K_UP:
-                if not check_collision(player_x, player_y - square_size):
-                    player_y -= square_size
-            elif event.key == pygame.K_DOWN:
-                if not check_collision(player_x, player_y + square_size):
-                    player_y += square_size
-            elif event.key == pygame.K_RETURN:
-                # Verifica se o jogador está perto do NPC
-                if abs(player_x - npc_x) < square_size and abs(player_y - npc_y) < square_size:
-                    interact_with_npc()  # Inicia a interação no terminal
-    
-    # Limitar o movimento do jogador à área definida
-    player_x = max(0, min(player_x, movement_limit_width - square_size))
-    player_y = max(0, min(player_y, movement_limit_height - square_size))
-    
-    # Calcular o deslocamento da "câmera" para manter o jogador no centro da tela
-    offset_x = max(0, min(player_x - window_width // 2, movement_limit_width - window_width))
-    offset_y = max(0, min(player_y - window_height // 2, movement_limit_height - window_height))
-    
-    # Preencher a janela
-    window.fill(WHITE)
-    
-    # Desenhar o mapa, NPC, escada, paredes, água e jogador com deslocamento
-    draw_map(window, offset_x, offset_y)
-    draw_walls(window, offset_x, offset_y)
-    draw_water(window, offset_x, offset_y)
-    draw_stairs(window, offset_x, offset_y)
-    draw_npc(window, offset_x, offset_y)
-    draw_player(window, offset_x, offset_y)
-    
-    # Exibir texto acima do NPC quando o jogador está próximo
-    if abs(player_x - npc_x) < square_size and abs(player_y - npc_y) < square_size:
-        draw_text("Pressione ENTER", font, BLACK, window, npc_x - offset_x, npc_y - offset_y - 20)
-    
-    # Atualizar a superfície de áreas reveladas
-    update_revealed_area()
-    
-    # Desenhar a superfície de áreas reveladas
-    window.blit(revealed_surface.subsurface(offset_x, offset_y, window_width, window_height), (0, 0))
+    running = True
+    player_x, player_y = 0, 0
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_w:
+                    player_y -= 50
+                elif event.key == pygame.K_s:
+                    player_y += 50
+                elif event.key == pygame.K_a:
+                    player_x -= 50
+                elif event.key == pygame.K_d:
+                    player_x += 50
+            
+            # Obter o ID do terreno com base na nova posição
+            id_do_terreno = get_terreno_id(player_x, player_y)
+            if id_do_terreno is not None:
+                cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (id_do_terreno, pokemon_id))
+                conn.commit()
 
-    pygame.display.flip()
+        window.fill(WHITE)
+        window.blit(revealed_surface, (0, 0))
+        pygame.draw.rect(window, BLACK, (player_x, player_y, square_size, square_size))
+        pygame.display.flip()
+    
+    pygame.quit()
+    cursor.close()
+    conn.close()
 
-pygame.quit()
-sys.exit()
+if __name__ == "__main__":
+    main()

@@ -3,31 +3,42 @@ import sys
 import psycopg2
 
 # Configurações do banco de dados
-DB_HOST = '172.22.0.1'
-DB_NAME = 'pokemon'
-DB_USER = 'empreender_local'
+DB_HOST = '172.19.0.2'
+DB_NAME = 'db_pokemon'
+DB_USER = 'pokemon'
 DB_PASSWORD = '123456'
 
 
 # Função para conectar ao banco de dados
 def connect_db():
-    return psycopg2.connect(host=DB_HOST, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD)
+    return psycopg2.connect(host=DB_HOST, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, port=5434)
 
 
 # Função para obter terrenos com base no andar atual
-def fetch_terrains(map, current_floor):
+def fetch_terrains(player_id):
     conn = connect_db()
     cursor = conn.cursor()  # OBS1. Tem que fazer join com o mapa também a ordem seria mapa -> andar -> terreno
-    cursor.execute("""
-    SELECT t.id_terreno , t.x, t.y, tt.descricao
-    FROM terreno t
-    JOIN tipo_terreno tt ON t.id_tipo_terreno = tt.id_tipo_terreno
-    JOIN andar a ON t.id_andar = a.id_andar AND a.nome_mapa = %s
-    WHERE a.num_andar = %s
-""", (map, current_floor))  # OBS2. Tem que guardar na tabela de andar qual o spawn point do jogador (pode colocar um FK para o id_terreno)
+    query = """
+    WITH jogador_posicao AS (
+        SELECT posicao
+        FROM jogador
+        WHERE id_jogador = %s
+    ),
+    andar_atual AS (
+        SELECT t.id_andar
+        FROM terreno t
+        JOIN jogador_posicao jp ON t.id_terreno = jp.posicao
+    ),
+    terrenos_no_andar AS (
+        SELECT t.id_terreno, t.x, t.y, tt.descricao
+        FROM terreno t
+        JOIN tipo_terreno tt ON t.id_tipo_terreno = tt.id_tipo_terreno
+        JOIN andar_atual aa ON t.id_andar = aa.id_andar
+    )
+    SELECT * FROM terrenos_no_andar;
+    """
+    cursor.execute(query, (player_id,))
     terrains = cursor.fetchall()
-    cursor.close()
-    conn.close()
     return terrains
 
 
@@ -61,7 +72,7 @@ def check_collision(x, y):
     for (_, tx, ty, descricao) in terrains:
         terrain_rect = pygame.Rect(tx * square_size, ty * square_size, square_size, square_size)
         if player_rect.colliderect(terrain_rect):
-            if descricao in ['Parede', 'Água']:
+            if descricao in ['Parede', 'Água','Árvore']:
                 return True
     return False
 
@@ -88,6 +99,10 @@ def draw_terrains(surface):
             color = BROWN
         elif descricao == 'Escada':
             color = GREY
+        elif descricao == 'Árvore':
+            color = DARK_GREEN
+        elif descricao == 'Grama':
+            color = LIGHT_GREEN
         else:
             color = WHITE  # Cor padrão se a descrição não for reconhecida
 
@@ -103,6 +118,8 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 BROWN = (139, 69, 19)
 GREY = (128, 128, 128)
+LIGHT_GREEN = (144, 238, 144)  # Grama verde clara
+DARK_GREEN = (34, 139, 34)  # Arvore verde escura
 
 # Configurações do mapa
 square_size = 50
@@ -122,7 +139,7 @@ current_floor = 1
 window = initialize_pygame()
 
 # Obter os terrenos do andar atual
-terrains = fetch_terrains('Teste',current_floor)
+terrains = fetch_terrains('15')
 
 # Criar uma superfície para o mapa
 revealed_surface = pygame.Surface((movement_limit_width, movement_limit_height))
@@ -143,7 +160,7 @@ def change_floor():
     next_floor = get_next_floor(current_floor)
     if next_floor != current_floor:
         current_floor = next_floor
-        terrains = fetch_terrains('Teste', current_floor)
+        terrains = fetch_terrains('15')
         revealed_surface.fill(WHITE)
         draw_terrains(revealed_surface)
         print(f"Subiu para o andar {current_floor}")

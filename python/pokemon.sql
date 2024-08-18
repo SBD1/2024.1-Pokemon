@@ -1,9 +1,8 @@
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'bulbasaur',
     'grass',
-    50,
     45,
     49,
     49,
@@ -11,15 +10,50 @@ VALUES (
     45,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'ivysaur'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'ivysaur',
+    'grass',
+    60,
+    62,
+    63,
+    80,
+    60,
+    100,
+    0,
+    'normal',
+    'bulbasaur',
+    'venusaur'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'venusaur',
+    'grass',
+    80,
+    82,
+    83,
+    100,
+    80,
+    100,
+    0,
+    'normal',
+    'ivysaur',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'charmander',
     'fire',
-    50,
     39,
     52,
     43,
@@ -27,15 +61,50 @@ VALUES (
     65,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'charmeleon'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'charmeleon',
+    'fire',
+    58,
+    64,
+    58,
+    80,
+    80,
+    100,
+    0,
+    'normal',
+    'charmander',
+    'charizard'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'charizard',
+    'fire',
+    78,
+    84,
+    78,
+    109,
+    100,
+    100,
+    0,
+    'normal',
+    'charmeleon',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'squirtle',
     'water',
-    50,
     44,
     48,
     65,
@@ -43,15 +112,50 @@ VALUES (
     43,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'wartortle'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'wartortle',
+    'water',
+    59,
+    63,
+    80,
+    65,
+    58,
+    100,
+    0,
+    'normal',
+    'squirtle',
+    'blastoise'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'blastoise',
+    'water',
+    79,
+    83,
+    100,
+    85,
+    78,
+    100,
+    0,
+    'normal',
+    'wartortle',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'caterpie',
     'bug',
-    50,
     45,
     30,
     35,
@@ -59,15 +163,50 @@ VALUES (
     45,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'metapod'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'metapod',
+    'bug',
+    50,
+    20,
+    55,
+    25,
+    30,
+    100,
+    0,
+    'normal',
+    'caterpie',
+    'butterfree'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'butterfree',
+    'bug',
+    60,
+    45,
+    50,
+    90,
+    70,
+    100,
+    0,
+    'normal',
+    'metapod',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'weedle',
     'bug',
-    50,
     40,
     35,
     30,
@@ -75,15 +214,50 @@ VALUES (
     50,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'kakuna'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'kakuna',
+    'bug',
+    45,
+    25,
+    50,
+    25,
+    35,
+    100,
+    0,
+    'normal',
+    'weedle',
+    'beedrill'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'beedrill',
+    'bug',
+    65,
+    90,
+    40,
+    45,
+    75,
+    100,
+    0,
+    'normal',
+    'kakuna',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'pidgey',
     'normal',
-    50,
     40,
     45,
     40,
@@ -91,15 +265,50 @@ VALUES (
     56,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'pidgeotto'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'pidgeotto',
+    'normal',
+    63,
+    60,
+    55,
+    50,
+    71,
+    100,
+    0,
+    'normal',
+    'pidgey',
+    'pidgeot'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'pidgeot',
+    'normal',
+    83,
+    80,
+    75,
+    70,
+    101,
+    100,
+    0,
+    'normal',
+    'pidgeotto',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'rattata',
     'normal',
-    50,
     30,
     56,
     35,
@@ -107,15 +316,101 @@ VALUES (
     72,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'raticate'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'raticate',
+    'normal',
+    55,
+    81,
+    60,
+    50,
+    97,
+    100,
+    0,
+    'normal',
+    'rattata',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'spearow',
+    'normal',
+    40,
+    60,
+    30,
+    31,
+    70,
+    100,
+    0,
+    'normal',
+    'None',
+    'fearow'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'fearow',
+    'normal',
+    65,
+    90,
+    65,
+    61,
+    100,
+    100,
+    0,
+    'normal',
+    'spearow',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'ekans',
+    'poison',
+    35,
+    60,
+    44,
+    40,
+    55,
+    100,
+    0,
+    'normal',
+    'None',
+    'arbok'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'arbok',
+    'poison',
+    60,
+    95,
+    69,
+    65,
+    80,
+    100,
+    0,
+    'normal',
+    'ekans',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'pikachu',
     'electric',
-    50,
     35,
     55,
     40,
@@ -123,15 +418,237 @@ VALUES (
     90,
     100,
     0,
-    'normal'
+    'normal',
+    'pichu',
+    'raichu'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'raichu',
+    'electric',
+    60,
+    90,
+    55,
+    90,
+    110,
+    100,
+    0,
+    'normal',
+    'pikachu',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'sandshrew',
+    'ground',
+    50,
+    75,
+    85,
+    20,
+    40,
+    100,
+    0,
+    'normal',
+    'None',
+    'sandslash'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'sandslash',
+    'ground',
+    75,
+    100,
+    110,
+    45,
+    65,
+    100,
+    0,
+    'normal',
+    'sandshrew',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'nidoran-f',
+    'poison',
+    55,
+    47,
+    52,
+    40,
+    41,
+    100,
+    0,
+    'normal',
+    'None',
+    'nidorina'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'nidorina',
+    'poison',
+    70,
+    62,
+    67,
+    55,
+    56,
+    100,
+    0,
+    'normal',
+    'nidoran-f',
+    'nidoqueen'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'nidoqueen',
+    'poison',
+    90,
+    92,
+    87,
+    75,
+    76,
+    100,
+    0,
+    'normal',
+    'nidorina',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'nidoran-m',
+    'poison',
+    46,
+    57,
+    40,
+    40,
+    50,
+    100,
+    0,
+    'normal',
+    'None',
+    'nidorino'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'nidorino',
+    'poison',
+    61,
+    72,
+    57,
+    55,
+    65,
+    100,
+    0,
+    'normal',
+    'nidoran-m',
+    'nidoking'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'nidoking',
+    'poison',
+    81,
+    102,
+    77,
+    85,
+    85,
+    100,
+    0,
+    'normal',
+    'nidorino',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'clefairy',
+    'fairy',
+    70,
+    45,
+    48,
+    60,
+    35,
+    100,
+    0,
+    'normal',
+    'cleffa',
+    'clefable'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'clefable',
+    'fairy',
+    95,
+    70,
+    73,
+    95,
+    60,
+    100,
+    0,
+    'normal',
+    'clefairy',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'vulpix',
+    'fire',
+    38,
+    41,
+    40,
+    50,
+    65,
+    100,
+    0,
+    'normal',
+    'None',
+    'ninetales'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'ninetales',
+    'fire',
+    73,
+    76,
+    75,
+    81,
+    100,
+    100,
+    0,
+    'normal',
+    'vulpix',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'jigglypuff',
     'normal',
-    50,
     115,
     45,
     20,
@@ -139,15 +656,220 @@ VALUES (
     20,
     100,
     0,
-    'normal'
+    'normal',
+    'igglybuff',
+    'wigglytuff'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'wigglytuff',
+    'normal',
+    140,
+    70,
+    45,
+    85,
+    45,
+    100,
+    0,
+    'normal',
+    'jigglypuff',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'zubat',
+    'poison',
+    40,
+    45,
+    35,
+    30,
+    55,
+    100,
+    0,
+    'normal',
+    'None',
+    'golbat'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'golbat',
+    'poison',
+    75,
+    80,
+    70,
+    65,
+    90,
+    100,
+    0,
+    'normal',
+    'zubat',
+    'crobat'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'oddish',
+    'grass',
+    45,
+    50,
+    55,
+    75,
+    30,
+    100,
+    0,
+    'normal',
+    'None',
+    'gloom'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'gloom',
+    'grass',
+    60,
+    65,
+    70,
+    85,
+    40,
+    100,
+    0,
+    'normal',
+    'oddish',
+    'vileplume'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'vileplume',
+    'grass',
+    75,
+    80,
+    85,
+    110,
+    50,
+    100,
+    0,
+    'normal',
+    'gloom',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'paras',
+    'bug',
+    35,
+    70,
+    55,
+    45,
+    25,
+    100,
+    0,
+    'normal',
+    'None',
+    'parasect'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'parasect',
+    'bug',
+    60,
+    95,
+    80,
+    60,
+    30,
+    100,
+    0,
+    'normal',
+    'paras',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'venonat',
+    'bug',
+    60,
+    55,
+    50,
+    40,
+    45,
+    100,
+    0,
+    'normal',
+    'None',
+    'venomoth'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'venomoth',
+    'bug',
+    70,
+    65,
+    60,
+    90,
+    90,
+    100,
+    0,
+    'normal',
+    'venonat',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'diglett',
+    'ground',
+    10,
+    55,
+    25,
+    35,
+    95,
+    100,
+    0,
+    'normal',
+    'None',
+    'dugtrio'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'dugtrio',
+    'ground',
+    35,
+    100,
+    50,
+    50,
+    120,
+    100,
+    0,
+    'normal',
+    'diglett',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'meowth',
     'normal',
-    50,
     40,
     45,
     35,
@@ -155,15 +877,186 @@ VALUES (
     90,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'persian'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'persian',
+    'normal',
+    65,
+    70,
+    60,
+    65,
+    115,
+    100,
+    0,
+    'normal',
+    'meowth',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'psyduck',
+    'water',
+    50,
+    52,
+    48,
+    65,
+    55,
+    100,
+    0,
+    'normal',
+    'None',
+    'golduck'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'golduck',
+    'water',
+    80,
+    82,
+    78,
+    95,
+    85,
+    100,
+    0,
+    'normal',
+    'psyduck',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'mankey',
+    'fighting',
+    40,
+    80,
+    35,
+    35,
+    70,
+    100,
+    0,
+    'normal',
+    'None',
+    'primeape'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'primeape',
+    'fighting',
+    65,
+    105,
+    60,
+    60,
+    95,
+    100,
+    0,
+    'normal',
+    'mankey',
+    'annihilape'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'growlithe',
+    'fire',
+    55,
+    70,
+    45,
+    70,
+    60,
+    100,
+    0,
+    'normal',
+    'None',
+    'arcanine'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'arcanine',
+    'fire',
+    90,
+    110,
+    80,
+    100,
+    95,
+    100,
+    0,
+    'normal',
+    'growlithe',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'poliwag',
+    'water',
+    40,
+    50,
+    40,
+    40,
+    90,
+    100,
+    0,
+    'normal',
+    'None',
+    'poliwhirl'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'poliwhirl',
+    'water',
+    65,
+    65,
+    65,
+    50,
+    90,
+    100,
+    0,
+    'normal',
+    'poliwag',
+    'poliwrath'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'poliwrath',
+    'water',
+    90,
+    95,
+    95,
+    70,
+    70,
+    100,
+    0,
+    'normal',
+    'poliwhirl',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'abra',
     'psychic',
-    50,
     25,
     20,
     15,
@@ -171,15 +1064,50 @@ VALUES (
     90,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'kadabra'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'kadabra',
+    'psychic',
+    40,
+    35,
+    30,
+    120,
+    105,
+    100,
+    0,
+    'normal',
+    'abra',
+    'alakazam'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'alakazam',
+    'psychic',
+    55,
+    50,
+    45,
+    135,
+    120,
+    100,
+    0,
+    'normal',
+    'kadabra',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'machop',
     'fighting',
-    50,
     70,
     80,
     50,
@@ -187,15 +1115,135 @@ VALUES (
     35,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'machoke'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'machoke',
+    'fighting',
+    80,
+    100,
+    70,
+    50,
+    45,
+    100,
+    0,
+    'normal',
+    'machop',
+    'machamp'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'machamp',
+    'fighting',
+    90,
+    130,
+    80,
+    65,
+    55,
+    100,
+    0,
+    'normal',
+    'machoke',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'bellsprout',
+    'grass',
+    50,
+    75,
+    35,
+    70,
+    40,
+    100,
+    0,
+    'normal',
+    'None',
+    'weepinbell'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'weepinbell',
+    'grass',
+    65,
+    90,
+    50,
+    85,
+    55,
+    100,
+    0,
+    'normal',
+    'bellsprout',
+    'victreebel'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'victreebel',
+    'grass',
+    80,
+    105,
+    65,
+    100,
+    70,
+    100,
+    0,
+    'normal',
+    'weepinbell',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'tentacool',
+    'water',
+    40,
+    40,
+    35,
+    50,
+    70,
+    100,
+    0,
+    'normal',
+    'None',
+    'tentacruel'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'tentacruel',
+    'water',
+    80,
+    70,
+    65,
+    80,
+    100,
+    100,
+    0,
+    'normal',
+    'tentacool',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'geodude',
     'rock',
-    50,
     40,
     80,
     100,
@@ -203,15 +1251,50 @@ VALUES (
     20,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'graveler'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'graveler',
+    'rock',
+    55,
+    95,
+    115,
+    45,
+    35,
+    100,
+    0,
+    'normal',
+    'geodude',
+    'golem'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'golem',
+    'rock',
+    80,
+    120,
+    130,
+    55,
+    45,
+    100,
+    0,
+    'normal',
+    'graveler',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'ponyta',
     'fire',
-    50,
     50,
     85,
     55,
@@ -219,15 +1302,84 @@ VALUES (
     90,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'rapidash'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'rapidash',
+    'fire',
+    65,
+    100,
+    70,
+    80,
+    105,
+    100,
+    0,
+    'normal',
+    'ponyta',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'slowpoke',
+    'water',
+    90,
+    65,
+    65,
+    40,
+    15,
+    100,
+    0,
+    'normal',
+    'None',
+    'slowbro'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'slowbro',
+    'water',
+    95,
+    75,
+    110,
+    100,
+    30,
+    100,
+    0,
+    'normal',
+    'slowpoke',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'magnemite',
+    'electric',
+    25,
+    35,
+    70,
+    95,
+    45,
+    100,
+    0,
+    'normal',
+    'None',
+    'magneton'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'magneton',
     'electric',
-    50,
     50,
     60,
     95,
@@ -235,15 +1387,169 @@ VALUES (
     70,
     100,
     0,
-    'normal'
+    'normal',
+    'magnemite',
+    'magnezone'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'farfetchd',
+    'normal',
+    52,
+    90,
+    55,
+    58,
+    60,
+    100,
+    0,
+    'normal',
+    'None',
+    'sirfetchd'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'doduo',
+    'normal',
+    35,
+    85,
+    45,
+    35,
+    75,
+    100,
+    0,
+    'normal',
+    'None',
+    'dodrio'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'dodrio',
+    'normal',
+    60,
+    110,
+    70,
+    60,
+    110,
+    100,
+    0,
+    'normal',
+    'doduo',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'seel',
+    'water',
+    65,
+    45,
+    55,
+    45,
+    45,
+    100,
+    0,
+    'normal',
+    'None',
+    'dewgong'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'dewgong',
+    'water',
+    90,
+    70,
+    80,
+    70,
+    70,
+    100,
+    0,
+    'normal',
+    'seel',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'grimer',
+    'poison',
+    80,
+    80,
+    50,
+    40,
+    25,
+    100,
+    0,
+    'normal',
+    'None',
+    'muk'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'muk',
+    'poison',
+    105,
+    105,
+    75,
+    65,
+    50,
+    100,
+    0,
+    'normal',
+    'grimer',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'shellder',
+    'water',
+    30,
+    65,
+    100,
+    45,
+    40,
+    100,
+    0,
+    'normal',
+    'None',
+    'cloyster'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'cloyster',
+    'water',
+    50,
+    95,
+    180,
+    85,
+    70,
+    100,
+    0,
+    'normal',
+    'shellder',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'gastly',
     'ghost',
-    50,
     30,
     35,
     30,
@@ -251,15 +1557,50 @@ VALUES (
     80,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'haunter'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'haunter',
+    'ghost',
+    45,
+    50,
+    45,
+    115,
+    95,
+    100,
+    0,
+    'normal',
+    'gastly',
+    'gengar'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'gengar',
+    'ghost',
+    60,
+    65,
+    60,
+    130,
+    110,
+    100,
+    0,
+    'normal',
+    'haunter',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'onix',
     'rock',
-    50,
     35,
     45,
     160,
@@ -267,15 +1608,84 @@ VALUES (
     70,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'steelix'
 );
 
 
-INSERT INTO pokemon_base (nome, tipo, nivel_base, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base)
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'drowzee',
+    'psychic',
+    60,
+    48,
+    45,
+    43,
+    42,
+    100,
+    0,
+    'normal',
+    'None',
+    'hypno'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'hypno',
+    'psychic',
+    85,
+    73,
+    70,
+    73,
+    67,
+    100,
+    0,
+    'normal',
+    'drowzee',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'krabby',
+    'water',
+    30,
+    105,
+    90,
+    25,
+    50,
+    100,
+    0,
+    'normal',
+    'None',
+    'kingler'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'kingler',
+    'water',
+    55,
+    130,
+    115,
+    50,
+    75,
+    100,
+    0,
+    'normal',
+    'krabby',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
 VALUES (
     'voltorb',
     'electric',
-    50,
     40,
     30,
     50,
@@ -283,6 +1693,875 @@ VALUES (
     100,
     100,
     0,
-    'normal'
+    'normal',
+    'None',
+    'electrode'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'electrode',
+    'electric',
+    60,
+    50,
+    70,
+    80,
+    150,
+    100,
+    0,
+    'normal',
+    'voltorb',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'exeggcute',
+    'grass',
+    60,
+    40,
+    80,
+    60,
+    40,
+    100,
+    0,
+    'normal',
+    'None',
+    'exeggutor'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'exeggutor',
+    'grass',
+    95,
+    95,
+    85,
+    125,
+    55,
+    100,
+    0,
+    'normal',
+    'exeggcute',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'cubone',
+    'ground',
+    50,
+    50,
+    95,
+    40,
+    35,
+    100,
+    0,
+    'normal',
+    'None',
+    'marowak'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'marowak',
+    'ground',
+    60,
+    80,
+    110,
+    50,
+    45,
+    100,
+    0,
+    'normal',
+    'cubone',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'hitmonlee',
+    'fighting',
+    50,
+    120,
+    53,
+    35,
+    87,
+    100,
+    0,
+    'normal',
+    'tyrogue',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'hitmonchan',
+    'fighting',
+    50,
+    105,
+    79,
+    35,
+    76,
+    100,
+    0,
+    'normal',
+    'tyrogue',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'lickitung',
+    'normal',
+    90,
+    55,
+    75,
+    60,
+    30,
+    100,
+    0,
+    'normal',
+    'None',
+    'lickilicky'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'koffing',
+    'poison',
+    40,
+    65,
+    95,
+    60,
+    35,
+    100,
+    0,
+    'normal',
+    'None',
+    'weezing'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'weezing',
+    'poison',
+    65,
+    90,
+    120,
+    85,
+    60,
+    100,
+    0,
+    'normal',
+    'koffing',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'rhyhorn',
+    'ground',
+    80,
+    85,
+    95,
+    30,
+    25,
+    100,
+    0,
+    'normal',
+    'None',
+    'rhydon'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'rhydon',
+    'ground',
+    105,
+    130,
+    120,
+    45,
+    40,
+    100,
+    0,
+    'normal',
+    'rhyhorn',
+    'rhyperior'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'chansey',
+    'normal',
+    250,
+    5,
+    5,
+    35,
+    50,
+    100,
+    0,
+    'normal',
+    'happiny',
+    'blissey'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'tangela',
+    'grass',
+    65,
+    55,
+    115,
+    100,
+    60,
+    100,
+    0,
+    'normal',
+    'None',
+    'tangrowth'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'kangaskhan',
+    'normal',
+    105,
+    95,
+    80,
+    40,
+    90,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'horsea',
+    'water',
+    30,
+    40,
+    70,
+    70,
+    60,
+    100,
+    0,
+    'normal',
+    'None',
+    'seadra'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'seadra',
+    'water',
+    55,
+    65,
+    95,
+    95,
+    85,
+    100,
+    0,
+    'normal',
+    'horsea',
+    'kingdra'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'goldeen',
+    'water',
+    45,
+    67,
+    60,
+    35,
+    63,
+    100,
+    0,
+    'normal',
+    'None',
+    'seaking'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'seaking',
+    'water',
+    80,
+    92,
+    65,
+    65,
+    68,
+    100,
+    0,
+    'normal',
+    'goldeen',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'staryu',
+    'water',
+    30,
+    45,
+    55,
+    70,
+    85,
+    100,
+    0,
+    'normal',
+    'None',
+    'starmie'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'starmie',
+    'water',
+    60,
+    75,
+    85,
+    100,
+    115,
+    100,
+    0,
+    'normal',
+    'staryu',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'mr-mime',
+    'psychic',
+    40,
+    45,
+    65,
+    100,
+    90,
+    100,
+    0,
+    'normal',
+    'mime-jr',
+    'mr-rime'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'scyther',
+    'bug',
+    70,
+    110,
+    80,
+    55,
+    105,
+    100,
+    0,
+    'normal',
+    'None',
+    'scizor'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'jynx',
+    'ice',
+    65,
+    50,
+    35,
+    115,
+    95,
+    100,
+    0,
+    'normal',
+    'smoochum',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'electabuzz',
+    'electric',
+    65,
+    83,
+    57,
+    95,
+    105,
+    100,
+    0,
+    'normal',
+    'elekid',
+    'electivire'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'magmar',
+    'fire',
+    65,
+    95,
+    57,
+    100,
+    93,
+    100,
+    0,
+    'normal',
+    'magby',
+    'magmortar'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'pinsir',
+    'bug',
+    65,
+    125,
+    100,
+    55,
+    85,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'tauros',
+    'normal',
+    75,
+    100,
+    95,
+    40,
+    110,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'magikarp',
+    'water',
+    20,
+    10,
+    55,
+    15,
+    80,
+    100,
+    0,
+    'normal',
+    'None',
+    'gyarados'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'gyarados',
+    'water',
+    95,
+    125,
+    79,
+    60,
+    81,
+    100,
+    0,
+    'normal',
+    'magikarp',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'lapras',
+    'water',
+    130,
+    85,
+    80,
+    85,
+    60,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'ditto',
+    'normal',
+    48,
+    48,
+    48,
+    48,
+    48,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'eevee',
+    'normal',
+    55,
+    55,
+    50,
+    45,
+    55,
+    100,
+    0,
+    'normal',
+    'None',
+    'vaporeon'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'vaporeon',
+    'water',
+    130,
+    65,
+    60,
+    110,
+    65,
+    100,
+    0,
+    'normal',
+    'eevee',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'jolteon',
+    'electric',
+    65,
+    65,
+    60,
+    110,
+    130,
+    100,
+    0,
+    'normal',
+    'eevee',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'flareon',
+    'fire',
+    65,
+    130,
+    60,
+    95,
+    65,
+    100,
+    0,
+    'normal',
+    'eevee',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'porygon',
+    'normal',
+    65,
+    60,
+    70,
+    85,
+    40,
+    100,
+    0,
+    'normal',
+    'None',
+    'porygon2'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'omanyte',
+    'rock',
+    35,
+    40,
+    100,
+    90,
+    35,
+    100,
+    0,
+    'normal',
+    'None',
+    'omastar'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'omastar',
+    'rock',
+    70,
+    60,
+    125,
+    115,
+    55,
+    100,
+    0,
+    'normal',
+    'omanyte',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'kabuto',
+    'rock',
+    30,
+    80,
+    90,
+    55,
+    55,
+    100,
+    0,
+    'normal',
+    'None',
+    'kabutops'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'kabutops',
+    'rock',
+    60,
+    115,
+    105,
+    65,
+    80,
+    100,
+    0,
+    'normal',
+    'kabuto',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'aerodactyl',
+    'rock',
+    80,
+    105,
+    65,
+    60,
+    130,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'snorlax',
+    'normal',
+    160,
+    110,
+    65,
+    65,
+    30,
+    100,
+    0,
+    'normal',
+    'munchlax',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'articuno',
+    'ice',
+    90,
+    85,
+    100,
+    95,
+    85,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'zapdos',
+    'electric',
+    90,
+    90,
+    85,
+    125,
+    100,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'moltres',
+    'fire',
+    90,
+    100,
+    90,
+    125,
+    90,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'dratini',
+    'dragon',
+    41,
+    64,
+    45,
+    50,
+    50,
+    100,
+    0,
+    'normal',
+    'None',
+    'dragonair'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'dragonair',
+    'dragon',
+    61,
+    84,
+    65,
+    70,
+    70,
+    100,
+    0,
+    'normal',
+    'dratini',
+    'dragonite'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'dragonite',
+    'dragon',
+    91,
+    134,
+    95,
+    100,
+    80,
+    100,
+    0,
+    'normal',
+    'dragonair',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'mewtwo',
+    'psychic',
+    106,
+    110,
+    90,
+    154,
+    130,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
+);
+
+
+INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
+VALUES (
+    'mew',
+    'psychic',
+    100,
+    100,
+    100,
+    100,
+    100,
+    100,
+    0,
+    'normal',
+    'None',
+    'None'
 );
 
