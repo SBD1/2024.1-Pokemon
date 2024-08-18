@@ -7,10 +7,12 @@ CREATE TABLE mapa
 
 CREATE TABLE andar
 (
-    id_andar  SERIAL PRIMARY KEY,
-    nome_mapa VARCHAR(255) NOT NULL,
+    id_andar     SERIAL PRIMARY KEY,
+    nome_mapa    VARCHAR(255) NOT NULL,
+    numero_andar INT          NOT NULL,
 
-    FOREIGN KEY (nome_mapa) REFERENCES mapa (nome)
+    CONSTRAINT unique_mapa_andar UNIQUE (nome_mapa, numero_andar),
+    CONSTRAINT andar_nome_mapa_fkey FOREIGN KEY (nome_mapa) REFERENCES mapa (nome)
 );
 
 CREATE TABLE tipo_terreno
@@ -69,23 +71,26 @@ CREATE TABLE interacao
 
 CREATE TABLE item
 (
-    id_item    SERIAL PRIMARY KEY,
-    nome       VARCHAR(255) NOT NULL,
-    descricao  VARCHAR(255) NOT NULL,
-    efeito     VARCHAR(255) NOT NULL,
-    quantidade INT          NOT NULL,
-    valor      INT          NOT NULL
+    id_item   SERIAL PRIMARY KEY,
+    nome      VARCHAR(255) NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    efeito    VARCHAR(255) NOT NULL,
+    valor     INT          NOT NULL
 );
 
-CREATE TABLE inventario
+CREATE TABLE instancia_item
 (
-    id_inventario     INT PRIMARY KEY,
-    id_instancia_item INT,
+    id_instancia_item SERIAL PRIMARY KEY,
+    id_item           INT,
 
-    FOREIGN KEY (id_instancia_item) REFERENCES instancia_item (id_instancia_item),
-    FOREIGN KEY (id_inventario) REFERENCES jogador (id_jogador)
+    FOREIGN KEY (id_item) REFERENCES item (id_item)
 );
 
+CREATE TABLE pokemon
+(
+    id_pokemon      SERIAL PRIMARY KEY,
+    id_tipo_pokemon INT
+);
 
 CREATE TABLE correio
 (
@@ -94,12 +99,6 @@ CREATE TABLE correio
     terreno_id INT,
 
     FOREIGN KEY (terreno_id) REFERENCES terreno (id_terreno)
-);
-
-CREATE TABLE pokemon
-(
-    id_pokemon      SERIAL PRIMARY KEY,
-    id_tipo_pokemon INT
 );
 
 CREATE TABLE jogador
@@ -118,11 +117,22 @@ CREATE TABLE jogador
     id_correio      INT,
     saldo           BIGINT       NOT NULL,
     tam_inventario  INT          NOT NULL,
-    
+    posicao         INT          NOT NULL,
+
     FOREIGN KEY (id_jogador) REFERENCES pokemon (id_pokemon),
-    FOREIGN KEY (id_correio) REFERENCES correio (id)
+    FOREIGN KEY (id_correio) REFERENCES correio (id),
+    FOREIGN KEY (posicao) REFERENCES terreno (id_terreno)
 );
 
+CREATE TABLE inventario
+(
+    id_inventario     INT,
+    id_instancia_item INT,
+
+    PRIMARY KEY (id_inventario, id_instancia_item),
+    FOREIGN KEY (id_instancia_item) REFERENCES instancia_item (id_instancia_item),
+    FOREIGN KEY (id_inventario) REFERENCES jogador (id_jogador)
+);
 
 CREATE TABLE loot
 (
@@ -148,7 +158,7 @@ CREATE TABLE npc
 (
     id_npc      INT PRIMARY KEY,
     id_tipo_npc INT,
-    
+
     FOREIGN KEY (id_npc) REFERENCES pokemon (id_pokemon)
 );
 
@@ -240,12 +250,4 @@ CREATE TABLE dialogo
     personagem VARCHAR(50)                       NOT NULL,
     fala       text COLLATE pg_catalog."default" NOT NULL,
     ordem      INT
-);
-
-CREATE TABLE instancia_item
-(
-    id_instancia_item SERIAL PRIMARY KEY,
-    id_item           INT,
-
-    FOREIGN KEY (id_item) REFERENCES item (id_item)
 );

@@ -18,10 +18,12 @@ CREATE TABLE mapa
 ```sql
 CREATE TABLE andar
 (
-    id_andar  SERIAL PRIMARY KEY,
-    nome_mapa VARCHAR(255) NOT NULL,
+    id_andar     SERIAL PRIMARY KEY,
+    nome_mapa    VARCHAR(255) NOT NULL,
+    numero_andar INT          NOT NULL,
 
-    FOREIGN KEY (nome_mapa) REFERENCES mapa (nome)
+    CONSTRAINT unique_mapa_andar UNIQUE (nome_mapa, numero_andar),
+    CONSTRAINT andar_nome_mapa_fkey FOREIGN KEY (nome_mapa) REFERENCES mapa (nome)
 );
 ```
 
@@ -108,25 +110,33 @@ CREATE TABLE interacao
 ```sql
 CREATE TABLE item
 (
-    id_item    SERIAL PRIMARY KEY,
-    nome       VARCHAR(255) NOT NULL,
-    descricao  VARCHAR(255) NOT NULL,
-    efeito     VARCHAR(255) NOT NULL,
-    quantidade INT          NOT NULL,
-    valor      INT          NOT NULL
+    id_item   SERIAL PRIMARY KEY,
+    nome      VARCHAR(255) NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
+    efeito    VARCHAR(255) NOT NULL,
+    valor     INT          NOT NULL
 );
 ```
 
-#### Criação da tabela inventário
+#### Criação da tabela instancia_item
 
 ```sql
-CREATE TABLE inventario
+CREATE TABLE instancia_item
 (
-    id_inventario SERIAL PRIMARY KEY, -- Defina a coluna id_inventario como chave primária
-    id_item       INT,
-    quantidade    INT,
+    id_instancia_item SERIAL PRIMARY KEY,
+    id_item           INT,
 
     FOREIGN KEY (id_item) REFERENCES item (id_item)
+);
+```
+
+#### Criação da tabela pokemón
+
+```sql
+CREATE TABLE pokemon
+(
+    id_pokemon      SERIAL PRIMARY KEY,
+    id_tipo_pokemon INT
 );
 ```
 
@@ -140,16 +150,6 @@ CREATE TABLE correio
     terreno_id INT,
 
     FOREIGN KEY (terreno_id) REFERENCES terreno (id_terreno)
-);
-```
-
-#### Criação da tabela pokemón
-
-```sql
-CREATE TABLE pokemon
-(
-    id_pokemon      SERIAL PRIMARY KEY,
-    id_tipo_pokemon INT
 );
 ```
 
@@ -180,6 +180,20 @@ CREATE TABLE jogador
 );
 ```
 
+#### Criação da tabela inventário
+
+```sql
+CREATE TABLE inventario
+(
+    id_inventario     INT,
+    id_instancia_item INT,
+
+    PRIMARY KEY (id_inventario, id_instancia_item),
+    FOREIGN KEY (id_instancia_item) REFERENCES instancia_item (id_instancia_item),
+    FOREIGN KEY (id_inventario) REFERENCES jogador (id_jogador)
+);
+```
+
 #### Alteração da tabela correio
 
 ```sql
@@ -200,7 +214,7 @@ CREATE TABLE loot
 );
 ```
 
-#### Criação da tabela loo_item
+#### Criação da tabela loot_item
 
 ```sql
 CREATE TABLE loot_item
