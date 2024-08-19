@@ -22,6 +22,7 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 |    acuracia     |   INT   |          Valor da precisão do ataque do Pokemón           |       1-5000       |          sim           |    -     |
 |     evasao      |   INT   |             Capacidade de esquivar do ataque              |       1-5000       |          sim           |    -     |
 |     status      | VARCHAR | Condições que podem afetar um Pokémon durante as batalhas |        a-z, A-Z        |          sim           |    -     |
+|     saldo      | INT | Dinheiro que o jogador possui para gastar nas lojas |        1-5000        |          sim           |    -     |
 
 ## Entidade: Player
 
@@ -31,6 +32,18 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | :----------------: | :--: | :---------------------: | :----------------: | :--------------------: | :------: |
 |         id         | INT  | Identificador do player |       1-5000       |          não           |    PK    |
 | tamanho_inventario | INT  |  Tamanho do inventário  |       1-5000       |          não           |    FK    |
+
+## Entidade: Dialogo
+
+**Descrição**: A entidade dialogo armazena as falas desencadeadas com a interação com um vendedor.
+
+|   Nome Variável    | Tipo |        Descrição        | Valores permitidos | Permite valores nulos? | É chave? |
+| :----------------: | :--: | :---------------------: | :----------------: | :--------------------: | :------: |
+|         id         | INT  | Identificador do dialogo |       1-5000       |          não           |    PK    |
+| personagem | VARCHAR  |  Nome do personagem que fala  |       A-Z,a-z       |          não           |   -   |
+| fala | VARCHAR  |  Texto da conversa  |       A-Z,a-z       |          não           |    FK    |
+| ordem | INT |  Ordem que esta fala vai aparecer para o jogador  |       1-5000       |          não           |  -    |
+| id_vendedor | INT  |  Codigo de identificação do vendedor  |       1-5000       |          não           |    FK    |
 
 ## Entidade: Missão
 
@@ -47,6 +60,16 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 |  dificuldade  |     INT     |  Nível de dificuldade da missão   |       1-5000       |          não           |    -     |
 |   objetivo    | VARCHAR |        Objetivo da missão         |      a-z, A-Z      |          não           |    -     |
 |  tipo_missao  |     INT     | Tipo da missão(principal ou não)  |       1-5000       |          não           |    -     |
+|    id_correio    | INT  | Código do correio |       1-5000       |          não           |    FK    |
+
+## Entidade: Correio
+
+**Descrição**: A entidade Correio armazena as missões aceitas pelo jogador.
+
+| Nome Variável | Tipo |        Descrição        | Valores permitidos | Permite valores nulos? | É chave? |
+| :-----------: | :--: | :---------------------: | :----------------: | :--------------------: | :------: |
+|    id_correio    | INT  | Identificador do correio |       1-5000       |          não           |    PK    |
+
 
 ## Entidade: Inventário
 
@@ -199,3 +222,4 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | `1.1`  | 27/06/2024 | Ajustando e corrigindo o dinionário de dados | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
 | `1.2`  | 12/07/2024 |       Adicionando atributos e tabelas        | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
 | `1.3`  | 20/07/2024 |       Correção de valores permitidos e descrição        | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+| `1.4`  | 20/07/2024 |       Adição de tabelas e correção de chaves estrangeiras        | [Leonardo Bonetti](https://github.com/LeoFacB)|
