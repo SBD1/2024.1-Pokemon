@@ -4,7 +4,8 @@ services:
     image: postgres:16.2
     volumes:
       - db-pokemon-data:/var/lib/postgresql/data
-      - ./docs/script:/docker-entrypoint-initdb.d
+      - ./docs/sql/ddl/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      # - ./docs/sql/dml/dml.sql:/docker-entrypoint-initdb.d/dml.sql
     environment:
       POSTGRES_USER: "pokemon"
       POSTGRES_PASSWORD: "123456"
