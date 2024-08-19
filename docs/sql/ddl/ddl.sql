@@ -61,7 +61,7 @@ CREATE TABLE habilidade
 CREATE TABLE interacao
 (
     id            SERIAL PRIMARY KEY,
-    valor         INT NOT NULL,
+    valor         REAL NOT NULL,
     tipo_atacante VARCHAR(255),                                   -- Adicione a coluna id_tipo_atacante
     tipo_defensor VARCHAR(255),                                   -- Adicione a coluna id_tipo_defensor
 
@@ -118,7 +118,6 @@ CREATE TABLE jogador
     tam_inventario  INT          NOT NULL,
     posicao         INT          NOT NULL,
     tipo_elemental  VARCHAR(255) NOT NULL,
-    id_correio      INT,
 
     FOREIGN KEY (id_jogador) REFERENCES pokemon (id_pokemon),
     FOREIGN KEY (id_correio) REFERENCES correio (id),

@@ -12,20 +12,17 @@ JOIN correio c ON m.id_correio = c.id
 WHERE m.concluida = false;
 
 
---Consulta que associa o item ao vendedor com valor e quantidade
+--Consulta que associa o item ao vendedor com valor
 
 SELECT
     v.id_vendendor,
     v.nome AS vendedor_nome,
     i1.nome AS item_1_nome,
     i1.valor AS item_1_valor,
-    i1.quantidade AS item_1_quantidade,
     i2.nome AS item_2_nome,
     i2.valor AS item_2_valor,
-    i2.quantidade AS item_2_quantidade,
     i3.nome AS item_3_nome,
     i3.valor AS item_3_valor,
-    i3.quantidade AS item_3_quantidade
 FROM
     vendedor v
 LEFT JOIN
@@ -149,3 +146,56 @@ WHERE id_jogador = id_do_jogador;
 UPDATE jogador
 SET posicao = id_terreno 
 WHERE id_jogador = id_do_jogador;  
+
+-- Renderizar mapa pelo jogador
+WITH jogador_posicao AS (
+    SELECT posicao
+    FROM jogador
+    WHERE id_jogador = %s
+),
+andar_atual AS (
+    SELECT t.id_andar
+    FROM terreno t
+    JOIN jogador_posicao jp ON t.id_terreno = jp.posicao
+),
+terrenos_no_andar AS (
+    SELECT t.id_terreno, t.x, t.y, tt.descricao
+    FROM terreno t
+    JOIN tipo_terreno tt ON t.id_tipo_terreno = tt.id_tipo_terreno
+    JOIN andar_atual aa ON t.id_andar = aa.id_andar
+)
+SELECT * FROM terrenos_no_andar;
+
+-- Visualizar habilidades
+SELECT 
+    j.nome AS nome_jogador,
+    h.nome AS nome_habilidade,
+    h.dano,
+    h.acuracia,
+    h.nome_efeito,
+    h.tipo_elemental
+FROM 
+    jogador j
+JOIN 
+    pokemon_habilidade ph ON j.id_jogador = ph.id_pokemon
+JOIN 
+    habilidade h ON ph.id_habilidade = h.id_habilidade
+WHERE 
+    j.id_jogador = 1;
+
+
+-- Consulta para selecionar os status do pokemon do jogador
+SELECT nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base,
+        velocidade_base, acuracia_base, evasao_base, status_base
+FROM pokemon_base WHERE id_pokemon = %s;
+
+-- Consulta para selecionar o pokemon inicial
+SELECT id_pokemon, nome, tipo FROM pokemon_base WHERE evolui_de = 'None' AND evolui_para <> 'None';
+
+-- Consulta para ver se já existem jogadores
+SELECT COUNT(*) FROM jogador;
+
+-- Consulta para encontrar o id_terreno pelas coordenadas
+    SELECT id_terreno
+    FROM terreno
+    WHERE x = %s AND y = %s

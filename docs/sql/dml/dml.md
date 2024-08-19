@@ -91,12 +91,12 @@ INSERT INTO correio (jogador_id, terreno_id) VALUES (3, 3);
 
 #### Inserindo dados na tabela 'jogador'
 ~~~sql
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_correio, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1, 1000, 4, 1, 'Elétrico');
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_correio, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2, 2000, 3, 2, 'Fogo');
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_correio, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3, 3000, 7, 3, 'Água');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1000, 4, 1, 'electric');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2000, 3, 2, 'fire');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3000, 7, 3, 'water');
 ~~~
 
 #### Inserindo dados na tabela 'inventario'
