@@ -118,6 +118,7 @@ CREATE TABLE jogador
     tam_inventario  INT          NOT NULL,
     posicao         INT          NOT NULL,
     tipo_elemental  VARCHAR(255) NOT NULL,
+    id_correio      INT,
 
     FOREIGN KEY (id_jogador) REFERENCES pokemon (id_pokemon),
     FOREIGN KEY (id_correio) REFERENCES correio (id),

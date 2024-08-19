@@ -17,11 +17,17 @@ VALUES ('Montanha Fogo', 3);
 
 -- Inserindo dados na tabela 'tipo_terreno'
 INSERT INTO tipo_terreno (descricao, movimento)
-VALUES ('Gramado', true);
+VALUES ('Parede', false);
 INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Água', false);
 INSERT INTO tipo_terreno (descricao, movimento)
-VALUES ('Rocha', true);
+VALUES ('Chão', true);
+INSERT INTO tipo_terreno (descricao, movimento)
+VALUES ('Escada', true);
+INSERT INTO tipo_terreno (descricao, movimento)
+VALUES ('Árvore', false);
+INSERT INTO tipo_terreno (descricao, movimento)
+VALUES ('Grama', true);
 
 -- Inserindo dados na tabela 'terreno'
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar)
