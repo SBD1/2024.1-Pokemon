@@ -50,6 +50,7 @@ nav:
   - SQL:
     - DDL: sql/ddl/ddl.md
     - DML: sql/dml/dml.md
+    - DQL: sql/dql/dql.md
   - Apresentações:
     - Apresentação 1: entregas/modulo1/apresentacao_1.md
     - Apresentação 2: entregas/modulo2/apresentacao_2.md
