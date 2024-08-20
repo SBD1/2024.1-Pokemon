@@ -39,5 +39,5 @@ python python/game.py
 | Módulo | Link do Vídeo                                                     | Data de Entrega |
 | :----: | ----------------------------------------------------------------- | --------------- |
 |   1    | [Vídeo de Apresentação do Módulo 1](https://youtu.be/Rox907B7eAI) | 17/07/2024      |
-|   2    | [Vídeo de Apresentação do Módulo 2]()                             |                 |
+|   2    | [Vídeo de Apresentação do Módulo 2](https://www.youtube.com/watch?v=88DrSI6KnoY)   |  19/08/2024     |
 |   3    | [Vídeo de Apresentação do Módulo 3]()                             |                 |
