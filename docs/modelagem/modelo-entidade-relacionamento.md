@@ -12,7 +12,7 @@ Abaixo temos a imagem do modelo de entidade relacionamento:
 <!-- ![Image title](../images/MER/modelo-entidade-relacionamento.png/#only-light)
 ![Image title](../images/MER/modelo-entidade-relacionamento-dark.png/#only-dark) -->
 
-[Link para o Modelo Entidade-Relacionamento]([https://drive.google.com/file/d/1nllkrmmWlrq3KmpdA-dB0EknChRtXsTk/view?usp=sharing](https://miro.com/app/board/uXjVKwg_uxM=/?share_link_id=828209646703))
+[Link para o Modelo Entidade-Relacionamento][https://drive.google.com/file/d/1nllkrmmWlrq3KmpdA-dB0EknChRtXsTk/view?usp=sharing](https://miro.com/app/board/uXjVKwg_uxM=/?share_link_id=828209646703)
 
 ## Histórico de Versão
 
