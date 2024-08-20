@@ -1,8 +1,27 @@
 # 2024.1-Pokemon
 
+Tabela de conteúdos
+=================
+<!--ts-->
+   * [Sobre o Jogo](#Sobre-o-jogo)
+   * [Requisitos](#Requisitos)
+   * [Como executar o jogo](#Como-executar-o-jogo)
+   * [Contribuidores](#Contribuidores)
+     
+<!--te-->
+
 ## Sobre o jogo
 
 O projeto tem como objetivo a criação de um jogo baseado no Pokemon Mistery Dungeons, onde o jogador controla um Pokemón com o objetivo de explorar dungeons e completar missões.
+
+## Requisitos
+
+## Como executar o jogo
+
+Para jogar a aplicação é necessário acessar a raiz do diretório e executar o comando
+```
+python python/game.py
+```
 
 ## Contribuidores
 

@@ -1,0 +1,17 @@
+services:
+  db:
+    container_name: db_pokemon
+    image: postgres:16.2
+    volumes:
+      - db-pokemon-data:/var/lib/postgresql/data
+      - ./docs/sql/ddl/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
+      # - ./docs/sql/dml/dml.sql:/docker-entrypoint-initdb.d/dml.sql
+    environment:
+      POSTGRES_USER: "pokemon"
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: db_pokemon
+      PGPORT: 5434
+    ports:
+      - 5434:5434 
+volumes:
+  db-pokemon-data:

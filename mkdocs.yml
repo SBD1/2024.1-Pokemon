@@ -23,6 +23,20 @@ theme:
   features:
     - navigation.tabs
     - navigation.tabs.sticky
+    - content.code.copy
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      pygments_lang_class: true
+      auto_title: true
+      linenums: true
+  - pymdownx.superfences
+  - attr_list
+  - md_in_html
+
+plugins:
+  - glightbox
 
 extra_css:
   - stylesheets/extra.css
@@ -33,6 +47,9 @@ nav:
     - Dicionário de dados: modelagem/dicionario_dados.md
     - Modelo Entidade-Relacionamento: modelagem/modelo-entidade-relacionamento.md
     - Diagrama Entidade-Relacionamento: modelagem/diagrama-entidade-relacionamento.md
+  - SQL:
+    - DDL: sql/ddl/ddl.md
+    - DML: sql/dml/dml.md
   - Apresentações:
     - Apresentação 1: entregas/modulo1/apresentacao_1.md
     - Apresentação 2: entregas/modulo2/apresentacao_2.md

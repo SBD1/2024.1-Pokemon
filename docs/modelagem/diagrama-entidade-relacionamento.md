@@ -4,7 +4,10 @@ O Diagrama de Entidade-Relacionamento (DER) destaca as principais entidades e se
 
 Abaixo temos a imagem do diagrama de entidade relacionamento:
 
-![Diagrama](../images/DER/diagrama-entidade-relacionamento-1.6.png)
+<figure markdown="span">
+  ![Diagrama Entidade Relacionamento](../images/DER/diagrama-entidade-relacionamento-1.6.png)
+  <figcaption>Diagrama entidade relacionamento</figcaption>
+</figure>
 
 [Link para o Diagrama Entidade-Relacionamento](https://drive.google.com/file/d/12w4accHQpZcQpmwkR-kGVqPnGBe0pZWg/view?usp=sharing)
 
