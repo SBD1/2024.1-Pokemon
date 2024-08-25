@@ -70,6 +70,31 @@ def check_existing_player():
     count = cursor.fetchone()[0]
     return count > 0
 
+def select_existing_player():
+    cursor.execute("SELECT id_jogador, nome FROM jogador")
+    players = cursor.fetchall()
+    tabela = []
+    for player in players:
+        id = player[0]
+        jogador = player[1]
+        linha = [f"{id}", f"{jogador}"]
+        tabela.append(linha)
+    print(tabulate(tabela, headers=["ID", "Jogador"],tablefmt="grid"))
+    return players
+
+def find_id_terreno(new_x, new_y, andar):
+    if new_x >= 50:
+        new_x = int(new_x / 50)
+
+    if new_y >= 50:
+        new_y = int(new_y / 50)
+
+    print(new_x, new_y)
+    
+    cursor.execute("SELECT id_terreno FROM terreno where x = %s and y= %s and id_andar = %s", (new_x, new_y, andar))
+    terreno = cursor.fetchone()[0]
+    return terreno
+
 def list_pokemon():
     cursor.execute("SELECT id_pokemon, nome, tipo FROM pokemon_base WHERE evolui_de = 'None' AND evolui_para <> 'None'")
     pokemons = cursor.fetchall()
@@ -134,8 +159,22 @@ def fetch_terrains(player_id):
     """
     cursor.execute(query, (player_id,))
     terrains = cursor.fetchall()
-    print(player_id)
     return terrains
+
+def fetch_andar_map(player_id):
+    conn = connect_db()
+    cursor = conn.cursor()  # OBS1. Tem que fazer join com o mapa também a ordem seria mapa -> andar -> terreno
+    query = """
+        SELECT a.id_andar, a.nome_mapa
+        FROM jogador j
+        JOIN terreno te ON te.id_terreno = j.posicao
+        JOIN andar a ON te.id_andar = a.id_andar
+        WHERE j.id_jogador = %s;
+    """
+    cursor.execute(query, (player_id,))
+    andar_mapa = cursor.fetchone()
+
+    return andar_mapa
 
 # Função para obter o próximo andar
 def get_next_floor(current_floor):
@@ -207,22 +246,36 @@ def change_floor(current_floor, terrains, revealed_surface):
 
 # Função principal (main)
 def main():
+    global andar
+    global mapa
+    global player
+    global window_width, window_height
 
     if check_existing_player():
         choice = input("Já existe um progresso salvo. Deseja continuar com o jogador existente? (s/n): ").strip().lower()
         if choice != 's':
             get_narrator_dialogue()
             list_pokemon()
-            global player
             pokemon_id = int(input("Digite o número do Pokémon que deseja ser: "))
             player = create_player(pokemon_id)
+            andar_mapa = fetch_andar_map(player)
+            andar = 6
+            mapa = 'Cidade'
+        else:
+            select_existing_player()
+            player = int(input("Qual jogo deseja continuar ? "))
+            andar_mapa = fetch_andar_map(player)
+            andar = andar_mapa[0]
+            mapa = andar_mapa[1]
+
     else:
         get_narrator_dialogue()
         list_pokemon()
         pokemon_id = int(input("Digite o número do Pokémon que deseja ser: "))
         player = create_player(pokemon_id)
-    global window_width, window_height
-    
+        andar = 6
+        mapa = 'Cidade'
+
     # Inicialize o pygame
     window = initialize_pygame()
 
@@ -263,6 +316,9 @@ def main():
                     new_y = player_y + square_size
                     if not check_collision(player_x, new_y, terrains):
                         player_y = new_y
+                new_terreno = find_id_terreno(player_x, player_y, andar)
+                cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (new_terreno, player))
+                conn.commit()
 
         # Verifique se o jogador está sobre a escada
         if check_on_ladder(player_x, player_y, terrains):
