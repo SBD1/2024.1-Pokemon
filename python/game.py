@@ -99,8 +99,19 @@ def check_existing_player():
     count = cursor.fetchone()[0]
     return count > 0
 
-def pega_npc():
-    cursor.execute("SELECT COUNT(*) FROM vendedor")
+def fetch_vendedores():
+    cursor.execute("""
+        SELECT v.id_vendedor, t.x, t.y, v.tipo_elemental 
+        FROM vendedor v
+        JOIN terreno t ON v.posicao = t.id_terreno
+    """)
+    vendedores = cursor.fetchall()
+    return vendedores
+
+def draw_vendedores(surface, offset_x, offset_y, vendedores):
+    for _, vx, vy, pokemon_type in vendedores:
+        color = pokemon_type_colors.get(pokemon_type, GREY)  # Use GREY if type is not found
+        pygame.draw.rect(surface, color, (vx * square_size - offset_x, vy * square_size - offset_y, square_size, square_size))
 
 
 def select_existing_player():
@@ -320,6 +331,7 @@ def main():
     current_floor = 1
     player_x, player_y = 0, 0
     terrains = fetch_terrains(player)
+    vendedores = fetch_vendedores()
 
     # Criar uma superfície para o mapa
     revealed_surface = pygame.Surface((movement_limit_width, movement_limit_height))
@@ -379,8 +391,8 @@ def main():
 
         # Desenhar o jogador
         draw_player(window, offset_x, offset_y, player_x, player_y, tipo)
-        #if mapa == 'Cidade':
-        #    draw_npc()
+        if mapa == 'Cidade':
+            draw_vendedores(window, offset_x, offset_y, vendedores)
 
         pygame.display.flip()
 
