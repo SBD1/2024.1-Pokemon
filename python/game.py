@@ -9,7 +9,7 @@ DB_NAME = 'db_pokemon'
 DB_USER = 'pokemon'
 DB_PASSWORD = '123456'
 
-# Definir as cores
+# Definições de cores
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -17,7 +17,36 @@ BLUE = (0, 0, 255)
 BROWN = (139, 69, 19)
 GREY = (128, 128, 128)
 LIGHT_GREEN = (144, 238, 144)  # Grama verde clara
-DARK_GREEN = (34, 139, 34)  # Arvore verde escura
+DARK_GREEN = (34, 139, 34)  # Árvore verde escura
+YELLOW = (255, 255, 0)
+LIGHT_BLUE = (173, 216, 230)  # Água clara
+PURPLE = (160, 32, 240)
+PINK = (255, 182, 193)
+ORANGE = (255, 165, 0)
+LIGHT_BROWN = (210, 180, 140)
+DARK_GREY = (105, 105, 105)
+
+# Mapeamento de cores para cada tipo de Pokémon
+pokemon_type_colors = {
+    "normal": GREY,
+    "fire": RED,
+    "water": BLUE,
+    "electric": YELLOW,
+    "grass": LIGHT_GREEN,
+    "ice": LIGHT_BLUE,
+    "fighting": BROWN,
+    "poison": PURPLE,
+    "ground": LIGHT_BROWN,
+    "flying": LIGHT_BLUE,
+    "psychic": PINK,
+    "bug": DARK_GREEN,
+    "rock": DARK_GREY,
+    "ghost": (75, 0, 130),  # Índigo escuro
+    "dragon": (0, 0, 139),  # Azul escuro
+    "dark": BLACK,
+    "steel": (192, 192, 192),  # Cinza claro
+    "fairy": (255, 105, 180),  # Rosa choque
+}
 
 # Configurações do mapa
 square_size = 50
@@ -70,6 +99,10 @@ def check_existing_player():
     count = cursor.fetchone()[0]
     return count > 0
 
+def pega_npc():
+    cursor.execute("SELECT COUNT(*) FROM vendedor")
+
+
 def select_existing_player():
     cursor.execute("SELECT id_jogador, nome FROM jogador")
     players = cursor.fetchall()
@@ -82,14 +115,16 @@ def select_existing_player():
     print(tabulate(tabela, headers=["ID", "Jogador"],tablefmt="grid"))
     return players
 
+def tipo_elemental_pokemon(id_jogador):
+    cursor.execute("select tipo_elemental from jogador where id_jogador = %s",(id_jogador,))
+    tipo = cursor.fetchone()[0]
+    return tipo
+
 def find_id_terreno(new_x, new_y, andar):
     if new_x >= 50:
         new_x = int(new_x / 50)
-
     if new_y >= 50:
         new_y = int(new_y / 50)
-
-    print(new_x, new_y)
     
     cursor.execute("SELECT id_terreno FROM terreno where x = %s and y= %s and id_andar = %s", (new_x, new_y, andar))
     terreno = cursor.fetchone()[0]
@@ -192,8 +227,9 @@ def initialize_pygame():
     return pygame.display.set_mode((window_width, window_height), pygame.RESIZABLE)
 
 # Função para desenhar o jogador
-def draw_player(surface, offset_x, offset_y, player_x, player_y):
-    pygame.draw.rect(surface, RED, (player_x - offset_x, player_y - offset_y, square_size, square_size))
+def draw_player(surface, offset_x, offset_y, player_x, player_y, pokemon_type):
+    color = pokemon_type_colors.get(pokemon_type, WHITE)  # Usa WHITE como padrão se o tipo não for encontrado
+    pygame.draw.rect(surface, color, (player_x - offset_x, player_y - offset_y, square_size, square_size))
 
 # Função para verificar colisão com obstáculos
 def check_collision(x, y, terrains):
@@ -246,9 +282,7 @@ def change_floor(current_floor, terrains, revealed_surface):
 
 # Função principal (main)
 def main():
-    global andar
-    global mapa
-    global player
+    global andar, mapa, player, tipo
     global window_width, window_height
 
     if check_existing_player():
@@ -261,12 +295,14 @@ def main():
             andar_mapa = fetch_andar_map(player)
             andar = 6
             mapa = 'Cidade'
+            tipo = tipo_elemental_pokemon(player)
         else:
             select_existing_player()
             player = int(input("Qual jogo deseja continuar ? "))
             andar_mapa = fetch_andar_map(player)
             andar = andar_mapa[0]
             mapa = andar_mapa[1]
+            tipo = tipo_elemental_pokemon(player)
 
     else:
         get_narrator_dialogue()
@@ -275,6 +311,7 @@ def main():
         player = create_player(pokemon_id)
         andar = 6
         mapa = 'Cidade'
+        tipo = tipo_elemental_pokemon(player)
 
     # Inicialize o pygame
     window = initialize_pygame()
@@ -341,7 +378,9 @@ def main():
         window.blit(revealed_surface, (-offset_x, -offset_y))
 
         # Desenhar o jogador
-        draw_player(window, offset_x, offset_y, player_x, player_y)
+        draw_player(window, offset_x, offset_y, player_x, player_y, tipo)
+        #if mapa == 'Cidade':
+        #    draw_npc()
 
         pygame.display.flip()
 
