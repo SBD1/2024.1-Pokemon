@@ -101,7 +101,7 @@ def check_existing_player():
 
 def fetch_vendedores():
     cursor.execute("""
-        SELECT v.id_vendedor, t.x, t.y, v.tipo_elemental 
+        SELECT v.id_vendedor, t.x, t.y, v.tipo_elemental, v.nome
         FROM vendedor v
         JOIN terreno t ON v.posicao = t.id_terreno
     """)
@@ -109,7 +109,7 @@ def fetch_vendedores():
     return vendedores
 
 def draw_vendedores(surface, offset_x, offset_y, vendedores):
-    for _, vx, vy, pokemon_type in vendedores:
+    for _, vx, vy, pokemon_type,_ in vendedores:
         color = pokemon_type_colors.get(pokemon_type, GREY)  # Use GREY if type is not found
         pygame.draw.rect(surface, color, (vx * square_size - offset_x, vy * square_size - offset_y, square_size, square_size))
 
@@ -251,6 +251,126 @@ def check_collision(x, y, terrains):
             return True
     return False
 
+def check_collision_vendedor(x, y, vendedores):
+    player_rect = pygame.Rect(x, y, square_size, square_size)
+    
+    # Verificar colisão com vendedores
+    for vendedor in vendedores:
+        vendedor_rect = pygame.Rect(vendedor[1] * square_size, vendedor[2] * square_size, square_size, square_size)
+        if player_rect.colliderect(vendedor_rect):
+            interagir_com_vendedor(vendedor)
+            return "vendedor", vendedor
+    
+    return None
+
+def abrir_loja(id_vendedor):
+    conn = connect_db()
+    cursor = conn.cursor()
+    
+    # Executar a consulta para obter itens do vendedor
+    query = """
+    SELECT
+        v.id_vendedor,
+        v.nome AS vendedor_nome,
+        i1.nome AS item_1_nome,
+        i1.valor AS item_1_valor,
+        i2.nome AS item_2_nome,
+        i2.valor AS item_2_valor,
+        i3.nome AS item_3_nome,
+        i3.valor AS item_3_valor,
+        v.item_1 as id_item_1,
+        v.item_2 as id_item_2,
+        v.item_3 as id_item_3
+    FROM
+        vendedor v
+    LEFT JOIN
+        item i1 ON v.item_1 = i1.id_item
+    LEFT JOIN
+        item i2 ON v.item_2 = i2.id_item
+    LEFT JOIN
+        item i3 ON v.item_3 = i3.id_item
+    WHERE
+        v.id_vendedor = %s;
+    """
+    cursor.execute(query, (id_vendedor,))
+    itens = cursor.fetchone()
+    
+    # Fechar a conexão com o banco de dados
+    cursor.close()
+    conn.close()
+    
+    if itens:
+        print(f"Itens disponíveis com o vendedor {itens[1]}:")
+        print(f"1. {itens[2]} - {itens[3]} moedas")
+        print(f"2. {itens[4]} - {itens[5]} moedas")
+        print(f"3. {itens[6]} - {itens[7]} moedas")
+
+        escolha = int(input("Digite o número do item que deseja comprar: "))
+
+        if escolha == 1:
+            id_item = itens[8]
+            valor_item = itens[3]
+        elif escolha == 2:
+            id_item = itens[9]
+            valor_item = itens[5]
+        elif escolha == 3:
+            id_item = itens[10]
+            valor_item = itens[7]
+        else:
+            print("Escolha inválida.")
+            return
+
+        # Comprar o item
+        comprar_item(player, id_item, valor_item)
+    else:
+        print("Não há itens disponíveis com este vendedor.")
+
+def interagir_com_vendedor(vendedor):
+    print(f"Seja bem-vindo ao vendedor {vendedor[4]}.")
+    resposta = input("Deseja comprar algo? (sim/não): ").strip().lower()
+    
+    if resposta == "sim":
+        abrir_loja(vendedor[0])
+    else:
+        print("Ok, tenha um bom dia!")
+    #vendedor_id, _, _, tipo_elemental = vendedor
+    #print(f"Iniciando diálogo com o vendedor de tipo {tipo_elemental}.")
+    #cursor.execute("SELECT fala FROM dialogo WHERE personagem = 'Vendedor' ORDER BY ordem")
+    #dialogos = cursor.fetchall()
+    #for dialogo in dialogos:
+    #    print(dialogo[0])
+    #    input("Pressione Enter para continuar...")
+
+def comprar_item(id_jogador, id_item, valor_item):
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT saldo FROM jogador WHERE id_jogador = %s;", (id_jogador,))
+    saldo = cursor.fetchone()[0]
+
+    if saldo >= valor_item:
+        cursor.execute("INSERT INTO instancia_item (id_item) VALUES (%s) RETURNING id_instancia_item;", (id_item,))
+        id_instancia_item = cursor.fetchone()[0]
+
+        cursor.execute("""
+            INSERT INTO inventario (id_inventario, id_instancia_item) 
+            VALUES (%s, %s);
+        """, (id_jogador, id_instancia_item))
+
+        cursor.execute("""
+            UPDATE jogador
+            SET saldo = saldo - %s
+            WHERE id_jogador = %s;
+        """, (valor_item, id_jogador))
+
+        conn.commit()
+        print("Compra realizada com sucesso!")
+    else:
+        print("Saldo insuficiente para comprar este item.")
+
+    cursor.close()
+    conn.close()
+
 # Função para verificar se o jogador está sobre a escada
 def check_on_ladder(player_x, player_y, terrains):
     player_rect = pygame.Rect(player_x, player_y, square_size, square_size)
@@ -349,22 +469,21 @@ def main():
                 window_width, window_height = event.w, event.h
                 window = initialize_pygame()
             elif event.type == pygame.KEYDOWN:
+                new_x, new_y = player_x, player_y  # Inicializa com a posição atual
+                
                 if event.key == pygame.K_LEFT:
                     new_x = player_x - square_size
-                    if not check_collision(new_x, player_y, terrains):
-                        player_x = new_x
                 elif event.key == pygame.K_RIGHT:
                     new_x = player_x + square_size
-                    if not check_collision(new_x, player_y, terrains):
-                        player_x = new_x
                 elif event.key == pygame.K_UP:
                     new_y = player_y - square_size
-                    if not check_collision(player_x, new_y, terrains):
-                        player_y = new_y
                 elif event.key == pygame.K_DOWN:
                     new_y = player_y + square_size
-                    if not check_collision(player_x, new_y, terrains):
-                        player_y = new_y
+                
+                # Verificar colisão com terrenos e vendedores
+                if not check_collision(new_x, new_y, terrains) and not check_collision_vendedor(new_x, new_y, vendedores):
+                    player_x, player_y = new_x, new_y
+                    
                 new_terreno = find_id_terreno(player_x, player_y, andar)
                 cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (new_terreno, player))
                 conn.commit()
