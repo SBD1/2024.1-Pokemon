@@ -104,6 +104,7 @@ CREATE TABLE correio
 CREATE TABLE jogador
 (
     id_jogador      INT PRIMARY KEY,
+    id_correio      INT          NOT NULL,
     nivel           INT          NOT NULL,
     vida            INT          NOT NULL,
     ataque_fisico   INT          NOT NULL,
