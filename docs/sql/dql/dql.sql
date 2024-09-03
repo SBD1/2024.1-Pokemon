@@ -11,7 +11,6 @@ JOIN mapa ma ON m.nome_mapa = ma.nome
 JOIN correio c ON m.id_correio = c.id
 WHERE m.concluida = false;
 
-
 --Consulta que associa o item ao vendedor com valor
 
 SELECT
@@ -87,7 +86,6 @@ WHERE
     j.id_jogador = id_jogador;  -- Usando como exemplo o jogador
 
 -- Consulta para obter status-base do pokemon
-
 SELECT
     nivel,
     vida,

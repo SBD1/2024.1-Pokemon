@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     container_name: db_pokemon
@@ -13,5 +15,15 @@ services:
       PGPORT: 5434
     ports:
       - 5434:5434 
+    networks:
+      custom_network:
+        ipv4_address: 172.19.0.2
+
+networks:
+  custom_network:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+
 volumes:
   db-pokemon-data:
