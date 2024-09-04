@@ -204,7 +204,7 @@ CREATE TABLE terreno_loot
 
 CREATE TABLE vendedor
 (
-    id_vendendor    INT PRIMARY KEY,
+    id_vendedor    INT PRIMARY KEY,
     nivel           INT          NOT NULL,
     vida            INT          NOT NULL,
     ataque_fisico   INT          NOT NULL,
@@ -221,7 +221,7 @@ CREATE TABLE vendedor
     item_3          INT,
     tipo_elemental  VARCHAR(255) NOT NULL,
 
-    FOREIGN KEY (id_vendendor) REFERENCES npc (id_npc),
+    FOREIGN KEY (id_vendedor) REFERENCES npc (id_npc),
     FOREIGN KEY (posicao) REFERENCES terreno (id_terreno),
     FOREIGN KEY (item_1) REFERENCES item (id_item),
     FOREIGN KEY (item_2) REFERENCES item (id_item),

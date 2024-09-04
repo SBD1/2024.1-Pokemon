@@ -1,13 +1,13 @@
 
 -- Inserindo dados na tabela 'mapa'
 INSERT INTO mapa (nome, quantidade_andares)
+VALUES ('Cidade', 1);
+INSERT INTO mapa (nome, quantidade_andares)
 VALUES ('Floresta Sombra', 1);
 INSERT INTO mapa (nome, quantidade_andares)
 VALUES ('Caverna Cristal', 1);
 INSERT INTO mapa (nome, quantidade_andares)
-VALUES ('Montanha fire', 2);
-INSERT INTO mapa (nome, quantidade_andares)
-VALUES ('Cidade', 1);
+VALUES ('Montanha fire', 3);
  
 -- Inserindo dados na tabela 'andar'
 INSERT INTO andar (nome_mapa, numero_andar)
@@ -19,19 +19,21 @@ VALUES ('Montanha fire', 1);
 INSERT INTO andar (nome_mapa, numero_andar)
 VALUES ('Montanha fire', 2);
 INSERT INTO andar (nome_mapa, numero_andar)
+VALUES ('Montanha fire', 3);
+INSERT INTO andar (nome_mapa, numero_andar)
 VALUES ('Cidade', 1);
 
 -- Inserindo dados na tabela 'tipo_terreno'
 INSERT INTO tipo_terreno (descricao, movimento)
-VALUES ('Parede', false);
+VALUES ('Chão', true);
 INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Água', false);
 INSERT INTO tipo_terreno (descricao, movimento)
-VALUES ('Chão', true);
-INSERT INTO tipo_terreno (descricao, movimento)
-VALUES ('Escada', true);
+VALUES ('Parede', false);
 INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Árvore', false);
+INSERT INTO tipo_terreno (descricao, movimento)
+VALUES ('Escada', true);
 INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Grama', true);
 
@@ -365,12 +367,12 @@ INSERT INTO correio (jogador_id, terreno_id)
 VALUES (3, 3);
 
 -- Inserindo dados na tabela 'jogador'
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1000, 4, 1, 'electric');
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2000, 3, 2, 'fire');
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3000, 7, 3, 'water');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, id_correio)
+VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1000, 4, 1, 'electric', 1);
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, id_correio)
+VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2000, 3, 2, 'fire', 1);
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, id_correio)
+VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3000, 7, 3, 'water', 1);
 
 -- Inserindo dados na tabela 'inventario'
 INSERT INTO inventario (id_inventario, id_instancia_item)
@@ -449,7 +451,7 @@ INSERT INTO terreno_loot (id_terreno, id_loot)
 VALUES (3, 3);
 
 -- Inserindo dados na tabela 'vendedor'
-INSERT INTO vendedor (id_vendendor, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, item_1, item_2, item_3, tipo_elemental)
+INSERT INTO vendedor (id_vendedor, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, item_1, item_2, item_3, tipo_elemental)
 VALUES (4, 5, 100, 50, 40, 60, 70, 80, 90, 'Disponível', 'Vendedor 1', 1, 1, 2, 3, 'fire');
 INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, tipo_elemental)
 VALUES (5, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 1', 2, 'water');

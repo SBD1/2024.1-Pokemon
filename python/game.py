@@ -4,7 +4,7 @@ from tabulate import tabulate
 import psycopg2
 
 # Configurações do banco de dados
-DB_HOST = '172.19.0.2'
+DB_HOST = 'localhost'
 DB_NAME = 'db_pokemon'
 DB_USER = 'pokemon'
 DB_PASSWORD = '123456'
@@ -167,15 +167,15 @@ def create_player(pokemon_id):
     cursor.execute("INSERT INTO pokemon (id_tipo_pokemon) VALUES (1) RETURNING id_pokemon")
     new_pokemon_id = cursor.fetchone()[0]
     cursor.execute("""
-        INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_jogador, saldo, tam_inventario, posicao, tipo_elemental)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_jogador, saldo, tam_inventario, posicao, tipo_elemental, id_correio)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, (1, pokemon_data[2], pokemon_data[3], pokemon_data[4],
           pokemon_data[5], pokemon_data[6], pokemon_data[7], pokemon_data[8],
-          pokemon_data[9], pokemon_data[0], new_pokemon_id, 0, 20, 17902, pokemon_data[1]))
+          pokemon_data[9], pokemon_data[0], new_pokemon_id, 0, 20, 4, pokemon_data[1], 1))
     cursor.execute("INSERT INTO instancia_item (id_item) VALUES (1) RETURNING id_instancia_item")
     id_instancia_item = cursor.fetchone()[0]
     cursor.execute("INSERT INTO inventario (id_inventario, id_instancia_item) VALUES (%s, %s) RETURNING id_inventario", (new_pokemon_id, id_instancia_item))
-    cursor.execute("INSERT INTO correio (jogador_id, terreno_id) VALUES (%s, %s)", (new_pokemon_id, 17903))
+    cursor.execute("INSERT INTO correio (jogador_id, terreno_id) VALUES (%s, %s)", (new_pokemon_id, 4))
     conn.commit()
     print(f"Você agora é o Pokémon {pokemon_data[0]}!")
     return new_pokemon_id
