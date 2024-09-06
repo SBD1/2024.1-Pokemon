@@ -253,7 +253,30 @@ def check_collision(x, y, terrains):
         terrain_rect = pygame.Rect(tx * square_size, ty * square_size, square_size, square_size)
         if player_rect.colliderect(terrain_rect) and descricao in ['Parede', 'Água', 'Árvore']:
             return True
+        elif player_rect.colliderect(terrain_rect) and descricao in ['Correio']:
+            abre_correio()
+
     return False
+
+def abre_correio(id_jogador)
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    query ="""
+        SELECT 
+            m.id_missao,
+            m.objetivo,
+            m.dificuldade,
+            m.tipo_missao,
+            ma.nome AS mapa_nome,
+            c.id AS correio_id
+        
+        FROM missao m
+        JOIN mapa ma ON m.nome_mapa = ma.nome
+        JOIN correio c ON m.id_correio = c.id
+        WHERE m.concluida = false AND
+        id_correio = ;
+    """
 
 def check_collision_vendedor(x, y, vendedores):
     player_rect = pygame.Rect(x, y, square_size, square_size)
@@ -400,6 +423,8 @@ def draw_terrains(surface, terrains):
             color = DARK_GREEN
         elif descricao == 'Grama':
             color = LIGHT_GREEN
+        elif descricao == 'Correio':
+            color = YELLOW
         else:
             color = WHITE  # Cor padrão se a descrição não for reconhecida
         pygame.draw.rect(surface, color, (x * square_size, y * square_size, square_size, square_size))
