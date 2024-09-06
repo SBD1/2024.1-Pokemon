@@ -59,6 +59,10 @@ movement_limit_height = map_size * square_size
 # Dimensões da janela
 window_width, window_height = 800, 600
 
+# Ajustes da velocidade do jogador
+clock = pygame.time.Clock()
+player_speed = 10
+
 # Função para conectar ao banco de dados
 def connect_db():
     return psycopg2.connect(host=DB_HOST, dbname=DB_NAME, user=DB_USER, password=DB_PASSWORD, port=5434)
@@ -411,7 +415,12 @@ def change_floor(current_floor, terrains, revealed_surface):
         print(f"Subiu para o andar {current_floor}")
     return current_floor, terrains
 
-# Função principal (main)
+def clamp_position(x, y):
+    """Corrige a posição (x, y) para garantir que esteja dentro dos limites do mapa."""
+    x = max(0, min(x, movement_limit_width - square_size))
+    y = max(0, min(y, movement_limit_height - square_size))
+    return x, y
+
 def main():
     global andar, mapa, player, tipo
     global window_width, window_height
@@ -462,31 +471,39 @@ def main():
 
     running = True
     while running:
+        clock.tick(30)  # Limita o jogo a 30 frames por segundo (FPS)
+        keys = pygame.key.get_pressed()  # Obtém o estado das teclas
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.VIDEORESIZE:
                 window_width, window_height = event.w, event.h
                 window = initialize_pygame()
-            elif event.type == pygame.KEYDOWN:
-                new_x, new_y = player_x, player_y  # Inicializa com a posição atual
-                
-                if event.key == pygame.K_LEFT:
-                    new_x = player_x - square_size
-                elif event.key == pygame.K_RIGHT:
-                    new_x = player_x + square_size
-                elif event.key == pygame.K_UP:
-                    new_y = player_y - square_size
-                elif event.key == pygame.K_DOWN:
-                    new_y = player_y + square_size
-                
-                # Verificar colisão com terrenos e vendedores
-                if not check_collision(new_x, new_y, terrains) and not check_collision_vendedor(new_x, new_y, vendedores):
-                    player_x, player_y = new_x, new_y
-                    
-                new_terreno = find_id_terreno(player_x, player_y, andar)
-                cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (new_terreno, player))
-                conn.commit()
+
+        # Movimentação contínua do jogador
+        new_x, new_y = player_x, player_y
+
+        if keys[pygame.K_LEFT]:
+            new_x -= player_speed  # Movimento mais lento com base no player_speed
+        if keys[pygame.K_RIGHT]:
+            new_x += player_speed
+        if keys[pygame.K_UP]:
+            new_y -= player_speed
+        if keys[pygame.K_DOWN]:
+            new_y += player_speed
+
+        # Corrigir a posição se necessário
+        new_x, new_y = clamp_position(new_x, new_y)
+
+        # Verificar colisão com terrenos e vendedores
+        if not check_collision(new_x, new_y, terrains) and not check_collision_vendedor(new_x, new_y, vendedores):
+            player_x, player_y = new_x, new_y
+            
+        new_terreno = find_id_terreno(player_x, player_y, andar)
+        if new_terreno:  # Certifique-se de que o terreno existe
+            cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (new_terreno, player))
+            conn.commit()
 
         # Verifique se o jogador está sobre a escada
         if check_on_ladder(player_x, player_y, terrains):
@@ -495,8 +512,7 @@ def main():
             player_y = 0
 
         # Limitar o movimento do jogador à área definida
-        player_x = max(0, min(player_x, movement_limit_width - square_size))
-        player_y = max(0, min(player_y, movement_limit_height - square_size))
+        player_x, player_y = clamp_position(player_x, player_y)
 
         # Calcular o deslocamento da "câmera"
         offset_x = max(0, min(player_x - window_width // 2, movement_limit_width - window_width))
