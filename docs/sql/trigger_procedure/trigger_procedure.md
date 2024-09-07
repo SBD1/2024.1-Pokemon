@@ -1,6 +1,25 @@
 # <b>Triggers e Stored Procedures</b>
 
-### Trigger para verificar se o inventário do jogador está cheio antes de adicionar um novo item
+#### Validar a alteração do tamanho do inventário
+~~~sql
+CREATE FUNCTION valida_update_tam_inventario() RETURNS TRIGGER AS
+$$
+BEGIN
+    IF NEW.tam_inventario != OLD.tam_inventario THEN
+        RAISE EXCEPTION 'A coluna tam_inventario não pode ser alterada diretamente.';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS valida_update_tam_inventario ON jogador;
+CREATE TRIGGER valida_update_tam_inventario
+    BEFORE UPDATE
+    ON jogador
+    FOR EACH ROW
+EXECUTE FUNCTION valida_update_tam_inventario();
+~~~
+
+#### Verificar se o inventário do jogador está cheio antes de adicionar um novo item
 ~~~~sql
 CREATE OR REPLACE FUNCTION verificar_tam_inventario() RETURNS TRIGGER AS
 $$

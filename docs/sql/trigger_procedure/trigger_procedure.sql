@@ -1,5 +1,21 @@
--- Trigger para verificar se o inventário do jogador está cheio antes de adicionar um novo item
+-- Validar a alteração do tamanho do inventário
+CREATE FUNCTION before_update_tam_inventario() RETURNS TRIGGER AS
+$$
+BEGIN
+    IF NEW.tam_inventario != OLD.tam_inventario THEN
+        RAISE EXCEPTION 'A coluna tam_inventario não pode ser alterada diretamente.';
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
 
+DROP TRIGGER IF EXISTS before_update_tam_inventario ON jogador;
+CREATE TRIGGER before_update_tam_inventario
+    BEFORE UPDATE
+    ON jogador
+    FOR EACH ROW
+EXECUTE FUNCTION before_update_tam_inventario();
+
+-- Trigger para verificar se o inventário do jogador está cheio antes de adicionar um novo item
 CREATE OR REPLACE FUNCTION verificar_tam_inventario() RETURNS TRIGGER AS
 $$
 DECLARE
