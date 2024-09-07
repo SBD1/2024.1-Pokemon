@@ -4,7 +4,7 @@ INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 2, 1, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 3, 1, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 4, 1, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 5, 1, 6);
-INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 6, 1, 6);
+INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 6, 7, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 7, 1, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 8, 1, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (0, 9, 1, 6);

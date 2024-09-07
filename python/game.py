@@ -167,15 +167,15 @@ def create_player(pokemon_id):
     cursor.execute("INSERT INTO pokemon (id_tipo_pokemon) VALUES (1) RETURNING id_pokemon")
     new_pokemon_id = cursor.fetchone()[0]
     cursor.execute("""
-        INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_jogador, saldo, tam_inventario, posicao, tipo_elemental, id_correio)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_jogador, saldo, tam_inventario, posicao, tipo_elemental)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
     """, (1, pokemon_data[2], pokemon_data[3], pokemon_data[4],
           pokemon_data[5], pokemon_data[6], pokemon_data[7], pokemon_data[8],
-          pokemon_data[9], pokemon_data[0], new_pokemon_id, 0, 20, 4, pokemon_data[1], 1))
+          pokemon_data[9], pokemon_data[0], new_pokemon_id, 0, 20, 6, pokemon_data[1]))
     cursor.execute("INSERT INTO instancia_item (id_item) VALUES (1) RETURNING id_instancia_item")
     id_instancia_item = cursor.fetchone()[0]
     cursor.execute("INSERT INTO inventario (id_inventario, id_instancia_item) VALUES (%s, %s) RETURNING id_inventario", (new_pokemon_id, id_instancia_item))
-    cursor.execute("INSERT INTO correio (jogador_id, terreno_id) VALUES (%s, %s)", (new_pokemon_id, 4))
+    cursor.execute("INSERT INTO correio (id_correio, terreno_id) VALUES (%s, %s)", (new_pokemon_id, 4))
     conn.commit()
     print(f"Você agora é o Pokémon {pokemon_data[0]}!")
     return new_pokemon_id
@@ -261,25 +261,17 @@ def abre_correio(id_jogador):
 
     query ="""
         SELECT 
-            m.id_missao,
-            m.objetivo,
-            m.dificuldade,
-            m.tipo_missao,
-            ma.nome AS mapa_nome,
-            c.id AS correio_id
-        
-        FROM missao m
-        JOIN mapa ma ON m.nome_mapa = ma.nome
-        JOIN correio c ON m.id_correio = c.id
-        WHERE m.concluida = false AND
-        id_jogador = %s;
+            id_missao,
+            objetivo,
+            dificuldade,
+            principal,
+            nome_mapa
+        FROM missao
     """
 
     cursor.execute(query, (id_jogador,))
     missoes = cursor.fetchall()
 
-    cursor.close()
-    conn.close()
 
     # Preparar dados para tabulate
     headers = ["ID Missão", "Objetivo", "Dificuldade", "Tipo Missão", "Mapa"]
@@ -289,13 +281,15 @@ def abre_correio(id_jogador):
     print(tabulate(table, headers, tablefmt="grid"))
 
     escolha = int(input("Digite o número da missão que quer fazer: "))
-    for missao in missoes:
-        if escolha == missao[0]:
-            cursor.execute("INSERT INTO instancia_missao (id_missao, id_jogador, concluida) VALUES (%s, %s, %s);", (missao[0], id_jogador, 'false'))
-            print(f'Missão {missao[0]} selecionada!')
-        else:
-            print('Valor inválido!')
+    if escolha in missoes[0]:
+        cursor.execute("INSERT INTO instancia_missao (id_missao, id_jogador, concluida) VALUES (%s, %s, %s);", (escolha, id_jogador, 'false'))
+        print(f'Missão {escolha} selecionada!')
+        return
+    else:
+        print('Valor inválido!')
 
+    cursor.close()
+    conn.close()
 
 def check_collision_vendedor(x, y, vendedores):
     player_rect = pygame.Rect(x, y, square_size, square_size)
