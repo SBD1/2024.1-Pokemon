@@ -243,14 +243,15 @@ def draw_player(surface, offset_x, offset_y, player_x, player_y, pokemon_type):
     pygame.draw.rect(surface, color, (player_x - offset_x, player_y - offset_y, square_size, square_size))
 
 # Função para verificar colisão com obstáculos
-def check_collision(x, y, terrains):
+def check_collision(x, y, terrains, id_jogador):
     player_rect = pygame.Rect(x, y, square_size, square_size)
     for (_, tx, ty, descricao) in terrains:
         terrain_rect = pygame.Rect(tx * square_size, ty * square_size, square_size, square_size)
         if player_rect.colliderect(terrain_rect) and descricao in ['Parede', 'Água', 'Árvore']:
             return True
         elif player_rect.colliderect(terrain_rect) and descricao in ['Correio']:
-            abre_correio()
+            abre_correio(id_jogador)
+            return True
 
     return False
 
@@ -271,7 +272,7 @@ def abre_correio(id_jogador):
         JOIN mapa ma ON m.nome_mapa = ma.nome
         JOIN correio c ON m.id_correio = c.id
         WHERE m.concluida = false AND
-        id_correio = %s;
+        id_jogador = %s;
     """
 
     cursor.execute(query, (id_jogador,))
@@ -285,7 +286,16 @@ def abre_correio(id_jogador):
     table = [[missao[0], missao[1], missao[2], missao[3], missao[4]] for missao in missoes]
 
     # Exibir tabela formatada
-    print(tabulate(table, headers, tablefmt="grid", colalign=("center", "center", "center", "center", "center")))
+    print(tabulate(table, headers, tablefmt="grid"))
+
+    escolha = int(input("Digite o número da missão que quer fazer: "))
+    for missao in missoes:
+        if escolha == missao[0]:
+            cursor.execute("INSERT INTO instancia_missao (id_missao, id_jogador, concluida) VALUES (%s, %s, %s);", (missao[0], id_jogador, 'false'))
+            print(f'Missão {missao[0]} selecionada!')
+        else:
+            print('Valor inválido!')
+
 
 def check_collision_vendedor(x, y, vendedores):
     player_rect = pygame.Rect(x, y, square_size, square_size)
@@ -529,7 +539,7 @@ def main():
                 new_x, new_y = clamp_position(new_x, new_y)
 
                 # Verificar colisão com terrenos e vendedores
-                if not check_collision(new_x, new_y, terrains) and not check_collision_vendedor(new_x, new_y, vendedores):
+                if not check_collision(new_x, new_y, terrains, player) and not check_collision_vendedor(new_x, new_y, vendedores):
                     player_x, player_y = new_x, new_y
                     
                 new_terreno = find_id_terreno(player_x, player_y, andar)
