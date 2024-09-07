@@ -52,8 +52,32 @@ CREATE TRIGGER before_insert_instancia_item
 EXECUTE FUNCTION verificar_tam_inventario();
 ~~~~
 
+#### Move o jogador para a cidade quando a vida dele for igual a zero
+~~~~sql
+CREATE OR REPLACE FUNCTION verifica_vida_jogador()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.vida <= 0 THEN
+        NEW.posicao := (SELECT id_terreno FROM terreno WHERE x = 0 AND y = 0);
+		RAISE NOTICE 'Jogador % retornou para a cidade.', NEW.id_jogador;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE TRIGGER trigger_verifica_vida_jogador
+BEFORE UPDATE OF vida ON jogador
+FOR EACH ROW
+WHEN (NEW.vida <= 0)
+EXECUTE FUNCTION verifica_vida_jogador();
+~~~~
+
 ## Histórico de Versão
 
 | Versão |    Data    |      Descrição      |                                                                                                Autor(es)                                                                                                 |
 | :----: | :--------: | :-----------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | `1.0`  | 07/09/2024 | Adicionando triggers | [Gabriel Marcolino](https://github.com/GabrielMR360), [Shaíne Oliveira](ttps://github.com/ShaineOliveira), [José Filipi](https://github.com/JoseFilipi) e [Leonardo Bonetti](https://github.com/LeoFacB) |
+| `1.1`  | 07/09/2024 | Adiciona trigger de vida | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+
+
