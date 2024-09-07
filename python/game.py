@@ -113,6 +113,27 @@ def draw_vendedores(surface, offset_x, offset_y, vendedores):
         color = pokemon_type_colors.get(pokemon_type, GREY)  # Use GREY if type is not found
         pygame.draw.rect(surface, color, (vx * square_size - offset_x, vy * square_size - offset_y, square_size, square_size))
 
+def fetch_correio():
+    cursor.execute("""
+        SELECT c.id, t.x, t.y
+        FROM correio c
+        JOIN terreno t ON c.terreno_id = t.id_terreno
+        JOIN jogador j ON c.jogador_id = j.id_jogador
+        WHERE c.jogador_id = j.id_jogador
+        LIMIT 1
+    """)
+    correios = cursor.fetchall()
+    return correios
+
+def draw_correios(surface, offset_x, offset_y, correios):
+    for _, cx, cy in correios:  # Coordenadas do correio
+        color = YELLOW  # Cor fixa para o correio
+
+        # Deslocamento para que o correio apareça ao lado do vendedor
+        deslocamento_x = 3  # Desloca 3 células para a direita do vendedor
+
+        pygame.draw.rect(surface, color, ((cx + deslocamento_x) * square_size - offset_x, cy * square_size - offset_y, square_size, square_size))
+
 
 def select_existing_player():
     cursor.execute("SELECT id_jogador, nome FROM jogador")
@@ -249,11 +270,11 @@ def check_collision(x, y, terrains, id_jogador):
         terrain_rect = pygame.Rect(tx * square_size, ty * square_size, square_size, square_size)
         if player_rect.colliderect(terrain_rect) and descricao in ['Parede', 'Água', 'Árvore']:
             return True
-        elif player_rect.colliderect(terrain_rect) and descricao in ['Correio']:
-            abre_correio(id_jogador)
-            return True
-
+        #elif player_rect.colliderect(terrain_rect) and descricao == 'Correio':
+            #abre_correio(id_jogador)
+            #return True
     return False
+
 
 def abre_correio(id_jogador):
     conn = connect_db()
@@ -281,7 +302,12 @@ def abre_correio(id_jogador):
     print(tabulate(table, headers, tablefmt="grid"))
 
     escolha = int(input("Digite o número da missão que quer fazer: "))
-    if escolha in missoes[0]:
+    missao_ids = [missao[0] for missao in missoes]
+    if escolha in missao_ids:
+        print("IDs das missões disponíveis:", escolha)
+        # Certificar-se de que id_jogador é um inteiro
+        if isinstance(id_jogador, tuple):
+            id_jogador = id_jogador[0]
         cursor.execute("INSERT INTO instancia_missao (id_missao, id_jogador, concluida) VALUES (%s, %s, %s);", (escolha, id_jogador, 'false'))
         conn.commit()
         print(f'Missão {escolha} selecionada!')
@@ -302,6 +328,20 @@ def check_collision_vendedor(x, y, vendedores):
             return "vendedor", vendedor
     
     return None
+
+def check_collision_correio(x, y, correios):
+    player_rect = pygame.Rect(x, y, square_size, square_size)
+    
+    # Verificar colisão com correios
+    for correio in correios:
+        deslocamento_x = 3
+        correio_rect = pygame.Rect((deslocamento_x + correio[1]) * square_size, correio[2] * square_size, square_size, square_size)
+        if player_rect.colliderect(correio_rect):
+            interagir_com_correio(correio)
+            return "correio", correio
+    
+    return None
+
 
 def abrir_loja(id_vendedor):
     conn = connect_db()
@@ -380,6 +420,17 @@ def interagir_com_vendedor(vendedor):
     #for dialogo in dialogos:
     #    print(dialogo[0])
     #    input("Pressione Enter para continuar...")
+
+def interagir_com_correio(correio):
+    print(f"Seja bem-vindo ao correio {correio[0]}.")  # Ajuste o índice conforme necessário
+    resposta = input("Deseja escolher uma missão? (sim/não): ").strip().lower()
+    
+    if resposta == "sim":
+        abre_correio(correio)
+    else:
+        print("Ok...vaza!")
+
+
 
 def comprar_item(id_jogador, id_item, valor_item):
     conn = connect_db()
@@ -501,6 +552,7 @@ def main():
     player_x, player_y = 0, 0
     terrains = fetch_terrains(player)
     vendedores = fetch_vendedores()
+    correios = fetch_correio()
 
     # Criar uma superfície para o mapa
     revealed_surface = pygame.Surface((movement_limit_width, movement_limit_height))
@@ -533,7 +585,7 @@ def main():
                 new_x, new_y = clamp_position(new_x, new_y)
 
                 # Verificar colisão com terrenos e vendedores
-                if not check_collision(new_x, new_y, terrains, player) and not check_collision_vendedor(new_x, new_y, vendedores):
+                if not check_collision(new_x, new_y, terrains, player) and not check_collision_vendedor(new_x, new_y, vendedores) and not check_collision_correio (new_x, new_y, correios):
                     player_x, player_y = new_x, new_y
                     
                 new_terreno = find_id_terreno(player_x, player_y, andar)
@@ -567,6 +619,7 @@ def main():
         draw_player(window, offset_x, offset_y, player_x, player_y, tipo)
         if mapa == 'Cidade':
             draw_vendedores(window, offset_x, offset_y, vendedores)
+            draw_correios(window, offset_x, offset_y, correios)
 
         pygame.display.flip()
 
