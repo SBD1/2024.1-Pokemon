@@ -271,8 +271,21 @@ def abre_correio(id_jogador):
         JOIN mapa ma ON m.nome_mapa = ma.nome
         JOIN correio c ON m.id_correio = c.id
         WHERE m.concluida = false AND
-        id_correio = ;
+        id_correio = %s;
     """
+
+    cursor.execute(query, (id_jogador,))
+    missoes = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+
+    # Preparar dados para tabulate
+    headers = ["ID Missão", "Objetivo", "Dificuldade", "Tipo Missão", "Mapa"]
+    table = [[missao[0], missao[1], missao[2], missao[3], missao[4]] for missao in missoes]
+
+    # Exibir tabela formatada
+    print(tabulate(table, headers, tablefmt="grid", colalign=("center", "center", "center", "center", "center")))
 
 def check_collision_vendedor(x, y, vendedores):
     player_rect = pygame.Rect(x, y, square_size, square_size)
