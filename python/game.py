@@ -283,8 +283,8 @@ def abre_correio(id_jogador):
     escolha = int(input("Digite o número da missão que quer fazer: "))
     if escolha in missoes[0]:
         cursor.execute("INSERT INTO instancia_missao (id_missao, id_jogador, concluida) VALUES (%s, %s, %s);", (escolha, id_jogador, 'false'))
+        conn.commit()
         print(f'Missão {escolha} selecionada!')
-        return
     else:
         print('Valor inválido!')
 
