@@ -21,6 +21,7 @@ DARK_GREEN = (34, 139, 34)  # Árvore verde escura
 YELLOW = (255, 255, 0)
 LIGHT_BLUE = (173, 216, 230)  # Água clara
 PURPLE = (160, 32, 240)
+PURPLE_D = (150, 112, 180)
 PINK = (255, 182, 193)
 ORANGE = (255, 165, 0)
 LIGHT_BROWN = (210, 180, 140)
@@ -113,6 +114,12 @@ def draw_vendedores(surface, offset_x, offset_y, vendedores):
         color = pokemon_type_colors.get(pokemon_type, GREY)  # Use GREY if type is not found
         pygame.draw.rect(surface, color, (vx * square_size - offset_x, vy * square_size - offset_y, square_size, square_size))
 
+def get_floor(player):
+    cursor.execute("SELECT numero_andar FROM andar WHERE id_andar = (SELECT id_andar FROM terreno WHERE id_terreno = (SELECT posicao FROM jogador WHERE id_jogador = %s))", (player,))
+    floor = cursor.fetchone()[0]
+    print(f'Andar:{floor}')
+    return floor
+
 
 def select_existing_player():
     cursor.execute("SELECT id_jogador, nome FROM jogador")
@@ -139,6 +146,15 @@ def find_id_terreno(new_x, new_y, andar):
     
     cursor.execute("SELECT id_terreno FROM terreno where x = %s and y= %s and id_andar = %s", (new_x, new_y, andar))
     terreno = cursor.fetchone()[0]
+    return terreno
+
+def find_xy_terreno(player):
+
+    cursor.execute("SELECT posicao FROM jogador where id_jogador = %s", (player,))
+    terreno = cursor.fetchone()[0]
+    
+    cursor.execute("SELECT x, y FROM terreno where id_terreno = %s", (terreno,))
+    terreno = cursor.fetchone()
     return terreno
 
 def list_pokemon():
@@ -183,7 +199,7 @@ def create_player(pokemon_id):
 # Função para obter terrenos com base no andar atual
 def fetch_terrains(player_id):
     conn = connect_db()
-    cursor = conn.cursor()  # OBS1. Tem que fazer join com o mapa também a ordem seria mapa -> andar -> terreno
+    cursor = conn.cursor() 
     query = """
     WITH jogador_posicao AS (
         SELECT posicao
@@ -438,23 +454,34 @@ def draw_terrains(surface, terrains):
             color = LIGHT_GREEN
         elif descricao == 'Correio':
             color = YELLOW
+        elif descricao == 'Veneno':
+            color = PURPLE_D
         else:
             color = WHITE  # Cor padrão se a descrição não for reconhecida
         pygame.draw.rect(surface, color, (x * square_size, y * square_size, square_size, square_size))
 
 # Função para mudar de andar
-def change_floor(current_floor, terrains, revealed_surface):
-    next_floor = get_next_floor(current_floor)
+def change_floor(current_floor, mapa, terrains, revealed_surface):
+    next_floor = current_floor + 1
+    cursor.execute("SELECT id_andar FROM andar where numero_andar = %s AND nome_mapa = %s", (next_floor, mapa))
+    andar = cursor.fetchone()[0]
     if next_floor != current_floor:
         current_floor = next_floor
+        cursor.execute("SELECT id_terreno FROM terreno WHERE id_andar = %s and x = 0 and y = 0", (andar,))
+        posicao = cursor.fetchone()
+        nova_posicao = posicao[0]
+        print(posicao)
+        print(nova_posicao)
+        cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (nova_posicao, player))
+        conn.commit()
         terrains = fetch_terrains(player)
-        revealed_surface.fill(WHITE)
+        revealed_surface.fill(BLACK)
         draw_terrains(revealed_surface, terrains)
         print(f"Subiu para o andar {current_floor}")
-    return current_floor, terrains
+    return current_floor, terrains, andar
 
 def clamp_position(x, y):
-    """Corrige a posição (x, y) para garantir que esteja dentro dos limites do mapa."""
+    # Corrige a posição (x, y) para garantir que esteja dentro dos limites do mapa.
     x = max(0, min(x, movement_limit_width - square_size))
     y = max(0, min(y, movement_limit_height - square_size))
     return x, y
@@ -462,7 +489,7 @@ def clamp_position(x, y):
 
 # Função principal (main)
 def main():
-    global andar, mapa, player, tipo
+    global andar, mapa, player, tipo, player_x, player_y
     global window_width, window_height
 
     if check_existing_player():
@@ -482,6 +509,9 @@ def main():
             andar_mapa = fetch_andar_map(player)
             andar = andar_mapa[0]
             mapa = andar_mapa[1]
+            posicao = find_xy_terreno(player)
+            player_x = posicao[0] * 50
+            player_y = posicao[1] * 50
             tipo = tipo_elemental_pokemon(player)
 
     else:
@@ -497,14 +527,13 @@ def main():
     window = initialize_pygame()
 
     # Variáveis do jogo
-    current_floor = 1
-    player_x, player_y = 0, 0
+    current_floor = get_floor(player)
     terrains = fetch_terrains(player)
     vendedores = fetch_vendedores()
 
     # Criar uma superfície para o mapa
     revealed_surface = pygame.Surface((movement_limit_width, movement_limit_height))
-    revealed_surface.fill(WHITE)
+    revealed_surface.fill(BLACK)
 
     # Desenhe todos os terrenos na superfície revelada
     draw_terrains(revealed_surface, terrains)
@@ -542,9 +571,8 @@ def main():
 
         # Verifique se o jogador está sobre a escada
         if check_on_ladder(player_x, player_y, terrains):
-            current_floor, terrains = change_floor(current_floor, terrains, revealed_surface)
-            player_x = 0
-            player_y = 0
+            current_floor, terrains, andar = change_floor(current_floor, mapa, terrains, revealed_surface)
+            player_x, player_y = 0, 0
 
         # Limitar o movimento do jogador à área definida
         player_x, player_y = clamp_position(player_x, player_y)
