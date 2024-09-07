@@ -118,12 +118,14 @@ CREATE TABLE jogador
     saldo           BIGINT       NOT NULL,
     tam_inventario  INT          NOT NULL,
     posicao         INT          NOT NULL,
+    missao_atual    INT          NOT NULL,
     tipo_elemental  VARCHAR(255) NOT NULL,
 
     FOREIGN KEY (id_jogador) REFERENCES pokemon (id_pokemon),
     FOREIGN KEY (id_correio) REFERENCES correio (id),
     FOREIGN KEY (posicao) REFERENCES terreno (id_terreno),
-    FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome)
+    FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome),
+    FOREIGN KEY ()
 );
 
 CREATE TABLE inventario
@@ -168,18 +170,22 @@ CREATE TABLE missao
 (
     id_missao   SERIAL PRIMARY KEY,
     nome_mapa   VARCHAR(255),
-    id_correio  INT,
     id_loot     INT,
-    id_jogador  INT,
     dificuldade INT                   NOT NULL,
     objetivo    VARCHAR(255)          NOT NULL,
-    tipo_missao BOOLEAN               NOT NULL,
-    concluida   BOOLEAN DEFAULT false NOT NULL,
+    principal   BOOLEAN               NOT NULL
 
     FOREIGN KEY (nome_mapa) REFERENCES mapa (nome),
-    FOREIGN KEY (id_correio) REFERENCES correio (id),
-    FOREIGN KEY (id_jogador) REFERENCES jogador (id_jogador),
     FOREIGN KEY (id_loot) REFERENCES loot (id_loot)
+);
+
+CREATE TABLE instancia_missao
+(
+    id_missao   SERIAL PRIMARY KEY,
+    id_jogador  INT,
+    concluida   BOOLEAN DEFAULT false NOT NULL,
+
+    FOREIGN KEY (id_jogador) REFERENCES jogador (id_jogador),
 );
 
 CREATE TABLE pokemon_habilidade
