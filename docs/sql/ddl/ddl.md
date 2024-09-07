@@ -60,7 +60,7 @@ CREATE TABLE terreno
 CREATE TABLE efeito
 (
     nome VARCHAR(255) PRIMARY KEY,
-    dano INT NOT NULL
+    valor INT NOT NULL
 );
 ```
 

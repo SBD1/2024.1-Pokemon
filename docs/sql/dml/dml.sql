@@ -48,12 +48,14 @@ INSERT INTO terreno (x, y, id_tipo_terreno, id_andar)
 VALUES (4, 5, 3, 3);
 
 -- Inserindo dados na tabela 'efeito'
-INSERT INTO efeito (nome, dano)
+INSERT INTO efeito (nome, valor)
 VALUES ('queimadura', 50);
-INSERT INTO efeito (nome, dano)
+INSERT INTO efeito (nome, valor)
 VALUES ('confusão', 30);
-INSERT INTO efeito (nome, dano)
+INSERT INTO efeito (nome, valor)
 VALUES ('paralisia', 60);
+INSERT INTO efeito (nome, valor)
+VALUES ('cura', 50);
 
 -- Inserindo dados na tabela 'tipo_elemental'
 INSERT INTO tipo_elemental (nome)

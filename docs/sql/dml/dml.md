@@ -32,9 +32,9 @@ INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (4, 5, 3, 3);
 
 #### Inserindo dados na tabela 'efeito'
 ~~~sql
-INSERT INTO efeito (nome, dano) VALUES ('Chamas', 50);
-INSERT INTO efeito (nome, dano) VALUES ('Vento Cortante', 30);
-INSERT INTO efeito (nome, dano) VALUES ('Trovão', 60);
+INSERT INTO efeito (nome, valor) VALUES ('Chamas', 50);
+INSERT INTO efeito (nome, valor) VALUES ('Vento Cortante', 30);
+INSERT INTO efeito (nome, valor) VALUES ('Trovão', 60);
 ~~~
 
 #### Inserindo dados na tabela 'tipo_elemental'
