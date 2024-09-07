@@ -22,6 +22,10 @@ INSERT INTO andar (nome_mapa, numero_andar)
 VALUES ('Montanha fire', 3);
 INSERT INTO andar (nome_mapa, numero_andar)
 VALUES ('Cidade', 1);
+INSERT INTO andar (nome_mapa, numero_andar)
+VALUES ('Floresta Sombra', 2);
+INSERT INTO andar (nome_mapa, numero_andar)
+VALUES ('Floresta Sombra', 3);
 
 -- Inserindo dados na tabela 'tipo_terreno'
 INSERT INTO tipo_terreno (descricao, movimento)
@@ -37,7 +41,9 @@ VALUES ('Escada', true);
 INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Grama', true);
 INSERT INTO tipo_terreno (descricao, movimento)
-VALUES ('Correio', false);
+VALUES ('Veneno', false);
+INSERT INTO tipo_terreno (descricao, movimento)
+VALUES ('Pedra', false);
 
 -- Inserindo dados na tabela 'terreno'
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar)
