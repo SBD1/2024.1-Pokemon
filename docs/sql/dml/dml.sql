@@ -360,21 +360,22 @@ VALUES (2); -- NPC
 INSERT INTO pokemon (id_tipo_pokemon)
 VALUES (2);
 
--- Inserindo dados na tabela 'correio'
-INSERT INTO correio (jogador_id, terreno_id)
-VALUES (1, 1);
-INSERT INTO correio (jogador_id, terreno_id)
-VALUES (2, 2);
-INSERT INTO correio (jogador_id, terreno_id)
-VALUES (3, 3);
 
 -- Inserindo dados na tabela 'jogador'
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, id_correio)
-VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1000, 4, 1, 'electric', 1);
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, id_correio)
-VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2000, 3, 2, 'fire', 1);
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, id_correio)
-VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3000, 7, 3, 'water', 1);
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1000, 4, 1, 'electric');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2000, 3, 2, 'fire');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
+VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3000, 7, 3, 'water');
+
+-- Inserindo dados na tabela 'correio'
+INSERT INTO correio (id_correio, terreno_id)
+VALUES (1, 1);
+INSERT INTO correio (id_correio, terreno_id)
+VALUES (2, 2);
+INSERT INTO correio (id_correio, terreno_id)
+VALUES (3, 3);
 
 -- Inserindo dados na tabela 'inventario'
 INSERT INTO inventario (id_inventario, id_instancia_item)
@@ -401,17 +402,6 @@ INSERT INTO npc (id_npc, id_tipo_npc)
 VALUES (6, 2);
 -- Inimigo
 
--- Atualizando o campo 'id_correio' na tabela 'jogador'
-UPDATE jogador
-SET id_correio = 1
-WHERE id_jogador = 1;
-UPDATE jogador
-SET id_correio = 2
-WHERE id_jogador = 2;
-UPDATE jogador
-SET id_correio = 3
-WHERE id_jogador = 3;
-
 -- Inserindo dados na tabela 'loot'
 INSERT INTO loot (id_terreno)
 VALUES (1);
@@ -429,11 +419,11 @@ INSERT INTO loot_item (id_item, id_loot, quantidade)
 VALUES (3, 3, 1);
 
 -- Inserindo dados na tabela 'missoes'
-INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, tipo_missao)
+INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, principal)
 VALUES ('Floresta Sombra', 1, 3, 'Resgatar Pokémon', true);
-INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, tipo_missao)
+INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, principal)
 VALUES ('Caverna Cristal', 2, 5, 'Derrotar Chefão', false);
-INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, tipo_missao)
+INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, principal)
 VALUES ('Montanha fire', 3, 7, 'Coletar Itens', true);
 
 -- Inserindo dados na tabela 'instancia_missao'
