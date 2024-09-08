@@ -104,5 +104,63 @@ CREATE TRIGGER trigger_check_jogador
 BEFORE UPDATE OR INSERT ON npc
 FOR EACH ROW EXECUTE PROCEDURE check_jogador();
 
+-- Trigger para verificar apos o movimento se o jogador está envenenado e se ele se moveu e diminuir a vida
+CREATE OR REPLACE FUNCTION verifica_movimento_veneno()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.status = 'Envenenado' THEN
+        IF (NEW.posicao <> OLD.posicao) THEN
+            UPDATE jogador j SET vida = vida-1 WHERE j.id_jogador = NEW.id_jogador;
+            RAISE NOTICE 'Jogador % perdeu 1 de vida por estar envenenado.', NEW.id_jogador;
+        END IF;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER trigger_verifica_movimento_veneno
+AFTER UPDATE OF posicao ON jogador
+FOR EACH ROW
+EXECUTE FUNCTION verifica_movimento_veneno();
+
+--Trigger para verificar antes de usar um golpe se a habilidade tem PP suficiente
+CREATE OR REPLACE FUNCTION verifica_pp_habilidade()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.pp_restante < 0 THEN
+        RAISE EXCEPTION 'Habilidade sem PP suficiente para ser usada.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER trigger_verifica_pp_habilidade
+BEFORE UPDATE OF pp_restante ON pokemon_habilidade
+FOR EACH ROW
+EXECUTE FUNCTION verifica_pp_habilidade();
+
+--Trigger para verificar se o pp_restante ultrapassou que o pp máximo da habilidade
+CREATE OR REPLACE FUNCTION verifica_pp_habilidade_maximo() RETURNS TRIGGER AS
+$$
+DECLARE
+    pp_maximo INT;
+BEGIN
+    SELECT pp
+    INTO pp_maximo 
+    FROM pokemon_habilidade ph
+    JOIN habilidade h ON h.id_habilidade = ph.id_habilidade 
+    WHERE ph.id_habilidade = NEW.id_habilidade;
+    IF NEW.pp_restante > pp_maximo THEN
+        RAISE EXCEPTION 'Não é possível adicionar mais PP do que o máximo.';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER trigger_verifica_pp_habilidade_maximo
+BEFORE UPDATE OF pp_restante ON pokemon_habilidade
+FOR EACH ROW
+EXECUTE FUNCTION verifica_pp_habilidade_maximo();
+
 
 
