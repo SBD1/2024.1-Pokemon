@@ -64,3 +64,45 @@ BEFORE UPDATE OF vida ON jogador
 FOR EACH ROW
 WHEN (NEW.vida <= 0)
 EXECUTE FUNCTION verifica_vida_jogador();
+
+
+--Garante a integridade da total exclusiva
+
+CREATE OR REPLACE FUNCTION check_npc() RETURNS trigger
+AS 
+$$
+BEGIN
+   PERFORM * FROM npc WHERE id_npc = NEW.id_npc;
+   IF FOUND THEN
+		RAISE EXCEPTION 'Este pokemon já é um npc';
+   END IF;
+   RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER trigger_check_npc ON jogador;
+CREATE TRIGGER trigger_check_npc
+BEFORE UPDATE OR INSERT ON jogador
+FOR EACH ROW EXECUTE PROCEDURE check_npc();
+
+
+CREATE OR REPLACE FUNCTION check_jogador() RETURNS trigger
+AS
+$$
+BEGIN
+   PERFORM * FROM jogador WHERE id_jogador = NEW.id_jogador;
+   IF FOUND THEN
+		RAISE EXCEPTION 'Este pokemon já é um jogador';
+   END IF;
+   RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+DROP TRIGGER trigger_check_jogador ON npc;
+CREATE TRIGGER trigger_check_jogador
+BEFORE UPDATE OR INSERT ON npc
+FOR EACH ROW EXECUTE PROCEDURE check_jogador();
+
+
+

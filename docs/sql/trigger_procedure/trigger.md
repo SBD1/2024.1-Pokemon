@@ -73,10 +73,57 @@ WHEN (NEW.vida <= 0)
 EXECUTE FUNCTION verifica_vida_jogador();
 ~~~~
 
+
+~~~~sql
+
+CREATE OR REPLACE FUNCTION check_npc() RETURNS trigger
+AS 
+$$
+BEGIN
+   PERFORM * FROM npc WHERE id_npc = NEW.id_npc;
+   IF FOUND THEN
+		RAISE EXCEPTION 'Este pokemon já é um npc';
+   END IF;
+   RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER trigger_check_npc ON jogador;
+CREATE TRIGGER trigger_check_npc
+BEFORE UPDATE OR INSERT ON jogador
+FOR EACH ROW EXECUTE PROCEDURE check_npc();
+
+
+CREATE OR REPLACE FUNCTION check_jogador() RETURNS trigger
+AS
+$$
+BEGIN
+   PERFORM * FROM jogador WHERE id_jogador = NEW.id_jogador;
+   IF FOUND THEN
+		RAISE EXCEPTION 'Este pokemon já é um jogador';
+   END IF;
+   RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+DROP TRIGGER trigger_check_jogador ON npc;
+CREATE TRIGGER trigger_check_jogador
+BEFORE UPDATE OR INSERT ON npc
+FOR EACH ROW EXECUTE PROCEDURE check_jogador();
+
+~~~~
+
+
+
+
+
+
 ## Histórico de Versão
 
 | Versão |    Data    |      Descrição      |                                                                                                Autor(es)                                                                                                 |
 | :----: | :--------: | :-----------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | `1.0`  | 07/09/2024 | Adicionando triggers | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira)|
 | `1.1`  | 07/09/2024 | Adiciona trigger de vida | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+| `1.2`  | 08/09/2024 | Adiciona trigger de integridade | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
 
