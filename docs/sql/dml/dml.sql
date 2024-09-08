@@ -93,206 +93,206 @@ INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental, pp)
 VALUES ('Hidro Bomba', 80, 85, 'confusão', 'water', 15);
 INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental, pp)
 VALUES ('Choque do Trovão', 60, 95, 'paralisia', 'electric', 5);
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('pound', 40, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('karate-chop', 50, 100, 'fighting');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('double-slap', 15, 85, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('comet-punch', 18, 85, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('mega-punch', 80, 85, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('pay-day', 40, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('fire-punch', 75, 100, 'fire');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('ice-punch', 75, 100, 'ice');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('thunder-punch', 75, 100, 'electric');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('scratch', 40, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('vice-grip', 55, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('guillotine', 0, 30, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('razor-wind', 80, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('swords-dance', 0, 0, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('cut', 50, 95, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('gust', 40, 100, 'flying');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('wing-attack', 60, 100, 'flying');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('whirlwind', 0, 0, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('fly', 90, 95, 'flying');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('bind', 15, 85, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('slam', 80, 75, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('vine-whip', 45, 100, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('stomp', 65, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('double-kick', 30, 100, 'fighting');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('mega-kick', 120, 75, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('jump-kick', 100, 95, 'fighting');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('rolling-kick', 60, 85, 'fighting');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('sand-attack', 0, 100, 'ground');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('headbutt', 70, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('horn-attack', 65, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('fury-attack', 15, 85, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('horn-drill', 0, 30, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('tackle', 40, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('body-slam', 85, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('wrap', 15, 90, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('take-down', 90, 85, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('thrash', 120, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('double-edge', 120, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('tail-whip', 0, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('poison-sting', 15, 100, 'poison');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('twineedle', 25, 100, 'bug');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('pin-missile', 25, 95, 'bug');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('leer', 0, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('bite', 60, 100, 'dark');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('growl', 0, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('roar', 0, 0, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('sing', 0, 55, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('supersonic', 0, 55, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('sonic-boom', 0, 90, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('disable', 0, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('acid', 40, 100, 'poison');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('ember', 40, 100, 'fire');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('flamethrower', 90, 100, 'fire');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('mist', 0, 0, 'ice');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('water-gun', 40, 100, 'water');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('hydro-pump', 110, 80, 'water');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('surf', 90, 100, 'water');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('ice-beam', 90, 100, 'ice');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('blizzard', 110, 70, 'ice');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('psybeam', 65, 100, 'psychic');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('bubble-beam', 65, 100, 'water');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('aurora-beam', 65, 100, 'ice');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('hyper-beam', 150, 90, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('peck', 35, 100, 'flying');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('drill-peck', 80, 100, 'flying');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('submission', 80, 80, 'fighting');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('low-kick', 0, 100, 'fighting');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('counter', 0, 100, 'fighting');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('seismic-toss', 0, 100, 'fighting');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('strength', 80, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('absorb', 20, 100, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('mega-drain', 40, 100, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('leech-seed', 0, 90, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('growth', 0, 0, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('razor-leaf', 55, 95, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('solar-beam', 120, 100, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('poison-powder', 0, 75, 'poison');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('stun-spore', 0, 75, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('sleep-powder', 0, 75, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('petal-dance', 120, 100, 'grass');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('string-shot', 0, 95, 'bug');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('dragon-rage', 0, 100, 'dragon');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('fire-spin', 35, 85, 'fire');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('thunder-shock', 40, 100, 'electric');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('thunderbolt', 90, 100, 'electric');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('thunder-wave', 0, 90, 'electric');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('thunder', 110, 70, 'electric');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('rock-throw', 50, 90, 'rock');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('earthquake', 100, 100, 'ground');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('fissure', 0, 30, 'ground');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('dig', 80, 100, 'ground');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('toxic', 0, 90, 'poison');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('confusion', 50, 100, 'psychic');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('psychic', 90, 100, 'psychic');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('hypnosis', 0, 60, 'psychic');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('meditate', 0, 0, 'psychic');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('agility', 0, 0, 'psychic');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('quick-attack', 40, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('rage', 20, 100, 'normal');
-INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
-VALUES ('teleport', 0, 0, 'psychic');
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('pound', 40, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('karate-chop', 50, 100, 'fighting', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('double-slap', 15, 85, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('comet-punch', 18, 85, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('mega-punch', 80, 85, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('pay-day', 40, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('fire-punch', 75, 100, 'fire', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('ice-punch', 75, 100, 'ice', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('thunder-punch', 75, 100, 'electric', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('scratch', 40, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('vice-grip', 55, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('guillotine', 0, 30, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('razor-wind', 80, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('swords-dance', 0, 0, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('cut', 50, 95, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('gust', 40, 100, 'flying', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('wing-attack', 60, 100, 'flying', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('whirlwind', 0, 0, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('fly', 90, 95, 'flying', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('bind', 15, 85, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('slam', 80, 75, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('vine-whip', 45, 100, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('stomp', 65, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('double-kick', 30, 100, 'fighting', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('mega-kick', 120, 75, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('jump-kick', 100, 95, 'fighting', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('rolling-kick', 60, 85, 'fighting', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('sand-attack', 0, 100, 'ground', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('headbutt', 70, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('horn-attack', 65, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('fury-attack', 15, 85, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('horn-drill', 0, 30, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('tackle', 40, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('body-slam', 85, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('wrap', 15, 90, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('take-down', 90, 85, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('thrash', 120, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('double-edge', 120, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('tail-whip', 0, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('poison-sting', 15, 100, 'poison', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('twineedle', 25, 100, 'bug', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('pin-missile', 25, 95, 'bug', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('leer', 0, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('bite', 60, 100, 'dark', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('growl', 0, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('roar', 0, 0, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('sing', 0, 55, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('supersonic', 0, 55, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('sonic-boom', 0, 90, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('disable', 0, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('acid', 40, 100, 'poison', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('ember', 40, 100, 'fire', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('flamethrower', 90, 100, 'fire', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('mist', 0, 0, 'ice', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('water-gun', 40, 100, 'water', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('hydro-pump', 110, 80, 'water', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('surf', 90, 100, 'water', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('ice-beam', 90, 100, 'ice', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('blizzard', 110, 70, 'ice', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('psybeam', 65, 100, 'psychic', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('bubble-beam', 65, 100, 'water', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('aurora-beam', 65, 100, 'ice', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('hyper-beam', 150, 90, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('peck', 35, 100, 'flying', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('drill-peck', 80, 100, 'flying', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('submission', 80, 80, 'fighting', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('low-kick', 0, 100, 'fighting', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('counter', 0, 100, 'fighting', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('seismic-toss', 0, 100, 'fighting', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('strength', 80, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('absorb', 20, 100, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('mega-drain', 40, 100, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('leech-seed', 0, 90, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('growth', 0, 0, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('razor-leaf', 55, 95, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('solar-beam', 120, 100, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('poison-powder', 0, 75, 'poison', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('stun-spore', 0, 75, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('sleep-powder', 0, 75, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('petal-dance', 120, 100, 'grass', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('string-shot', 0, 95, 'bug', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('dragon-rage', 0, 100, 'dragon', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('fire-spin', 35, 85, 'fire', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('thunder-shock', 40, 100, 'electric', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('thunderbolt', 90, 100, 'electric', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('thunder-wave', 0, 90, 'electric', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('thunder', 110, 70, 'electric', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('rock-throw', 50, 90, 'rock', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('earthquake', 100, 100, 'ground', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('fissure', 0, 30, 'ground', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('dig', 80, 100, 'ground', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('toxic', 0, 90, 'poison', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('confusion', 50, 100, 'psychic', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('psychic', 90, 100, 'psychic', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('hypnosis', 0, 60, 'psychic', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('meditate', 0, 0, 'psychic', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('agility', 0, 0, 'psychic', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('quick-attack', 40, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('rage', 20, 100, 'normal', 10);
+INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
+VALUES ('teleport', 0, 0, 'psychic', 10);
             
 
 
@@ -572,12 +572,12 @@ VALUES (2);
 
 
 -- Inserindo dados na tabela 'jogador'
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1000, 4, 1, 'electric');
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2000, 3, 2, 'fire');
-INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental)
-VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3000, 7, 3, 'water');
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, pp)
+VALUES (1, 5, 100, 50, 40, 60, 70, 80, 90, 'Normal', 'Pikachu', 1000, 4, 1, 'electric', 10);
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, pp)
+VALUES (2, 10, 200, 60, 50, 70, 80, 90, 100, 'Normal', 'Charizard', 2000, 3, 2, 'fire', 10);
+INSERT INTO jogador (id_jogador, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, saldo, tam_inventario, posicao, tipo_elemental, pp)
+VALUES (3, 15, 300, 70, 60, 80, 90, 100, 110, 'Normal', 'Blastoise', 3000, 7, 3, 'water', 10);
 
 -- Inserindo dados na tabela 'correio'
 INSERT INTO correio (id_correio, terreno_id)
@@ -661,12 +661,12 @@ INSERT INTO terreno_loot (id_terreno, id_loot)
 VALUES (3, 3);
 
 -- Inserindo dados na tabela 'vendedor'
-INSERT INTO vendedor (id_vendedor, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, item_1, item_2, item_3, tipo_elemental)
-VALUES (4, 5, 100, 50, 40, 60, 70, 80, 90, 'Disponível', 'Vendedor 1', 1, 1, 2, 3, 'fire');
-INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, tipo_elemental)
-VALUES (5, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 1', 2, 'water');
-INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, tipo_elemental)
-VALUES (6, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 2', 2, 'electric');
+INSERT INTO vendedor (id_vendedor, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, item_1, item_2, item_3, tipo_elemental, pp)
+VALUES (4, 5, 100, 50, 40, 60, 70, 80, 90, 'Disponível', 'Vendedor 1', 1, 1, 2, 3, 'fire', 10);
+INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, tipo_elemental, pp)
+VALUES (5, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 1', 2, 'water', 10);
+INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, posicao, tipo_elemental, pp)
+VALUES (6, 10, 200, 60, 50, 70, 80, 90, 100, 'Disponível', 'Inimigo 2', 2, 'electric', 10);
 
 -- Inserindo dados na tabela 'pokemon_base'
 INSERT INTO pokemon_base (nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base, velocidade_base, acuracia_base, evasao_base, status_base, evolui_de, evolui_para)
