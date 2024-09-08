@@ -438,6 +438,11 @@ def check_on_ladder(player_x, player_y, terrains):
                 return True
     return False
 
+def draw_tree(surface, x, y):
+    # Desenha o tronco da árvore
+    pygame.draw.rect(surface, BROWN, (x * square_size + square_size // 4, y * square_size + square_size // 2, square_size // 2, square_size // 2))
+    pygame.draw.circle(surface, DARK_GREEN, (x * square_size + square_size // 2, y * square_size + square_size // 4), square_size // 2)
+
 # Função para desenhar os terrenos
 def draw_terrains(surface, terrains):
     for (_, x, y, descricao) in terrains:
@@ -450,7 +455,8 @@ def draw_terrains(surface, terrains):
         elif descricao == 'Escada':
             color = GREY
         elif descricao == 'Árvore':
-            color = DARK_GREEN
+            draw_tree(surface, x, y)  # Usa a função para desenhar a árvore
+            continue
         elif descricao == 'Grama':
             color = LIGHT_GREEN
         elif descricao == 'Correio':
