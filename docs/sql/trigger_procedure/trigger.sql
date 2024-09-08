@@ -68,11 +68,12 @@ EXECUTE FUNCTION verifica_vida_jogador();
 
 --Garante a integridade da total exclusiva
 
+
 CREATE OR REPLACE FUNCTION check_npc() RETURNS trigger
 AS 
 $$
 BEGIN
-   PERFORM * FROM npc WHERE id_npc = NEW.id_npc;
+   PERFORM * FROM npc WHERE id_npc = NEW.id_jogador;
    IF FOUND THEN
 		RAISE EXCEPTION 'Este pokemon já é um npc';
    END IF;
@@ -90,7 +91,7 @@ CREATE OR REPLACE FUNCTION check_jogador() RETURNS trigger
 AS
 $$
 BEGIN
-   PERFORM * FROM jogador WHERE id_jogador = NEW.id_jogador;
+   PERFORM * FROM jogador WHERE id_jogador = NEW.id_npc;
    IF FOUND THEN
 		RAISE EXCEPTION 'Este pokemon já é um jogador';
    END IF;
@@ -103,6 +104,7 @@ DROP TRIGGER trigger_check_jogador ON npc;
 CREATE TRIGGER trigger_check_jogador
 BEFORE UPDATE OR INSERT ON npc
 FOR EACH ROW EXECUTE PROCEDURE check_jogador();
+
 
 -- Trigger para verificar apos o movimento se o jogador está envenenado e se ele se moveu e diminuir a vida
 CREATE OR REPLACE FUNCTION verifica_movimento_veneno()

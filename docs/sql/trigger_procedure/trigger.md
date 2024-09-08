@@ -73,13 +73,15 @@ WHEN (NEW.vida <= 0)
 EXECUTE FUNCTION verifica_vida_jogador();
 ~~~~
 
-#### Trigger para integridade do npc
+### Garante integridade
 ~~~~sql
+
+
 CREATE OR REPLACE FUNCTION check_npc() RETURNS trigger
 AS 
 $$
 BEGIN
-   PERFORM * FROM npc WHERE id_npc = NEW.id_npc;
+   PERFORM * FROM npc WHERE id_npc = NEW.id_jogador;
    IF FOUND THEN
 		RAISE EXCEPTION 'Este pokemon já é um npc';
    END IF;
@@ -97,7 +99,7 @@ CREATE OR REPLACE FUNCTION check_jogador() RETURNS trigger
 AS
 $$
 BEGIN
-   PERFORM * FROM jogador WHERE id_jogador = NEW.id_jogador;
+   PERFORM * FROM jogador WHERE id_jogador = NEW.id_npc;
    IF FOUND THEN
 		RAISE EXCEPTION 'Este pokemon já é um jogador';
    END IF;
