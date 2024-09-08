@@ -87,12 +87,12 @@ VALUES
 
 
 -- Inserindo dados na tabela 'habilidade'
-INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental)
-VALUES ('Lança Chamas', 70, 90, 'queimadura', 'fire');
-INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental)
-VALUES ('Hidro Bomba', 80, 85, 'confusão', 'water');
-INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental)
-VALUES ('Choque do Trovão', 60, 95, 'paralisia', 'electric');
+INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental, pp)
+VALUES ('Lança Chamas', 70, 90, 'queimadura', 'fire', 10);
+INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental, pp)
+VALUES ('Hidro Bomba', 80, 85, 'confusão', 'water', 15);
+INSERT INTO habilidade (nome, dano, acuracia, nome_efeito, tipo_elemental, pp)
+VALUES ('Choque do Trovão', 60, 95, 'paralisia', 'electric', 5);
 INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
 VALUES ('pound', 40, 100, 'normal');
 INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental)
@@ -645,12 +645,12 @@ INSERT INTO instancia_missao (id_missao, id_jogador, concluida)
 VALUES (1, 3, false);
 
 -- Inserindo dados na tabela 'pokemon_habilidade'
-INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade)
-VALUES (1, 1);
-INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade)
-VALUES (2, 2);
-INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade)
-VALUES (3, 3);
+INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade, pp_restante)
+VALUES (1, 1, 0);
+INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade, pp_restante)
+VALUES (2, 2, 1);
+INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade, pp_restante)
+VALUES (3, 3, 2);
 
 -- Inserindo dados na tabela 'terreno_loot'
 INSERT INTO terreno_loot (id_terreno, id_loot)

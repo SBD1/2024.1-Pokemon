@@ -53,6 +53,7 @@ CREATE TABLE habilidade
     acuracia       INT          NOT NULL,
     nome_efeito    VARCHAR,
     tipo_elemental VARCHAR,
+    pp             INT          NOT NULL,
 
     FOREIGN KEY (nome_efeito) REFERENCES efeito (nome),
     FOREIGN KEY (tipo_elemental) REFERENCES tipo_elemental (nome)
@@ -192,6 +193,7 @@ CREATE TABLE pokemon_habilidade
     id_pokemon_habilidade SERIAL PRIMARY KEY,
     id_pokemon            INT,
     id_habilidade         INT,
+    pp_restante                    INT,
 
     FOREIGN KEY (id_pokemon) REFERENCES pokemon (id_pokemon),
     FOREIGN KEY (id_habilidade) REFERENCES habilidade (id_habilidade)

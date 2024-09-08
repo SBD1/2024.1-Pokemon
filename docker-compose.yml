@@ -4,9 +4,10 @@ services:
     image: postgres:16.2
     volumes:
       - db-pokemon-data:/var/lib/postgresql/data
-      - ./docs/sql/ddl/ddl.sql:/docker-entrypoint-initdb.d/ddl.sql
-      - ./docs/sql/dml/dml.sql:/docker-entrypoint-initdb.d/dml.sql
-      - ./python/scripts_de_api/cidade.sql:/docker-entrypoint-initdb.d/z.sql
+      - ./docs/sql/ddl/ddl.sql:/docker-entrypoint-initdb.d/a.sql
+      - ./docs/sql/dml/dml.sql:/docker-entrypoint-initdb.d/b.sql
+      - ./python/scripts_de_api/cidade.sql:/docker-entrypoint-initdb.d/c.sql
+      - ./docs/sql/trigger_procedure/trigger.sql:/docker-entrypoint-initdb.d/d.sql
     environment:
       POSTGRES_USER: "pokemon"
       POSTGRES_PASSWORD: "123456"
