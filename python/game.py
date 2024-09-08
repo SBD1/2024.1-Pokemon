@@ -955,8 +955,12 @@ def main():
                 new_x, new_y = clamp_position(new_x, new_y)
 
                 # Verificar colisão com terrenos e vendedores
-                if not check_collision(new_x, new_y, terrains, player) and not check_collision_vendedor(new_x, new_y, vendedores) and not check_collision_inimigo(new_x, new_y, inimigos, player):
-                    player_x, player_y = new_x, new_y
+                if mapa == 'Cidade':
+                    if not check_collision(new_x, new_y, terrains, player) and not check_collision_vendedor(new_x, new_y, vendedores):
+                        player_x, player_y = new_x, new_y
+                else:
+                    if not check_collision(new_x, new_y, terrains, player) and not check_collision_inimigo(new_x, new_y, inimigos, player):
+                        player_x, player_y = new_x, new_y
                     
                 new_terreno = find_id_terreno(player_x, player_y, andar)
                 cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (new_terreno, player))
