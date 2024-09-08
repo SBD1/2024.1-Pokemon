@@ -41,6 +41,8 @@ VALUES ('Escada', true);
 INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Grama', true);
 INSERT INTO tipo_terreno (descricao, movimento)
+VALUES ('Correio', false);
+INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Veneno', false);
 INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Pedra', false);
