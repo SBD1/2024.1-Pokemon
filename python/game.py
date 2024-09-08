@@ -297,7 +297,8 @@ def abre_correio(id_jogador):
     print(tabulate(table, headers, tablefmt="grid"))
 
     escolha = int(input("Digite o número da missão que quer fazer: "))
-    if escolha in missoes[0]:
+    missao_ids = [missao[0] for missao in missoes]
+    if escolha in missao_ids:
         cursor.execute("INSERT INTO instancia_missao (id_missao, id_jogador, concluida) VALUES (%s, %s, %s);", (escolha, id_jogador, 'false'))
         conn.commit()
         print(f'Missão {escolha} selecionada!')
