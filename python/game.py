@@ -2,6 +2,7 @@ import pygame
 import sys
 from tabulate import tabulate
 import psycopg2
+import random
 
 # Configurações do banco de dados
 DB_HOST = 'localhost'
@@ -109,6 +110,24 @@ def fetch_vendedores():
     vendedores = cursor.fetchall()
     return vendedores
 
+def fetch_inimigos(nome_mapa, id_andar):
+    query = """
+        SELECT i.id_inimigo, t.x, t.y, t.id_andar, a.nome_mapa, i.tipo_elemental, i.nome
+        FROM inimigo i
+        JOIN terreno t ON i.posicao = t.id_terreno
+        JOIN andar a ON t.id_andar = a.id_andar
+        WHERE nome_mapa = %s
+        AND a.id_andar = %s;
+    """
+    cursor.execute(query, (nome_mapa, id_andar))
+    inimigos = cursor.fetchall()
+    return inimigos
+
+def draw_inimigos(surface, offset_x, offset_y, inimigos):
+    for _, vx, vy,_,_, pokemon_type,_ in inimigos:
+        color = pokemon_type_colors.get(pokemon_type, GREY)
+        pygame.draw.rect(surface, color, (vx * square_size - offset_x, vy * square_size - offset_y, square_size, square_size))
+
 def draw_vendedores(surface, offset_x, offset_y, vendedores):
     for _, vx, vy, pokemon_type,_ in vendedores:
         color = pokemon_type_colors.get(pokemon_type, GREY)  # Use GREY if type is not found
@@ -117,7 +136,6 @@ def draw_vendedores(surface, offset_x, offset_y, vendedores):
 def get_floor(player):
     cursor.execute("SELECT numero_andar FROM andar WHERE id_andar = (SELECT id_andar FROM terreno WHERE id_terreno = (SELECT posicao FROM jogador WHERE id_jogador = %s))", (player,))
     floor = cursor.fetchone()[0]
-    print(f'Andar:{floor}')
     return floor
 
 
@@ -171,6 +189,22 @@ def list_pokemon():
     return pokemons
 
 def create_player(pokemon_id):
+    habilidades_por_tipo = {
+    'normal': [6, 102], 
+    'fire': [10, 55], 
+    'water': [58, 59], 
+    'grass': [25, 79], 
+    'electric': [87, 90], 
+    'fighting': [27, 29], 
+    'ice': [61, 62], 
+    'psychic': [96, 97], 
+    'poison': [43, 54], 
+    'rock': [91, 92], 
+    'ground': [31, 94], 
+    'dark': [47, 24], 
+    'bug': [44, 84], 
+    'dragon': [85, 66] 
+    }
     cursor.execute("""
         SELECT nome, tipo, vida_base, ataque_fisico_base, defesa_fisica_base, ataque_especial_base,
                velocidade_base, acuracia_base, evasao_base, status_base
@@ -192,6 +226,11 @@ def create_player(pokemon_id):
     id_instancia_item = cursor.fetchone()[0]
     cursor.execute("INSERT INTO inventario (id_inventario, id_instancia_item) VALUES (%s, %s) RETURNING id_inventario", (new_pokemon_id, id_instancia_item))
     cursor.execute("INSERT INTO correio (id_correio, terreno_id) VALUES (%s, %s)", (new_pokemon_id, 4))
+    cursor.execute("INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (%s, %s)", (new_pokemon_id, 4))
+    cursor.execute("INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (%s, %s)", (new_pokemon_id, 101))
+    if pokemon_data[1] in habilidades_por_tipo:
+        for habilidade_id in habilidades_por_tipo[pokemon_data[1]]:
+            cursor.execute("INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (%s, %s)", (new_pokemon_id, habilidade_id))
     conn.commit()
     print(f"Você agora é o Pokémon {pokemon_data[0]}!")
     return new_pokemon_id
@@ -253,10 +292,50 @@ def initialize_pygame():
     pygame.init()
     return pygame.display.set_mode((window_width, window_height), pygame.RESIZABLE)
 
-# Função para desenhar o jogador
 def draw_player(surface, offset_x, offset_y, player_x, player_y, pokemon_type):
-    color = pokemon_type_colors.get(pokemon_type, WHITE)  # Usa WHITE como padrão se o tipo não for encontrado
-    pygame.draw.rect(surface, color, (player_x - offset_x, player_y - offset_y, square_size, square_size))
+    color = pokemon_type_colors.get(pokemon_type, WHITE)    
+    brown = (139, 69, 19)  # Cor marrom do corpo
+    pink = (255, 182, 193)  # Rosa para orelhas e língua
+    dark_pink = (200, 100, 120)  # Rosa escuro para detalhes
+    black = (0, 0, 0)  # Cor preta para contorno
+    white = (255, 255, 255)  # Branco para os olhos
+
+    # Tamanho de cada pixel
+    pixel_size = square_size // 8
+
+    # Matriz que define a sprite do Pokémon
+    sprite = [
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 3, 4, 0, 0, 4, 3, 0],
+        [0, 3, 4, 4, 4, 4, 3, 0],
+        [0, 2, 4, 4, 4, 4, 2, 0],
+        [0, 0, 5, 0, 0, 5, 0, 0],
+        [0, 0, 0, 2, 2, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0],
+    ]
+
+    # Dicionário de cores associadas aos números na matriz
+    colors = {
+        0: color,
+        1: brown,
+        2: pink,
+        3: dark_pink,
+        4: black,
+        5: white,
+    }
+
+    # Desenhar a sprite na superfície
+    for y, row in enumerate(sprite):
+        for x, color_id in enumerate(row):
+            color = colors.get(color_id, black)
+            pygame.draw.rect(surface, color, (
+                player_x - offset_x + x * pixel_size,
+                player_y - offset_y + y * pixel_size,
+                pixel_size,
+                pixel_size
+            ))
+
 
 # Função para verificar colisão com obstáculos
 def check_collision(x, y, terrains, id_jogador):
@@ -319,6 +398,199 @@ def check_collision_vendedor(x, y, vendedores):
             return "vendedor", vendedor
     
     return None
+
+
+def fetch_player_data(player_id):
+    print(player_id)
+    query = """
+    SELECT vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, tipo_elemental
+    FROM jogador
+    WHERE id_jogador = %s;
+    """
+    cursor.execute(query, (player_id,))
+    result = cursor.fetchone()
+    if result:
+        # Converter o resultado em um dicionário
+        return {
+            'vida': result[0],
+            'ataque_fisico': result[1],
+            'defesa_fisica': result[2],
+            'ataque_especial': result[3],
+            'velocidade': result[4],
+            'acuracia': result[5],
+            'evasao': result[6],
+            'status': result[7],
+            'nome': result[8],
+            'tipo_elemental': result[9],
+        }
+    print(result)
+    return None
+
+
+def fetch_enemy_data(enemy_id):
+    query = """
+    SELECT vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, tipo_elemental
+    FROM inimigo
+    WHERE id_inimigo = %s;
+    """
+    cursor.execute(query, (enemy_id,))
+    result = cursor.fetchone()
+    if result:
+        return {
+            'vida': result[0],
+            'ataque_fisico': result[1],
+            'defesa_fisica': result[2],
+            'ataque_especial': result[3],
+            'velocidade': result[4],
+            'acuracia': result[5],
+            'evasao': result[6],
+            'status': result[7],
+            'nome': result[8],
+            'tipo_elemental': result[9],
+        }
+    return None
+
+def check_collision_inimigo(x, y, inimigos, player):
+    player_rect = pygame.Rect(x, y, square_size, square_size)
+    
+    # Verificar colisão com vendedores
+    for inimigo in inimigos:
+        inimigo_rect = pygame.Rect(inimigo[1] * square_size, inimigo[2] * square_size, square_size, square_size)
+        if player_rect.colliderect(inimigo_rect):
+            interagir_com_inimigo(inimigo, player)
+            return "vendedor", inimigo
+    
+    return None
+
+def interagir_com_inimigo(inimigo, player):
+    print(f"Você encontrou um inimigo do tipo {inimigo[5]}!")
+    resposta = input("Deseja batalhar? (sim/não): ").strip().lower()
+    
+    if resposta == "sim":
+        batalhar(player,inimigo[0])
+    else:
+        print("Não passará por aqui sem batalhar!")
+
+def calcular_modificador_tipo(tipo_atacante, tipo_defensor):
+    query = """
+    SELECT valor FROM interacao WHERE tipo_atacante = %s AND tipo_defensor = %s;
+    """
+    cursor.execute(query, (tipo_atacante, tipo_defensor))
+    resultado = cursor.fetchone()
+    return resultado[0] if resultado else 1.0  # 1.0 como padrão (neutro)
+
+def calcular_dano(atacante, defensor, habilidade, tipo_modificador):
+    ataque = atacante['ataque_fisico'] if habilidade['tipo_elemental'] in ['fighting', 'normal'] else atacante['ataque_especial']
+    defesa = defensor['defesa_fisica'] if habilidade['tipo_elemental'] in ['fighting', 'normal'] else defensor['defesa_fisica']
+    dano = ((ataque / defesa) * habilidade['dano'] * tipo_modificador)
+    return max(0, int(dano))  # Evita dano negativo
+
+def atacar(atacante, defensor, habilidade):
+    # Cálculo de precisão e evasão
+    if defensor['evasao'] == 0:
+        chance_acerto = habilidade['acuracia']
+    else:
+        chance_acerto = habilidade['acuracia'] * (atacante['acuracia'] / defensor['evasao'])
+    if random.uniform(0, 100) <= chance_acerto:
+        # Cálculo do modificador de tipo
+        tipo_modificador = calcular_modificador_tipo(habilidade['tipo_elemental'], defensor['tipo_elemental'])
+        # Cálculo do dano
+        dano = calcular_dano(atacante, defensor, habilidade, tipo_modificador)
+        defensor['vida'] -= dano
+        print(f"{atacante['nome']} usou {habilidade['nome']}! Causou {dano} de dano.")
+        print("\n")
+    else:
+        print(f"{atacante['nome']} tentou usar {habilidade['nome']}, mas errou!")
+        print("\n")
+
+def batalhar(player, inimigo):
+    print("Iniciando batalha...")
+    
+    # Consultar habilidades do jogador
+    query = """
+    SELECT h.id_habilidade, h.nome, h.dano, h.acuracia, h.tipo_elemental
+    FROM habilidade h
+    JOIN pokemon_habilidade ph ON h.id_habilidade = ph.id_habilidade
+    WHERE ph.id_pokemon = %s;
+    """
+    cursor.execute(query, (player,))
+    habilidades_jogador = cursor.fetchall()
+    habilidades_jogador = [
+        {
+            'id_habilidade': habilidade[0],
+            'nome': habilidade[1],
+            'dano': habilidade[2],
+            'acuracia': habilidade[3],
+            'tipo_elemental': habilidade[4]
+        }
+        for habilidade in habilidades_jogador
+    ]
+    player_T = fetch_player_data(player)
+    inimigo_T = fetch_enemy_data(inimigo)
+    
+    # Consultar habilidades do inimigo
+    cursor.execute(query, (inimigo,))
+    habilidades_inimigo = cursor.fetchall()
+    habilidades_inimigo = [
+        {
+            'id_habilidade': habilidade[0],
+            'nome': habilidade[1],
+            'dano': habilidade[2],
+            'acuracia': habilidade[3],
+            'tipo_elemental': habilidade[4]
+        }
+        for habilidade in habilidades_inimigo
+    ]
+
+    while player_T['vida'] > 0 and inimigo_T['vida'] > 0:
+        print(f"\nStatus atual:")
+        print(f"{player_T['nome']} (Jogador) - Vida: {player_T['vida']}")
+        print(f"{inimigo_T['nome']} (Inimigo) - Vida: {inimigo_T['vida']}")
+        # Determina quem ataca primeiro com base na velocidade
+        if player_T['velocidade'] > inimigo_T['velocidade']:
+            # Turno do jogador
+            print("\nHabilidades disponíveis:")
+            for i, habilidade in enumerate(habilidades_jogador):
+                print(f"{i + 1}. {habilidade['nome']} - Dano: {habilidade['dano']} - Acurácia: {habilidade['acuracia']} - Tipo: {habilidade['tipo_elemental']}")
+            print("\n")
+
+            escolha = int(input("Escolha uma habilidade para usar: ")) - 1
+            habilidade_jogador = habilidades_jogador[escolha]
+
+            atacar(player_T, inimigo_T, habilidade_jogador)
+            if inimigo_T['vida'] <= 0:
+                print(f"O inimigo {inimigo_T['nome']} foi derrotado!")
+                break
+
+            # Turno do inimigo (escolha randômica)
+            habilidade_inimigo = random.choice(habilidades_inimigo)
+            atacar(inimigo_T, player_T, habilidade_inimigo)
+            if player_T['vida'] <= 0:
+                print(f"Você foi derrotado pelo {inimigo_T['nome']}!")
+        else:
+            # Turno do inimigo primeiro
+            habilidade_inimigo = random.choice(habilidades_inimigo)
+            atacar(inimigo_T, player_T, habilidade_inimigo)
+            if player_T['vida'] <= 0:
+                print(f"Você foi derrotado pelo {inimigo_T['nome']}!")
+                break
+            
+            # Turno do jogador
+            print("\nHabilidades disponíveis:")
+            for i, habilidade in enumerate(habilidades_jogador):
+                print(f"{i + 1}. {habilidade['nome']} - Dano: {habilidade['dano']} - Acurácia: {habilidade['acuracia']} - Tipo: {habilidade['tipo_elemental']}")
+                print("\n")
+
+            escolha = int(input("Escolha uma habilidade para usar: ")) - 1
+            habilidade_jogador = habilidades_jogador[escolha]
+            atacar(player_T, inimigo_T, habilidade_jogador)
+            if inimigo_T['vida'] <= 0:
+                print(f"O {inimigo_T['nome']} foi derrotado!")
+                cursor.execute("DELETE FROM inimigo WHERE id_inimigo = %s", (inimigo,))
+                cursor.execute("UPDATE jogador SET vida = %s WHERE id_jogador = %s", (player_T['vida'], player))
+                conn.commit()
+                break
+
 
 def abrir_loja(id_vendedor):
     conn = connect_db()
@@ -443,26 +715,136 @@ def draw_tree(surface, x, y):
     pygame.draw.rect(surface, BROWN, (x * square_size + square_size // 4, y * square_size + square_size // 2, square_size // 2, square_size // 2))
     pygame.draw.circle(surface, DARK_GREEN, (x * square_size + square_size // 2, y * square_size + square_size // 4), square_size // 2)
 
+def draw_brick(surface, x, y):
+    # Desenha o corpo do tijolo
+    pygame.draw.rect(surface, BLACK, (x * square_size, y * square_size, square_size, square_size))
+    
+    # Desenha as divisórias do tijolo
+    pygame.draw.line(surface, DARK_GREY, (x * square_size, y * square_size + square_size // 2), (x * square_size + square_size, y * square_size + square_size // 2), 2)
+    pygame.draw.line(surface, DARK_GREY, (x * square_size + square_size // 3, y * square_size), (x * square_size + square_size // 3, y * square_size + square_size), 2)
+    pygame.draw.line(surface, DARK_GREY, (x * square_size + 2 * square_size // 3, y * square_size), (x * square_size + 2 * square_size // 3, y * square_size + square_size), 2)
+
+
+def draw_grass(surface, x, y):
+    # Desenha a base da grama como um verde claro
+    pygame.draw.rect(surface, LIGHT_GREEN, (x * square_size, y * square_size, square_size, square_size))
+    
+    # Adiciona alguns detalhes de grama com verde escuro para simular textura
+    for _ in range(5):  # Ajuste o número de detalhes
+        blade_x = x * square_size + random.randint(0, square_size - 1)
+        blade_y = y * square_size + random.randint(0, square_size - 1)
+        blade_width = random.randint(2, 5)  # Largura de cada detalhe de grama
+        blade_height = random.randint(2, 5)  # Altura de cada detalhe de grama
+        
+        pygame.draw.ellipse(surface, DARK_GREEN, (blade_x, blade_y, blade_width, blade_height))
+
+def draw_ground(surface, x, y):
+    # Desenha a base do chão com uma cor marrom clara
+    pygame.draw.rect(surface, BROWN, (x * square_size, y * square_size, square_size, square_size))
+    
+    # Adiciona alguns detalhes em marrom escuro para simular irregularidades no chão
+    for _ in range(5):  # Ajuste o número de detalhes
+        patch_x = x * square_size + random.randint(0, square_size - 1)
+        patch_y = y * square_size + random.randint(0, square_size - 1)
+        patch_width = random.randint(2, 5)  # Largura de cada detalhe no chão
+        patch_height = random.randint(2, 5)  # Altura de cada detalhe no chão
+        
+        pygame.draw.ellipse(surface, DARK_GREY, (patch_x, patch_y, patch_width, patch_height))
+
+
+def draw_ground_mission(surface, x, y):
+    # Desenha a base do chão com uma cor marrom clara
+    pygame.draw.rect(surface, PURPLE_D, (x * square_size, y * square_size, square_size, square_size))
+    
+    # Adiciona alguns detalhes em marrom escuro para simular irregularidades no chão
+    for _ in range(5):  # Ajuste o número de detalhes
+        patch_x = x * square_size + random.randint(0, square_size - 1)
+        patch_y = y * square_size + random.randint(0, square_size - 1)
+        patch_width = random.randint(2, 5)  # Largura de cada detalhe no chão
+        patch_height = random.randint(2, 5)  # Altura de cada detalhe no chão
+        
+        pygame.draw.ellipse(surface, PURPLE, (patch_x, patch_y, patch_width, patch_height))
+
+def draw_stairs_with_shadow(surface, x, y):
+    # Desenha a base da escada com um retângulo cinza claro
+    pygame.draw.rect(surface, GREY, (x * square_size, y * square_size, square_size, square_size))
+    
+    # Adiciona degraus horizontais
+    num_steps = 4  # Número de degraus
+    step_height = square_size // num_steps  # Altura de cada degrau
+    
+    for i in range(1, num_steps):
+        step_y = y * square_size + i * step_height
+        pygame.draw.line(surface, DARK_GREY, (x * square_size, step_y), (x * square_size + square_size, step_y), 2)
+    
+    # Adiciona sombreamento na parte inferior e direita dos degraus para dar profundidade
+    shadow_width = 5  # Largura da sombra
+    for i in range(num_steps):
+        # Desenha sombra na parte direita de cada degrau
+        step_y = y * square_size + i * step_height
+        pygame.draw.rect(surface, DARK_GREY, (x * square_size + square_size - shadow_width, step_y, shadow_width, step_height))
+        
+        # Desenha sombra na parte inferior de cada degrau
+        pygame.draw.rect(surface, DARK_GREY, (x * square_size, step_y + step_height - shadow_width, square_size, shadow_width))
+
+import pygame
+
+def draw_mailbox(surface, x, y):
+    # Definição das cores
+    YELLOW = (255, 255, 0)
+    ORANGE = (255, 165, 0)
+    WHITE = (255, 255, 255)
+    DARK_GREY = (105, 105, 105)
+    
+    # Desenha a base da caixa de correio em amarelo
+    pygame.draw.rect(surface, YELLOW, (x * square_size, y * square_size, square_size, square_size // 2))
+    
+    # Desenha o topo da caixa de correio (a tampa) em amarelo mais escuro
+    pygame.draw.rect(surface, ORANGE, (x * square_size, y * square_size - square_size // 6, square_size, square_size // 6))
+    
+    # Desenha a abertura da caixa de correio em branco
+    pygame.draw.rect(surface, WHITE, (x * square_size + square_size // 4, y * square_size + square_size // 4, square_size // 2, square_size // 8))
+    
+    # Desenha o suporte da caixa de correio em cinza escuro
+    pygame.draw.rect(surface, DARK_GREY, (x * square_size + square_size // 4 - 3, y * square_size + square_size // 2, 3, square_size // 2))
+    
+    # Configura a fonte para o texto
+    font = pygame.font.Font(None, 24)  # Fonte padrão, tamanho 24
+    text_surface = font.render('MAIL', True, DARK_GREY)  # Texto em cinza escuro
+    text_rect = text_surface.get_rect(center=(x * square_size + square_size // 2, y * square_size + square_size // 4))
+    
+    # Desenha o texto na caixa de correio
+    surface.blit(text_surface, text_rect)
+
+
+
+
 # Função para desenhar os terrenos
 def draw_terrains(surface, terrains):
     for (_, x, y, descricao) in terrains:
         if descricao == 'Parede':
-            color = BLACK
+            draw_brick(surface, x, y)  # Usa a função para desenhar o tijolo
+            continue
         elif descricao == 'Água':
             color = BLUE
         elif descricao == 'Chão':
-            color = BROWN
+            draw_ground(surface, x, y)
+            continue
         elif descricao == 'Escada':
-            color = GREY
+            draw_stairs_with_shadow(surface, x, y)
+            continue  # Usa a função para desenhar a escada
         elif descricao == 'Árvore':
             draw_tree(surface, x, y)  # Usa a função para desenhar a árvore
             continue
         elif descricao == 'Grama':
-            color = LIGHT_GREEN
+            draw_grass(surface, x, y)
+            continue
         elif descricao == 'Correio':
-            color = YELLOW
+            draw_mailbox(surface, x, y)
+            continue
         elif descricao == 'Veneno':
-            color = PURPLE_D
+            draw_ground_mission(surface, x, y)
+            continue
         else:
             color = WHITE  # Cor padrão se a descrição não for reconhecida
         pygame.draw.rect(surface, color, (x * square_size, y * square_size, square_size, square_size))
@@ -477,8 +859,6 @@ def change_floor(current_floor, mapa, terrains, revealed_surface):
         cursor.execute("SELECT id_terreno FROM terreno WHERE id_andar = %s and x = 0 and y = 0", (andar,))
         posicao = cursor.fetchone()
         nova_posicao = posicao[0]
-        print(posicao)
-        print(nova_posicao)
         cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (nova_posicao, player))
         conn.commit()
         terrains = fetch_terrains(player)
@@ -493,10 +873,8 @@ def clamp_position(x, y):
     y = max(0, min(y, movement_limit_height - square_size))
     return x, y
 
-
-# Função principal (main)
 def main():
-    global andar, mapa, player, tipo, player_x, player_y
+    global andar, mapa, player, tipo, player_x, player_y, inimigos
     global window_width, window_height
 
     if check_existing_player():
@@ -509,6 +887,9 @@ def main():
             andar_mapa = fetch_andar_map(player)
             andar = 6
             mapa = 'Cidade'
+            posicao = find_xy_terreno(player)
+            player_x = posicao[0] * 50
+            player_y = posicao[1] * 50
             tipo = tipo_elemental_pokemon(player)
         else:
             select_existing_player()
@@ -528,6 +909,9 @@ def main():
         player = create_player(pokemon_id)
         andar = 6
         mapa = 'Cidade'
+        posicao = find_xy_terreno(player)
+        player_x = posicao[0] * 50
+        player_y = posicao[1] * 50
         tipo = tipo_elemental_pokemon(player)
 
     # Inicialize o pygame
@@ -537,10 +921,12 @@ def main():
     current_floor = get_floor(player)
     terrains = fetch_terrains(player)
     vendedores = fetch_vendedores()
-
-    # Criar uma superfície para o mapa
+    # Criar uma superfície para o mapa revelado
     revealed_surface = pygame.Surface((movement_limit_width, movement_limit_height))
     revealed_surface.fill(BLACK)
+
+    # Criar a superfície da fog
+    fog_surface = initialize_fog_surface()
 
     # Desenhe todos os terrenos na superfície revelada
     draw_terrains(revealed_surface, terrains)
@@ -569,7 +955,7 @@ def main():
                 new_x, new_y = clamp_position(new_x, new_y)
 
                 # Verificar colisão com terrenos e vendedores
-                if not check_collision(new_x, new_y, terrains, player) and not check_collision_vendedor(new_x, new_y, vendedores):
+                if not check_collision(new_x, new_y, terrains, player) and not check_collision_vendedor(new_x, new_y, vendedores) and not check_collision_inimigo(new_x, new_y, inimigos, player):
                     player_x, player_y = new_x, new_y
                     
                 new_terreno = find_id_terreno(player_x, player_y, andar)
@@ -579,14 +965,11 @@ def main():
         # Verifique se o jogador está sobre a escada
         if check_on_ladder(player_x, player_y, terrains):
             current_floor, terrains, andar = change_floor(current_floor, mapa, terrains, revealed_surface)
+            fog_surface = initialize_fog_surface() 
             player_x, player_y = 0, 0
 
         # Limitar o movimento do jogador à área definida
         player_x, player_y = clamp_position(player_x, player_y)
-
-        # Limitar o movimento do jogador à área definida
-        player_x = max(0, min(player_x, movement_limit_width - square_size))
-        player_y = max(0, min(player_y, movement_limit_height - square_size))
 
         # Calcular o deslocamento da "câmera"
         offset_x = max(0, min(player_x - window_width // 2, movement_limit_width - window_width))
@@ -600,13 +983,30 @@ def main():
 
         # Desenhar o jogador
         draw_player(window, offset_x, offset_y, player_x, player_y, tipo)
+        
         if mapa == 'Cidade':
             draw_vendedores(window, offset_x, offset_y, vendedores)
+        else:
+            inimigos = fetch_inimigos(mapa,andar)
+            draw_inimigos(window, offset_x, offset_y, inimigos)
+            reveal_area(fog_surface, player_x, player_y, radius=100)
+            window.blit(fog_surface, (-offset_x, -offset_y))
 
         pygame.display.flip()
 
     pygame.quit()
     sys.exit()
+
+# Função para inicializar a superfície de fog
+def initialize_fog_surface():
+    # Criar uma superfície para a fog (tamanho do mapa)
+    fog_surface = pygame.Surface((movement_limit_width, movement_limit_height), pygame.SRCALPHA)
+    fog_surface.fill((0, 0, 0))  # Preencher a superfície com preto semitransparente
+    return fog_surface
+
+# Função para revelar área ao redor do jogador
+def reveal_area(fog_surface, player_x, player_y, radius):
+    pygame.draw.circle(fog_surface, (0, 0, 0, 0), (player_x, player_y), radius)
 
 if __name__ == '__main__':
     main()
