@@ -117,6 +117,7 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 |      nome      | VARCHAR |                    Nome da habilidade                     |      a-z, A-Z      |          não           |    -     |
 |    acuracia    |   INT   |                     Precisão do dano                      |       1-5000       |          sim           |    -     |
 |      dano      |   INT   |                 Dano causado pelo pokemón                 |       1-5000       |          sim           |    -     |
+|      pp      |   INT   |                 Numero de vezes que uma habilidade pode ser usada por um pokemon ate precisar recarregar                 |       1-5000       |          não           |    -     |
 
 ## Entidade: Pokemon-Habilidade
 
@@ -127,6 +128,7 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 |     Nome Variável     | Tipo |          Descrição          | Valores permitidos | Permite valores nulos? | É chave? |
 | :-------------------: | :--: | :-------------------------: | :----------------: | :--------------------: | :------: |
 | id_pokemon_habilidade | INT  |  Identificador da Entidade  |       1-5000       |          não           |    PK    |
+|      pp_restante       | INT  |  Quantidade de cargas da habilidade  |       1-5000       |          não          |    -   |
 |     id_habilidade     | INT  | Identificador da habilidade |       1-5000       |          não           |    FK    |
 |      id_pokemon       | INT  |  Identificador de pokemon   |       1-5000       |          não           |    FK    |
 
@@ -314,4 +316,5 @@ O dicionário de dados são informações sobre os dados armazenados que são pe
 | `1.3`  | 20/07/2024 |     Correção de valores permitidos e descrição      | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
 | `1.4`  | 20/07/2024 | Adição de tabelas e correção de chaves estrangeiras |                               [Leonardo Bonetti](https://github.com/LeoFacB)                               |
 | `1.5`  | 05/08/2024 |               Correção das entidades                | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
-| `1.5`  | 07/09/2024 |         Atualização do dicionário de dados          | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+| `1.6`  | 07/09/2024 |         Atualização do dicionário de dados          | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
+| `1.7`  | 07/09/2024 |         Atualização do dicionário de dados          | [Leonardo Fachinello Bonetti](https://github.com/LeoFacB) |

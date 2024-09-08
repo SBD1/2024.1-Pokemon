@@ -20,3 +20,4 @@ Abaixo temos a imagem do diagrama de entidade relacionamento:
 | `1.2`  | 16/07/2024 |               Atualizando diagrama                | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
 | `1.3`  | 17/07/2024 |               Atualizando diagrama                | [José Filipi](https://github.com/JoseFilipi)  |
 | `1.4`  | 18/07/2024 |               Atualizando diagrama e correção de relacionameto             | [Leonardo Bonetti](https://github.com/LeoFacB)  |
+| `1.5`  | 08/09/2024 |               Atualizando diagrama             | [Leonardo Bonetti](https://github.com/LeoFacB)  |
