@@ -7,7 +7,11 @@ services:
       - ./docs/sql/ddl/ddl.sql:/docker-entrypoint-initdb.d/a.sql
       - ./docs/sql/dml/dml.sql:/docker-entrypoint-initdb.d/b.sql
       - ./python/scripts_de_api/cidade.sql:/docker-entrypoint-initdb.d/c.sql
-      - ./docs/sql/trigger_procedure/trigger.sql:/docker-entrypoint-initdb.d/d.sql
+      - ./python/scripts_de_api/floresta.sql:/docker-entrypoint-initdb.d/d.sql
+      - ./python/scripts_de_api/floresta2.sql:/docker-entrypoint-initdb.d/e.sql
+      - ./python/scripts_de_api/floresta3.sql:/docker-entrypoint-initdb.d/f.sql
+      - ./docs/sql/trigger_procedure/trigger.sql:/docker-entrypoint-initdb.d/g.sql
+
     environment:
       POSTGRES_USER: "pokemon"
       POSTGRES_PASSWORD: "123456"

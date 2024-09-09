@@ -252,5 +252,42 @@ CREATE TRIGGER trigger_gerar_inimigos_missao
     WHEN (NEW.concluida = false)
 EXECUTE FUNCTION gerar_inimigos_missao();
 
+--Trigger que impede novos INSERTS na tabela missao caso o jogador ja tenha uma missao ativa
+CREATE OR REPLACE FUNCTION check_missao() RETURNS trigger
+AS
+$$
+BEGIN
+   PERFORM * FROM instancia_missao WHERE id_jogador = NEW.id_jogador AND concluida = false;
+   IF FOUND THEN
+        RAISE EXCEPTION 'Este jogador já possui uma missão ativa';
+   END IF;
+   RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trigger_check_missao
+BEFORE INSERT ON instancia_missao
+FOR EACH ROW EXECUTE PROCEDURE check_missao();
+
+--Trigger que caso seja deletado um inimigo com o nome BOSS ele irá retornar para a cidade
+CREATE OR REPLACE FUNCTION verifica_deletar_boss()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF OLD.nome = 'BOSS' THEN
+        UPDATE jogador j SET posicao = (SELECT id_terreno FROM terreno WHERE x = 0 AND y = 0) WHERE j.id_jogador = OLD.id_inimigo;
+        RAISE NOTICE 'O BOSS foi derrotado e o jogador % retornou para a cidade.', OLD.id_inimigo;
+    END IF;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER trigger_verifica_deletar_boss
+AFTER DELETE
+ON inimigo
+FOR EACH ROW
+EXECUTE FUNCTION verifica_deletar_boss();
+
+
+
 
 

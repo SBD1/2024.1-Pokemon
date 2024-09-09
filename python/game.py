@@ -1103,6 +1103,34 @@ def consome_item(player, itens):
 #     cursor.close()
 #     conn.close()
 
+def write_text(surface, text, x, y):
+    # Configura a fonte para o texto
+    font = pygame.font.Font(None, 24)  # Fonte padrão, tamanho 24
+    text_surface = font.render(text, True, WHITE)
+    text_rect = text_surface.get_rect(topleft=(x, y))
+    
+    # Desenha o texto na tela
+    surface.blit(text_surface, text_rect)
+    
+# Funcao para achar a missao do player
+def find_mission_player(player_id):
+    query = """
+    SELECT m.objetivo
+    FROM instancia_missao im
+    JOIN missao m ON im.id_missao = m.id_missao
+    WHERE im.id_jogador = %s AND im.concluida = 'false';
+    """
+    try:
+        cursor.execute(query, (player_id,))
+        missao = cursor.fetchone()
+        if missao:
+            return missao[0]
+        return None
+    except Exception as e:
+        print("Erro ao buscar missão do jogador:", e)
+        return None
+    
+
 
 def main():
     global andar, mapa, player, tipo, player_x, player_y, inimigos
@@ -1235,6 +1263,14 @@ def main():
             draw_inimigos(window, offset_x, offset_y, inimigos)
             reveal_area(fog_surface, player_x, player_y, radius=100)
             window.blit(fog_surface, (-offset_x, -offset_y))
+            
+        # Desenhar o indicativo de localizacao
+        write_text(window, f"Mapa: {mapa} - Andar: {current_floor}", 10, 10)
+        
+        # Desenhar o indicativo de missao
+        missao = find_mission_player(player)
+        if missao != None:
+            write_text(window, f"Missao: {missao}", 10, 30)
 
         pygame.display.flip()
 
