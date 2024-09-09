@@ -177,7 +177,7 @@ BEGIN
     WHERE im.id_missao = NEW.id_missao
     GROUP BY nome_mapa;
 
-    IF nome_mapa_missao = 'Floresta Sombra' THEN
+    IF nome_mapa_missao = 'Floresta da Sombra' THEN
         FOR i IN 1..5
             LOOP
                 INSERT INTO pokemon (id_tipo_pokemon) VALUES (2) RETURNING id_pokemon INTO id_pokemon_gerado;

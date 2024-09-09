@@ -3179,4 +3179,4 @@ INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (36, 36, 1, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (36, 37, 1, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (37, 36, 1, 6);
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (37, 37, 1, 6);
-INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (49, 49, 5, 6);
+INSERT INTO terreno (x, y, id_tipo_terreno, id_andar) VALUES (49, 49, 10, 6);
