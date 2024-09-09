@@ -604,10 +604,6 @@ VALUES (3, 3, 1);
 -- Inserindo dados na tabela 'missoes'
 INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, principal)
 VALUES ('Floresta da Sombra', 1, 3, 'Derrotar Boss', true);
-INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, principal)
-VALUES ('Caverna Cristal', 2, 5, 'Derrotar Chefão', false);
-INSERT INTO missao (nome_mapa, id_loot, dificuldade, objetivo, principal)
-VALUES ('Montanha fire', 3, 7, 'Coletar Itens', true);
 
 -- Inserindo dados na tabela 'pokemon_habilidade'
 INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade, pp_restante)

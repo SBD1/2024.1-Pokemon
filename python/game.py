@@ -370,7 +370,7 @@ def abre_correio(id_jogador):
 
     # Preparar dados para tabulate
     headers = ["ID Missão", "Objetivo", "Dificuldade", "Tipo Missão", "Mapa"]
-    table = [[missao[0], missao[1], missao[2], missao[3], missao[4]] for missao in missoes]
+    table = [[missao[0], missao[1], 'Fácil', 'Principal', missao[4]] for missao in missoes]
 
     # Exibir tabela formatada
     print(tabulate(table, headers, tablefmt="grid"))

@@ -52,7 +52,7 @@ CREATE OR REPLACE FUNCTION verifica_vida_jogador()
 RETURNS TRIGGER AS $$
 BEGIN
     IF NEW.vida <= 0 THEN
-        NEW.posicao := (SELECT id_terreno FROM terreno WHERE x = 0 AND y = 0);
+        NEW.posicao := 6;
 		RAISE NOTICE 'Jogador % retornou para a cidade.', NEW.id_jogador;
     END IF;
     RETURN NEW;
