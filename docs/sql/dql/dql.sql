@@ -197,3 +197,16 @@ SELECT COUNT(*) FROM jogador;
     SELECT id_terreno
     FROM terreno
     WHERE x = %s AND y = %s
+
+           
+-- Consulta para encontrar fala do narrador
+
+SELECT fala FROM dialogo WHERE personagem = 'Narrador' ORDER BY ordem
+
+
+
+-- Consulta para obter o próximo andar
+
+SELECT MAX(t.id_andar) FROM terreno t
+
+
