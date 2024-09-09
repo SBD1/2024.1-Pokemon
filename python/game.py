@@ -219,9 +219,9 @@ def create_player(pokemon_id):
     cursor.execute("""
         INSERT INTO jogador (nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade, acuracia, evasao, status, nome, id_jogador, saldo, tam_inventario, posicao, tipo_elemental)
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """, (1, pokemon_data[2], pokemon_data[3], pokemon_data[4],
+    """, (1, 1000, pokemon_data[3], pokemon_data[4],
           pokemon_data[5], pokemon_data[6], pokemon_data[7], pokemon_data[8],
-          pokemon_data[9], pokemon_data[0], new_pokemon_id, 0, 20, 6, pokemon_data[1]))
+          pokemon_data[9], pokemon_data[0], new_pokemon_id, 1000, 20, 6, pokemon_data[1]))
     cursor.execute("INSERT INTO instancia_item (id_item) VALUES (1) RETURNING id_instancia_item")
     id_instancia_item = cursor.fetchone()[0]
     cursor.execute("INSERT INTO inventario (id_inventario, id_instancia_item) VALUES (%s, %s) RETURNING id_inventario", (new_pokemon_id, id_instancia_item))
@@ -370,7 +370,7 @@ def abre_correio(id_jogador):
 
     # Preparar dados para tabulate
     headers = ["ID Missão", "Objetivo", "Dificuldade", "Tipo Missão", "Mapa"]
-    table = [[missao[0], missao[1], missao[2], missao[3], missao[4]] for missao in missoes]
+    table = [[missao[0], missao[1], 'Fácil', 'Principal', missao[4]] for missao in missoes]
 
     # Exibir tabela formatada
     print(tabulate(table, headers, tablefmt="grid"))
@@ -568,6 +568,8 @@ def batalhar(player, inimigo):
             atacar(player_T, inimigo_T, habilidade_jogador)
             if inimigo_T['vida'] <= 0:
                 print(f"O inimigo {inimigo_T['nome']} foi derrotado!")
+                cursor.execute("UPDATE jogador SET vida = %s WHERE id_jogador = %s", (player_T['vida'], player))
+                conn.commit()
                 break
 
             # Turno do inimigo (escolha randômica)
@@ -594,7 +596,6 @@ def batalhar(player, inimigo):
             atacar(player_T, inimigo_T, habilidade_jogador)
             if inimigo_T['vida'] <= 0:
                 print(f"O {inimigo_T['nome']} foi derrotado!")
-                cursor.execute("DELETE FROM inimigo WHERE id_inimigo = %s", (inimigo,))
                 cursor.execute("UPDATE jogador SET vida = %s WHERE id_jogador = %s", (player_T['vida'], player))
                 conn.commit()
                 break
@@ -663,20 +664,17 @@ def abrir_loja(id_vendedor):
         print("Não há itens disponíveis com este vendedor.")
 
 def interagir_com_vendedor(vendedor):
-    print(f"Seja bem-vindo ao vendedor {vendedor[4]}.")
+    cursor.execute("SELECT fala FROM dialogo WHERE personagem = 'Vendedor' ORDER BY ordem")
+    dialogos = cursor.fetchall()
+    for dialogo in dialogos:
+        print(dialogo[0])
+        input("Pressione Enter para continuar...")
     resposta = input("Deseja comprar algo? (sim/não): ").strip().lower()
     
     if resposta == "sim":
         abrir_loja(vendedor[0])
     else:
         print("Ok, tenha um bom dia!")
-    #vendedor_id, _, _, tipo_elemental = vendedor
-    #print(f"Iniciando diálogo com o vendedor de tipo {tipo_elemental}.")
-    #cursor.execute("SELECT fala FROM dialogo WHERE personagem = 'Vendedor' ORDER BY ordem")
-    #dialogos = cursor.fetchall()
-    #for dialogo in dialogos:
-    #    print(dialogo[0])
-    #    input("Pressione Enter para continuar...")
 
 def comprar_item(id_jogador, id_item, valor_item):
     conn = connect_db()
@@ -920,7 +918,11 @@ def teletransporta_missao(id_jogador, terrains, revealed_surface):
     missao_id = cursor.fetchone()
     if not missao_id:
         print("Você não tem missão ativa.")
-        return
+        current_floor = 1
+        andar = 6
+        mapa = 'Cidade'
+        terrains = fetch_terrains(player)
+        return current_floor, terrains, andar, mapa
     missao_ativa = missao_id[1]
     print(f"Missão ativa: {missao_id[2]} na {missao_id[1]}")
     mapa = missao_ativa
@@ -955,6 +957,11 @@ def teletransporta_missao(id_jogador, terrains, revealed_surface):
         return current_floor, terrains, andar, mapa
     else:
         print("Até mais !.")
+        current_floor = 1
+        andar = 6
+        mapa = 'Cidade'
+        terrains = fetch_terrains(player)
+        return current_floor, terrains, andar, mapa
 
 def clamp_position(x, y):
     # Corrige a posição (x, y) para garantir que esteja dentro dos limites do mapa.
