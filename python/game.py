@@ -873,6 +873,148 @@ def clamp_position(x, y):
     y = max(0, min(y, movement_limit_height - square_size))
     return x, y
 
+def abre_inventario(player):
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+        SELECT item.nome, item.descricao, item.efeito, COUNT(ii.id_instancia_item) AS quantidade
+        FROM inventario i
+                JOIN jogador j ON i.id_inventario = j.id_jogador
+                JOIN instancia_item ii ON i.id_instancia_item = ii.id_instancia_item
+                JOIN item ON item.id_item = ii.id_item
+        WHERE j.id_jogador = %s
+        GROUP BY item.nome, item.descricao, item.efeito;
+    """, (player,))
+    itens = cursor.fetchall()
+
+    if itens:
+        headers = ["Nome", "Descrição", "Efeito", "Quantidade"]
+        print("Itens no inventário:")
+        print(tabulate(itens, headers, tablefmt="grid"))
+
+        consome_item(player, itens)  # Chama a função para consumir o item após listar o inventário
+    else:
+        print("Inventário vazio.")
+
+    cursor.close()
+    conn.close()
+
+def consome_item(player, itens):
+    escolha = input("Digite o nome do item que quer consumir: ").strip()
+
+    item_encontrado = next((item for item in itens if item[0].lower() == escolha.lower()), None)
+
+    if item_encontrado:
+        nome_item = item_encontrado[0]
+
+        conn = connect_db()
+        cursor = conn.cursor()
+        
+        if nome_item == "Poção":
+            cursor.execute("UPDATE jogador SET vida = LEAST(vida + 50, nivel * 100) WHERE id_jogador = %s", (player,))
+            print("Você recuperou 50 de vida!")
+        elif nome_item == "Elixir":
+            print("Efeito de Elixir: Recupera todos os PP!")
+        elif nome_item == "Reviver":
+            cursor.execute("UPDATE jogador SET vida = GREATEST((nivel * 100) / 2, 1) WHERE id_jogador = %s AND vida = 0", (player,))
+            print("Seu Pokémon foi revivido com metade da vida!")
+
+        # Remova o item consumido
+        cursor.execute("""
+            DELETE FROM inventario
+            WHERE id_instancia_item = (
+                SELECT ii.id_instancia_item
+                FROM instancia_item ii
+                JOIN item i ON ii.id_item = i.id_item
+                WHERE i.nome = %s
+                AND ii.id_instancia_item IN (
+                    SELECT id_instancia_item
+                    FROM inventario
+                    WHERE id_inventario = %s
+                )
+                ORDER BY ii.id_instancia_item
+                LIMIT 1
+            )
+        """, (nome_item, player))
+        conn.commit()
+
+        cursor.close()
+        conn.close()
+
+    else:
+        print("Item não encontrado no inventário.")
+
+
+# def abre_inventario(player):
+#     conn = connect_db()
+#     cursor = conn.cursor()
+
+#     cursor.execute("""
+#         SELECT item.nome, item.descricao, item.efeito, COUNT(ii.id_instancia_item) AS quantidade
+#         FROM inventario i
+#                 JOIN jogador j ON i.id_inventario = j.id_jogador
+#                 JOIN instancia_item ii ON i.id_instancia_item = ii.id_instancia_item
+#                 JOIN item ON item.id_item = ii.id_item
+#         WHERE j.id_jogador = %s
+#         GROUP BY item.nome, item.descricao, item.efeito;
+#     """, (player,))
+#     itens = cursor.fetchall()
+
+#     if itens:
+#         headers = ["Nome", "Descrição", "Efeito", "Quantidade"]
+#         print("Itens no inventário:")
+#         print(tabulate(itens, headers, tablefmt="grid"))
+
+#         escolha = input("Digite o nome do item que quer consumir: ").strip()
+
+#         item_encontrado = next((item for item in itens if item[0].lower() == escolha.lower()), None)
+
+#         if item_encontrado:
+#             nome_item = item_encontrado[0]
+#             efeito = item_encontrado[2]
+
+#             # Aplique o efeito do item
+#             if nome_item == "Poção":
+#                 # Recupera 50 de vida
+#                 cursor.execute("UPDATE jogador SET vida = LEAST(vida + 50, nivel * 100) WHERE id_jogador = %s", (player,))
+#                 print("Você recuperou 50 de vida!")
+#             elif nome_item == "Elixir":
+#                 # Recupera todos os PP (não representado na tabela 'jogador', mas pode ser um campo adicional ou ajustado)
+#                 print("Efeito de Elixir: Recupera todos os PP!")
+#             elif nome_item == "Reviver":
+#                 # Revive com metade da vida
+#                 cursor.execute("UPDATE jogador SET vida = GREATEST((nivel * 100) / 2, 1) WHERE id_jogador = %s AND vida = 0", (player,))
+#                 print("Seu Pokémon foi revivido com metade da vida!")
+
+#             # Remova o item consumido
+#             cursor.execute("""
+#                 DELETE FROM inventario
+#                 WHERE id_instancia_item = (
+#                     SELECT ii.id_instancia_item
+#                     FROM instancia_item ii
+#                     JOIN item i ON ii.id_item = i.id_item
+#                     WHERE i.nome = %s
+#                     AND ii.id_instancia_item IN (
+#                         SELECT id_instancia_item
+#                         FROM inventario
+#                         WHERE id_inventario = %s
+#                     )
+#                     ORDER BY ii.id_instancia_item
+#                     LIMIT 1
+#                 )
+#             """, (nome_item, player))
+#             conn.commit()
+
+#         else:
+#             print("Item não encontrado no inventário.")
+#     else:
+#         print("Inventário vazio.")
+
+#     cursor.close()
+#     conn.close()
+
+
 def main():
     global andar, mapa, player, tipo, player_x, player_y, inimigos
     global window_width, window_height
@@ -942,6 +1084,10 @@ def main():
             elif event.type == pygame.KEYDOWN:
                 new_x, new_y = player_x, player_y  # Inicializa com a posição atual
                 
+                if event.key == pygame.K_i:
+                    abre_inventario(player)
+                    print("Abrindo inventário...")
+
                 if event.key == pygame.K_LEFT:
                     new_x = player_x - square_size
                 elif event.key == pygame.K_RIGHT:
