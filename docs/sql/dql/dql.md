@@ -263,7 +263,7 @@ SELECT fala FROM dialogo WHERE personagem = 'Narrador' ORDER BY ordem
 #### Consulta para obter o próximo andar
 
 ~~~sql
-"SELECT MAX(t.id_andar) FROM terreno t
+SELECT MAX(t.id_andar) FROM terreno t
 ~~~
 
 
