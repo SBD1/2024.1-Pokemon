@@ -5,6 +5,7 @@ BEGIN
     IF NEW.tam_inventario != OLD.tam_inventario THEN
         RAISE EXCEPTION 'A coluna tam_inventario não pode ser alterada diretamente.';
     END IF;
+    RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -81,7 +82,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-DROP TRIGGER trigger_check_npc ON jogador;
 CREATE TRIGGER trigger_check_npc
 BEFORE UPDATE OR INSERT ON jogador
 FOR EACH ROW EXECUTE PROCEDURE check_npc();
@@ -99,8 +99,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-DROP TRIGGER trigger_check_jogador ON npc;
 CREATE TRIGGER trigger_check_jogador
 BEFORE UPDATE OR INSERT ON npc
 FOR EACH ROW EXECUTE PROCEDURE check_jogador();

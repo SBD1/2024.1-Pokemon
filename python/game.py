@@ -347,8 +347,8 @@ def check_collision(x, y, terrains, id_jogador):
         elif player_rect.colliderect(terrain_rect) and descricao in ['Correio']:
             abre_correio(id_jogador)
             return True
-
     return False
+
 
 def abre_correio(id_jogador):
     conn = connect_db()
@@ -377,12 +377,20 @@ def abre_correio(id_jogador):
 
     escolha = int(input("Digite o número da missão que quer fazer: "))
     missao_ids = [missao[0] for missao in missoes]
-    if escolha in missao_ids:
-        cursor.execute("INSERT INTO instancia_missao (id_missao, id_jogador, concluida) VALUES (%s, %s, %s);", (escolha, id_jogador, 'false'))
-        conn.commit()
-        print(f'Missão {escolha} selecionada!')
+    cursor.execute("SELECT im.id_missao, m.nome_mapa, m.objetivo FROM instancia_missao im JOIN missao m on im.id_missao = m.id_missao WHERE id_jogador = %s and concluida = 'false'", (id_jogador,))
+    missoes_ativas = cursor.fetchall()
+    if missoes_ativas:
+        print("Você já tem uma missão ativa:")
+        for missao in missoes_ativas:
+            print(f"Missão {missao[0]} - {missao[2]} no mapa {missao[1]}")
+        print("Finalize-a antes de pegar outra missão")
     else:
-        print('Valor inválido!')
+        if escolha in missao_ids:
+            cursor.execute("INSERT INTO instancia_missao (id_missao, id_jogador, concluida) VALUES (%s, %s, %s);", (escolha, id_jogador, 'false'))
+            conn.commit()
+            print(f'Missão {escolha} selecionada!')
+        else:
+            print('Valor inválido!')
 
     cursor.close()
     conn.close()
@@ -710,6 +718,15 @@ def check_on_ladder(player_x, player_y, terrains):
                 return True
     return False
 
+def check_on_portal(player_x, player_y, terrains):
+    player_rect = pygame.Rect(player_x, player_y, square_size, square_size)
+    for (_, tx, ty, descricao) in terrains:
+        if descricao == 'Portal':
+            ladder_rect = pygame.Rect(tx * square_size, ty * square_size, square_size, square_size)
+            if player_rect.colliderect(ladder_rect):
+                return True
+    return False
+
 def draw_tree(surface, x, y):
     # Desenha o tronco da árvore
     pygame.draw.rect(surface, BROWN, (x * square_size + square_size // 4, y * square_size + square_size // 2, square_size // 2, square_size // 2))
@@ -787,7 +804,6 @@ def draw_stairs_with_shadow(surface, x, y):
         # Desenha sombra na parte inferior de cada degrau
         pygame.draw.rect(surface, DARK_GREY, (x * square_size, step_y + step_height - shadow_width, square_size, shadow_width))
 
-import pygame
 
 def draw_mailbox(surface, x, y):
     # Definição das cores
@@ -817,6 +833,26 @@ def draw_mailbox(surface, x, y):
     surface.blit(text_surface, text_rect)
 
 
+def draw_black_hole(surface, x, y):
+    # Centro do buraco negro
+    center_x = x * square_size + square_size // 2
+    center_y = y * square_size + square_size // 2
+    max_radius = square_size // 2  # Raio máximo do buraco negro
+
+    # Camadas de sombreamento para dar a impressão de profundidade
+    for i in range(10):  # Número de camadas
+        # Cor varia do preto ao cinza
+        shade = 255 - (i * 25)
+        color = (shade, shade, shade)
+        
+        # Raio para cada camada diminui gradualmente
+        radius = max_radius - (i * (max_radius // 10))
+        
+        # Desenha a camada circular
+        pygame.draw.circle(surface, color, (center_x, center_y), radius)
+
+    # Desenha o núcleo totalmente preto no centro
+    pygame.draw.circle(surface, BLACK, (center_x, center_y), max_radius // 4)
 
 
 # Função para desenhar os terrenos
@@ -845,6 +881,9 @@ def draw_terrains(surface, terrains):
         elif descricao == 'Veneno':
             draw_ground_mission(surface, x, y)
             continue
+        elif descricao == 'Portal':
+            draw_black_hole(surface, x, y)
+            continue
         else:
             color = WHITE  # Cor padrão se a descrição não for reconhecida
         pygame.draw.rect(surface, color, (x * square_size, y * square_size, square_size, square_size))
@@ -866,6 +905,56 @@ def change_floor(current_floor, mapa, terrains, revealed_surface):
         draw_terrains(revealed_surface, terrains)
         print(f"Subiu para o andar {current_floor}")
     return current_floor, terrains, andar
+
+def teletransporta_missao(id_jogador, terrains, revealed_surface):
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    cursor.execute("""SELECT 
+                        im.id_missao,
+                        m.nome_mapa,
+                        m.objetivo
+                   FROM instancia_missao im 
+                   JOIN missao m on im.id_missao = m.id_missao
+                   WHERE id_jogador = %s and concluida = 'false'""", (id_jogador,))
+    missao_id = cursor.fetchone()
+    if not missao_id:
+        print("Você não tem missão ativa.")
+        return
+    missao_ativa = missao_id[1]
+    print(f"Missão ativa: {missao_id[2]} na {missao_id[1]}")
+    mapa = missao_ativa
+    
+    resposta = input("Deseja fazer a missão? (sim/não): ").strip().lower()
+    if resposta == 'sim':
+        cursor.execute("""
+                    select 
+                    t.id_terreno
+                    from mapa m
+                    join andar a on a.nome_mapa = m.nome
+                    join terreno t on a.id_andar = t.id_andar
+                    where t.x = 0 and t.y = 0 and m.nome = %s and a.numero_andar = 1
+                    """, (missao_ativa,))
+        terreno_id = cursor.fetchone()[0]
+        cursor.execute("""
+                    select 
+                    a.id_andar
+                    from mapa m
+                    join andar a on a.nome_mapa = m.nome
+                    join terreno t on a.id_andar = t.id_andar
+                    where t.x = 0 and t.y = 0 and m.nome = %s and a.numero_andar = 1
+                    """, (missao_ativa,))
+        andar = cursor.fetchone()[0]
+        cursor.execute("UPDATE jogador SET posicao = %s WHERE id_jogador = %s", (terreno_id, id_jogador))
+        conn.commit()
+        terrains = fetch_terrains(player)
+        revealed_surface.fill(BLACK)
+        current_floor = 1
+        draw_terrains(revealed_surface, terrains)
+        print("Teletransporte efetuado com sucesso!")
+        return current_floor, terrains, andar, mapa
+    else:
+        print("Até mais !.")
 
 def clamp_position(x, y):
     # Corrige a posição (x, y) para garantir que esteja dentro dos limites do mapa.
@@ -1117,6 +1206,11 @@ def main():
             current_floor, terrains, andar = change_floor(current_floor, mapa, terrains, revealed_surface)
             fog_surface = initialize_fog_surface() 
             player_x, player_y = 0, 0
+        
+        if check_on_portal(player_x, player_y, terrains):
+            current_floor, terrains, andar, mapa = teletransporta_missao(player, terrains, revealed_surface)
+            fog_surface = initialize_fog_surface()
+            player_x, player_y = 0, 0
 
         # Limitar o movimento do jogador à área definida
         player_x, player_y = clamp_position(player_x, player_y)
@@ -1126,7 +1220,7 @@ def main():
         offset_y = max(0, min(player_y - window_height // 2, movement_limit_height - window_height))
 
         # Preencher a janela
-        window.fill(WHITE)
+        window.fill(BLACK)
 
         # Desenhar a superfície de áreas reveladas com deslocamento
         window.blit(revealed_surface, (-offset_x, -offset_y))
@@ -1151,7 +1245,7 @@ def main():
 def initialize_fog_surface():
     # Criar uma superfície para a fog (tamanho do mapa)
     fog_surface = pygame.Surface((movement_limit_width, movement_limit_height), pygame.SRCALPHA)
-    fog_surface.fill((0, 0, 0))  # Preencher a superfície com preto semitransparente
+    fog_surface.fill((0, 0, 0)) 
     return fog_surface
 
 # Função para revelar área ao redor do jogador

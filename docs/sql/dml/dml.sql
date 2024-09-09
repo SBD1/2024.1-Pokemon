@@ -46,6 +46,8 @@ INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Veneno', false);
 INSERT INTO tipo_terreno (descricao, movimento)
 VALUES ('Pedra', false);
+INSERT INTO tipo_terreno (descricao, movimento)
+VALUES ('Portal', false);
 
 -- Inserindo dados na tabela 'terreno'
 INSERT INTO terreno (x, y, id_tipo_terreno, id_andar)
