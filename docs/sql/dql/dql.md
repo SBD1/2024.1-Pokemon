@@ -253,13 +253,18 @@ SELECT COUNT(*) FROM jogador;
     WHERE x = %s AND y = %s;
 ~~~
 
+#### Consulta para encontrar fala do narrador
+
+~~~sql
+SELECT fala FROM dialogo WHERE personagem = 'Narrador' ORDER BY ordem
+~~~
 
 
+#### Consulta para obter o próximo andar
 
-
-
-
-
+~~~sql
+"SELECT MAX(t.id_andar) FROM terreno t
+~~~
 
 
 
@@ -270,3 +275,4 @@ SELECT COUNT(*) FROM jogador;
 | Versão |    Data    |      Descrição      |                                                                                                Autor(es)                                                                                                 |
 | :----: | :--------: | :-----------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | `1.0`  | 19/08/2024 | Criação das consultas | [Gabriel Marcolino](https://github.com/GabrielMR360), [Shaíne Oliveira](ttps://github.com/ShaineOliveira), [José Filipi](https://github.com/JoseFilipi) e [Leonardo Bonetti](https://github.com/LeoFacB) |
+| `1.1`  | 09/09/2024 | Adiciona novas consultas | [Gabriel Marcolino](https://github.com/GabrielMR360) e [Shaíne Oliveira](ttps://github.com/ShaineOliveira) |
