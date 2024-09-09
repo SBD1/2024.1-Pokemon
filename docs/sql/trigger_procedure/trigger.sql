@@ -177,7 +177,7 @@ BEGIN
     WHERE im.id_missao = NEW.id_missao
     GROUP BY nome_mapa;
 
-    IF nome_mapa_missao = 'Floresta da Sombra' THEN
+    IF nome_mapa_missao = 'Floresta Sombra' THEN
         FOR i IN 1..5
             LOOP
                 INSERT INTO pokemon (id_tipo_pokemon) VALUES (2) RETURNING id_pokemon INTO id_pokemon_gerado;
@@ -189,6 +189,9 @@ BEGIN
                                      acuracia, evasao, status, nome, posicao, tipo_elemental)
                 VALUES (id_npc_gerado, 10, 100, 20, 15, 30, 10, 80, 50, 'Normal', 'Inimigo ' || i, 1,
                         CASE WHEN i % 3 = 0 THEN 'dark' WHEN i % 3 = 1 THEN 'ghost' ELSE 'psychic' END);
+
+                INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 4);
+                INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 101);
             END LOOP;
 
         -- Inserindo o BOSS para o mapa Floresta Sombra
@@ -197,6 +200,11 @@ BEGIN
         INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade,
                              acuracia, evasao, status, nome, posicao, tipo_elemental)
         VALUES (id_npc_gerado, 10, 1000, 50, 50, 80, 30, 80, 50, 'Normal', 'BOSS', 1, 'dark');
+
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 4);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 101);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 63);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 47);
 
     ELSIF nome_mapa_missao = 'Montanha fire' THEN
         FOR i IN 1..5
@@ -209,6 +217,9 @@ BEGIN
                                      acuracia, evasao, status, nome, posicao, tipo_elemental)
                 VALUES (id_npc_gerado, 10, 100, 20, 15, 30, 10, 80, 50, 'Normal', 'Inimigo ' || i, 3,
                         CASE WHEN i % 3 = 0 THEN 'fire' WHEN i % 3 = 1 THEN 'rock' ELSE 'flying' END);
+
+                INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 4);
+                INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 101);
             END LOOP;
 
         -- Inserindo o BOSS para o mapa Montanha fire
@@ -216,7 +227,12 @@ BEGIN
         INSERT INTO npc (id_npc, id_tipo_npc) VALUES (id_pokemon_gerado, 2) RETURNING id_npc INTO id_npc_gerado;
         INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade,
                              acuracia, evasao, status, nome, posicao, tipo_elemental)
-        VALUES (id_npc_gerado, 10, 1000, 50, 50, 80, 30, 80, 50, 'Normal', 'BOSS', 1, 'dragon');
+        VALUES (id_npc_gerado, 10, 1000, 50, 50, 80, 30, 80, 50, 'Normal', 'BOSS', 1, 'fire');
+
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 4);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 101);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 56);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 86);
 
     ELSIF nome_mapa_missao = 'Caverna Cristal' THEN
         FOR i IN 1..5
@@ -229,6 +245,9 @@ BEGIN
                                      acuracia, evasao, status, nome, posicao, tipo_elemental)
                 VALUES (id_npc_gerado, 10, 100, 20, 15, 30, 10, 80, 50, 'Normal', 'Inimigo ' || i, 2,
                         CASE WHEN i % 3 = 0 THEN 'steel' WHEN i % 3 = 1 THEN 'ice' ELSE 'electric' END);
+
+                INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 4);
+                INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 101);
             END LOOP;
 
         -- Inserindo o BOSS para o mapa Caverna Cristal
@@ -237,6 +256,11 @@ BEGIN
         INSERT INTO inimigo (id_inimigo, nivel, vida, ataque_fisico, defesa_fisica, ataque_especial, velocidade,
                              acuracia, evasao, status, nome, posicao, tipo_elemental)
         VALUES (id_npc_gerado, 10, 1000, 50, 50, 80, 30, 80, 50, 'Normal', 'BOSS', 1, 'ice');
+
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 4);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 101);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 57);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 11);
     END IF;
 
     RETURN NEW;

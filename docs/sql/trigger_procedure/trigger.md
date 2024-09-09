@@ -154,7 +154,7 @@ BEGIN
                              acuracia, evasao, status, nome, posicao, tipo_elemental)
         VALUES (id_npc_gerado, 10, 1000, 50, 50, 80, 30, 80, 50, 'Normal', 'BOSS', 1, 'dark');
 
-          INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 4);
+        INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 4);
         INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 101);
         INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 63);
         INSERT INTO pokemon_habilidade (id_pokemon, id_habilidade) VALUES (id_pokemon_gerado, 47);
