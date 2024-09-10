@@ -296,7 +296,7 @@ BEGIN
     GROUP BY nome_mapa;
 
     -- Lógica para o mapa 'Floresta Sombra'
-    IF nome_mapa_missao = 'Floresta Sombra' THEN
+    IF nome_mapa_missao = 'Floresta da Sombra' THEN
         FOR i IN 1..4
         LOOP
             INSERT INTO pokemon (id_tipo_pokemon) VALUES (2) RETURNING id_pokemon INTO id_pokemon_gerado;
@@ -364,7 +364,7 @@ CREATE OR REPLACE FUNCTION verifica_deletar_boss()
 RETURNS TRIGGER AS $$
 BEGIN
     IF OLD.nome = 'BOSS' THEN
-        UPDATE jogador j SET posicao = (SELECT id_terreno FROM terreno WHERE x = 0 AND y = 0) WHERE j.id_jogador = OLD.id_inimigo;
+        UPDATE jogador j SET posicao = 6 WHERE j.id_jogador = OLD.id_inimigo;
         RAISE NOTICE 'O BOSS foi derrotado e o jogador % retornou para a cidade.', OLD.id_inimigo;
     END IF;
     RETURN OLD;

@@ -458,24 +458,24 @@ def fetch_enemy_data(enemy_id):
         }
     return None
 
-def check_collision_inimigo(x, y, inimigos, player):
+def check_collision_inimigo(x, y, inimigos, player, revealed_surface):
     player_rect = pygame.Rect(x, y, square_size, square_size)
     
     # Verificar colisão com vendedores
     for inimigo in inimigos:
         inimigo_rect = pygame.Rect(inimigo[1] * square_size, inimigo[2] * square_size, square_size, square_size)
         if player_rect.colliderect(inimigo_rect):
-            interagir_com_inimigo(inimigo, player)
+            interagir_com_inimigo(inimigo, player, revealed_surface)
             return "vendedor", inimigo
     
     return None
 
-def interagir_com_inimigo(inimigo, player):
+def interagir_com_inimigo(inimigo, player, revealed_surface):
     print(f"Você encontrou um inimigo do tipo {inimigo[5]}!")
     resposta = input("Deseja batalhar? (sim/não): ").strip().lower()
     
     if resposta == "sim":
-        batalhar(player,inimigo[0])
+        batalhar(player,inimigo[0], revealed_surface)
     else:
         print("Não passará por aqui sem batalhar!")
 
@@ -511,7 +511,7 @@ def atacar(atacante, defensor, habilidade):
         print(f"{atacante['nome']} tentou usar {habilidade['nome']}, mas errou!")
         print("\n")
 
-def batalhar(player, inimigo):
+def batalhar(player, inimigo, revealed_surface):
     print("Iniciando batalha...")
     
     # Consultar habilidades do jogador
@@ -567,8 +567,19 @@ def batalhar(player, inimigo):
 
             atacar(player_T, inimigo_T, habilidade_jogador)
             if inimigo_T['vida'] <= 0:
-                print(f"O inimigo {inimigo_T['nome']} foi derrotado!")
+                print(f"O {inimigo_T['nome']} foi derrotado!")
                 cursor.execute("UPDATE jogador SET vida = %s WHERE id_jogador = %s", (player_T['vida'], player))
+                cursor.execute("DELETE FROM inimigo WHERE id_inimigo = %s", (inimigo,))
+                cursor.execute("UPDATE jogador SET saldo = saldo + 1000 WHERE id_jogador = %s", (player,))
+                if inimigo_T['nome'] == 'BOSS':
+                    cursor.execute("DELETE FROM inimigo WHERE id_inimigo = %s", (inimigo,))
+                    cursor.execute("UPDATE jogador SET saldo = saldo + 1000 WHERE id_jogador = %s", (player,))
+                    cursor.execute("UPDATE jogador SET posicao = 6 where id_jogador = %s", (player,))
+                    cursor.execute("UPDATE jogador SET vida = 0 where id_jogador = %s", (player,))
+                    cursor.execute("UPDATE instancia_missao SET concluida = 'true' where id_jogador =  %s", (player,))
+                    print("Você derrotou o BOSS e voltou para a Cidade vitorioso!")
+                    conn.commit()
+                    break
                 conn.commit()
                 break
 
@@ -577,12 +588,16 @@ def batalhar(player, inimigo):
             atacar(inimigo_T, player_T, habilidade_inimigo)
             if player_T['vida'] <= 0:
                 print(f"Você foi derrotado pelo {inimigo_T['nome']}!")
+                cursor.execute("UPDATE jogador SET vida = 0 WHERE id_jogador = %s", (player,))
+                conn.commit()
         else:
             # Turno do inimigo primeiro
             habilidade_inimigo = random.choice(habilidades_inimigo)
             atacar(inimigo_T, player_T, habilidade_inimigo)
             if player_T['vida'] <= 0:
                 print(f"Você foi derrotado pelo {inimigo_T['nome']}!")
+                cursor.execute("UPDATE jogador SET vida = 0 WHERE id_jogador = %s", (player,))
+                conn.commit()
                 break
             
             # Turno do jogador
@@ -597,6 +612,17 @@ def batalhar(player, inimigo):
             if inimigo_T['vida'] <= 0:
                 print(f"O {inimigo_T['nome']} foi derrotado!")
                 cursor.execute("UPDATE jogador SET vida = %s WHERE id_jogador = %s", (player_T['vida'], player))
+                cursor.execute("DELETE FROM inimigo WHERE id_inimigo = %s", (inimigo,))
+                cursor.execute("UPDATE jogador SET saldo = saldo + 1000 WHERE id_jogador = %s", (player,))
+                if inimigo_T['nome'] == 'BOSS':
+                    cursor.execute("DELETE FROM inimigo WHERE id_inimigo = %s", (inimigo,))
+                    cursor.execute("UPDATE jogador SET saldo = saldo + 1000 WHERE id_jogador = %s", (player,))
+                    cursor.execute("UPDATE jogador SET posicao = 6 where id_jogador = %s", (player,))
+                    cursor.execute("UPDATE jogador SET vida = 0 where id_jogador = %s", (player,))
+                    cursor.execute("UPDATE instancia_missao SET concluida = 'true' where id_jogador =  %s", (player,))
+                    print("Você derrotou o BOSS e voltou para a Cidade vitorioso!")
+                    conn.commit()
+                    break
                 conn.commit()
                 break
 
@@ -1041,74 +1067,25 @@ def consome_item(player, itens):
     else:
         print("Item não encontrado no inventário.")
 
+def retorna_posicao(player):
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT vida from jogador where id_jogador = %s", (player,))
+    vida = cursor.fetchone()[0]
+    if vida == 0:
+        return True
+    else:
+        return False
 
-# def abre_inventario(player):
-#     conn = connect_db()
-#     cursor = conn.cursor()
-
-#     cursor.execute("""
-#         SELECT item.nome, item.descricao, item.efeito, COUNT(ii.id_instancia_item) AS quantidade
-#         FROM inventario i
-#                 JOIN jogador j ON i.id_inventario = j.id_jogador
-#                 JOIN instancia_item ii ON i.id_instancia_item = ii.id_instancia_item
-#                 JOIN item ON item.id_item = ii.id_item
-#         WHERE j.id_jogador = %s
-#         GROUP BY item.nome, item.descricao, item.efeito;
-#     """, (player,))
-#     itens = cursor.fetchall()
-
-#     if itens:
-#         headers = ["Nome", "Descrição", "Efeito", "Quantidade"]
-#         print("Itens no inventário:")
-#         print(tabulate(itens, headers, tablefmt="grid"))
-
-#         escolha = input("Digite o nome do item que quer consumir: ").strip()
-
-#         item_encontrado = next((item for item in itens if item[0].lower() == escolha.lower()), None)
-
-#         if item_encontrado:
-#             nome_item = item_encontrado[0]
-#             efeito = item_encontrado[2]
-
-#             # Aplique o efeito do item
-#             if nome_item == "Poção":
-#                 # Recupera 50 de vida
-#                 cursor.execute("UPDATE jogador SET vida = LEAST(vida + 50, nivel * 100) WHERE id_jogador = %s", (player,))
-#                 print("Você recuperou 50 de vida!")
-#             elif nome_item == "Elixir":
-#                 # Recupera todos os PP (não representado na tabela 'jogador', mas pode ser um campo adicional ou ajustado)
-#                 print("Efeito de Elixir: Recupera todos os PP!")
-#             elif nome_item == "Reviver":
-#                 # Revive com metade da vida
-#                 cursor.execute("UPDATE jogador SET vida = GREATEST((nivel * 100) / 2, 1) WHERE id_jogador = %s AND vida = 0", (player,))
-#                 print("Seu Pokémon foi revivido com metade da vida!")
-
-#             # Remova o item consumido
-#             cursor.execute("""
-#                 DELETE FROM inventario
-#                 WHERE id_instancia_item = (
-#                     SELECT ii.id_instancia_item
-#                     FROM instancia_item ii
-#                     JOIN item i ON ii.id_item = i.id_item
-#                     WHERE i.nome = %s
-#                     AND ii.id_instancia_item IN (
-#                         SELECT id_instancia_item
-#                         FROM inventario
-#                         WHERE id_inventario = %s
-#                     )
-#                     ORDER BY ii.id_instancia_item
-#                     LIMIT 1
-#                 )
-#             """, (nome_item, player))
-#             conn.commit()
-
-#         else:
-#             print("Item não encontrado no inventário.")
-#     else:
-#         print("Inventário vazio.")
-
-#     cursor.close()
-#     conn.close()
+def teleporta_cidade(player):
+    cursor.execute("UPDATE jogador SET posicao = 6 where id_jogador = %s", (player,))
+    cursor.execute("UPDATE jogador SET vida = 1000 where id_jogador = %s", (player,))
+    conn.commit()
+    current_floor = 1
+    andar = 6
+    mapa = 'Cidade'
+    terrains = fetch_terrains(player)
+    return current_floor, terrains, andar, mapa
 
 def write_text(surface, text, x, y):
     # Configura a fonte para o texto
@@ -1229,7 +1206,7 @@ def main():
                     if not check_collision(new_x, new_y, terrains, player) and not check_collision_vendedor(new_x, new_y, vendedores):
                         player_x, player_y = new_x, new_y
                 else:
-                    if not check_collision(new_x, new_y, terrains, player) and not check_collision_inimigo(new_x, new_y, inimigos, player):
+                    if not check_collision(new_x, new_y, terrains, player) and not check_collision_inimigo(new_x, new_y, inimigos, player, revealed_surface):
                         player_x, player_y = new_x, new_y
                     
                 new_terreno = find_id_terreno(player_x, player_y, andar)
@@ -1270,6 +1247,12 @@ def main():
             draw_inimigos(window, offset_x, offset_y, inimigos)
             reveal_area(fog_surface, player_x, player_y, radius=100)
             window.blit(fog_surface, (-offset_x, -offset_y))
+            if retorna_posicao(player):
+                current_floor, terrains, andar, mapa = teleporta_cidade(player)
+                draw_terrains(revealed_surface, terrains)
+                fog_surface = initialize_fog_surface()
+                player_x, player_y = 0, 0
+
             
         # Desenhar o indicativo de localizacao
         write_text(window, f"Mapa: {mapa} - Andar: {current_floor}", 10, 10)
