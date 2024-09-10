@@ -18,7 +18,7 @@ O projeto tem como objetivo a criação de um jogo baseado no Pokemon Mistery Du
 
 ## Como executar o jogo
 
-Para jogar a aplicação é necessário acessar a raiz do diretório e executar o comando
+Para jogar a aplicação é necessário seguir com os passos abaixo:
 
 Clone o repositório
 ```
