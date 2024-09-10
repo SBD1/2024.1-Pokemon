@@ -268,7 +268,7 @@ VALUES ('petal-dance', 120, 100, 'grass', 10);
 INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
 VALUES ('string-shot', 0, 95, 'bug', 10);
 INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
-VALUES ('dragon-rage', 0, 100, 'dragon', 10);
+VALUES ('dragon-rage', 40, 100, 'dragon', 10);
 INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
 VALUES ('fire-spin', 35, 85, 'fire', 10);
 INSERT INTO habilidade (nome, dano, acuracia, tipo_elemental, pp)
