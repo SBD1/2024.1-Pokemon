@@ -1,0 +1,2617 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../modelo-entidade-relacionamento/">
+      
+      
+      <link rel="icon" href="../../images/logo-pokebola.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Dicionário de dados - Pokémon Mystery Dungeon</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dicionario-de-dados" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="Pokémon Mystery Dungeon" class="md-header__button md-logo" aria-label="Pokémon Mystery Dungeon" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Pokémon Mystery Dungeon
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dicionário de dados
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SBD1/2024.1-Pokemon" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2024.1-Pokemon
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Modelagem
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sql/ddl/ddl/" class="md-tabs__link">
+          
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../entregas/modulo1/apresentacao_1/" class="md-tabs__link">
+          
+  
+  Apresentações
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Pokémon Mystery Dungeon" class="md-nav__button md-logo" aria-label="Pokémon Mystery Dungeon" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    Pokémon Mystery Dungeon
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SBD1/2024.1-Pokemon" title="Ir para repositório" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    2024.1-Pokemon
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Início
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Modelagem
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Modelagem
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Dicionário de dados
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Dicionário de dados
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-pokemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Pokemon
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-jogador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Jogador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-dialogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Dialogo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-missao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Missão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-correio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Correio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Inventário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-npc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: NPC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-habilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Habilidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-pokemon-habilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Pokemon-Habilidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-andar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Andar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-tipo_terreno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Tipo_Terreno
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-terreno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Terreno
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-tipo_elemental" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Tipo_Elemental
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-interacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Interacao
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-efeito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Efeito
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-terreno_loot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Terreno_Loot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-loot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Loot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-inimigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Inimigo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-instancia_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: instancia_item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-loot_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: loot_item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-vendedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: vendedor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-instancia_missao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: instancia_missao
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-mapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: mapa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modelo-entidade-relacionamento/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modelo Entidade-Relacionamento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagrama-entidade-relacionamento/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diagrama Entidade-Relacionamento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    SQL
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/ddl/ddl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/dml/dml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DML
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/dql/dql/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DQL
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/trigger_procedure/trigger/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trigger
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Apresentações
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Apresentações
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entregas/modulo1/apresentacao_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entregas/modulo2/apresentacao_2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../entregas/modulo3/apresentacao_3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Apresentação 3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-pokemon" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Pokemon
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-jogador" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Jogador
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-dialogo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Dialogo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-missao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Missão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-correio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Correio
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Inventário
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-npc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: NPC
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-habilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Habilidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-pokemon-habilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Pokemon-Habilidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-andar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Andar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-tipo_terreno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Tipo_Terreno
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-terreno" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Terreno
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-tipo_elemental" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Tipo_Elemental
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-interacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Interacao
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-efeito" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Efeito
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-terreno_loot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Terreno_Loot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-loot" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Loot
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-inimigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: Inimigo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-instancia_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: instancia_item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-loot_item" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: loot_item
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-vendedor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: vendedor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-instancia_missao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: instancia_missao
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#entidade-mapa" class="md-nav__link">
+    <span class="md-ellipsis">
+      Entidade: mapa
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="dicionario-de-dados"><b>Dicionário de Dados</b></h1>
+<p>O dicionário de dados são informações sobre os dados armazenados que são pertinentes para o banco de dados. Ele documenta a estrutura, os tipos, os relacionamentos e outras características dos dados, servindo como uma referência essencial para o desenvolvimento.</p>
+<h2 id="entidade-pokemon">Entidade: Pokemon</h2>
+<p><strong>Descrição</strong>: A entidade representa um Pokemón podendo ser ele, um Player ou NPC.</p>
+<p><strong>Observação</strong>: Essa tabela possuí chaves estrangeiras da entidade Tipo.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_pokemon</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do Pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">tipo_pokemon</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Pode ser NPC ou playes</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-jogador">Entidade: Jogador</h2>
+<p><strong>Descrição</strong>: A entidade Jogador descreve as informações ligadas ao personagem jogável.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_jogador</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do player</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_correio</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Tamanho do inventário</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">tipo_elemental</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Condições que podem afetar um Pokémon durante as batalhas</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">posicao</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Poisição do jogador no terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">nivel</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Nível do Pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">nome</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do Pokemón</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">vida</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Vida do Pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">ataque_fisico</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor do ataque físico do Pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">defesa_fisica</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da defesa físico do Pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">ataque_especial</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor do ataque especial do Pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">velocidade</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da velocidade do Pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">acuracia</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da precisão do ataque do Pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">evasao</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Capacidade de esquivar do ataque</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">status</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Condições que podem afetar um Pokémon durante as batalhas</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">saldo</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Dinheiro que o jogador possui para gastar nas lojas</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">tam_inventario</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Representa o tamanho do inventário do jogador</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-dialogo">Entidade: Dialogo</h2>
+<p><strong>Descrição</strong>: A entidade dialogo armazena as falas desencadeadas com a interação com um vendedor.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do dialogo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">personagem</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do personagem que fala</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">fala</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Texto da conversa</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">ordem</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Ordem que esta fala vai aparecer para o jogador</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-missao">Entidade: Missão</h2>
+<p><strong>Descrição</strong>: A entidade Missão relaciona o número de identificação da missão, mapa e loot.</p>
+<p><strong>Observação</strong>: Essa tabela possuí chaves estrangeiras das entidades Mapa, Npc e Loot.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_missao</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Código de identificação da missão</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">nome_mapa</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do mapa</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_loot</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Código de identificação do loot</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_correio</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Código do correio</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">dificuldade</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Nível de dificuldade da missão</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">objetivo</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Objetivo da missão</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">principal</td>
+<td style="text-align: center;">BOOLEAN</td>
+<td style="text-align: center;">Indica se a missão é principal ou não</td>
+<td style="text-align: center;">true ou false</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-correio">Entidade: Correio</h2>
+<p><strong>Descrição</strong>: A entidade Correio armazena as missões aceitas pelo jogador.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do correio</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">jogador_id</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do jogador</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">terreno_id</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do terreno onde o correio está localizado</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-inventario">Entidade: Inventário</h2>
+<p><strong>Descrição</strong>: A entidade Inventário relaciona o loot com o player.</p>
+<p><strong>Observação</strong>: Essa tabela possui chave estrangeira da entidade <code>instancia_item</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_inventario</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do inventário</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_instancia_item</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador dos itens</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-npc">Entidade: NPC</h2>
+<p><strong>Descrição</strong>: A entidade NPC guarda as informações relacionada ao nome do personagem não jogável.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_npc</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do NPC</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_tipo_npc</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do tipo do NPC</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-item">Entidade: Item</h2>
+<p><strong>Descrição</strong>: A entidade Item armazena as informações relacionadas aos itens que podem ter no iventário do player.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_item</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Código de Identificação do item</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">nome</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do item</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">descricao</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Descrição do item</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">efeito</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Efeito que o item pode causar</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">valor</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor de compra do item</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-habilidade">Entidade: Habilidade</h2>
+<p><strong>Descrição</strong>: Descreve as habilidades disponíveis no jogo, o identificador da habilidade, seu nome, dano, tipo, efeito e a acurácia.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_habilidade</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador da habilidade</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">tipo_elemental</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Condições que podem afetar um Pokémon durante as batalhas</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">nome_efeito</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Identificação do efeito que a habilidade causa</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">nome</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome da habilidade</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">acuracia</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Precisão do dano</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">dano</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Dano causado pelo pokemón</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">pp</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Numero de vezes que uma habilidade pode ser usada por um pokemon ate precisar recarregar</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-pokemon-habilidade">Entidade: Pokemon-Habilidade</h2>
+<p><strong>Descrição</strong>: Tabela auxiliar para armazernar as habilidades relacionadas ao pokemon.</p>
+<p><strong>Observação</strong>: Essa tabela possui chaves estrangeiras das entidades <code>Habilidade</code> e <code>Pokemon</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_pokemon_habilidade</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador da Entidade</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">pp_restante</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Quantidade de cargas da habilidade</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_habilidade</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador da habilidade</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_pokemon</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador de pokemon</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-andar">Entidade: Andar</h2>
+<p><strong>Descrição</strong>: Descreve a entidade, que se refere ao andar do mapa.</p>
+<p><strong>Observação</strong>: Essa tabela possui chave estrangeira da entidade <code>Mapa</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_andar</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador de terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">nome_mapa</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do mapa</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">numero_andar</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Número do andar</td>
+<td style="text-align: center;">1 -</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-tipo_terreno">Entidade: Tipo_Terreno</h2>
+<p><strong>Descrição</strong>: Descreve o tipo de terreno.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_tipo_terreno</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do tipo de terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">descricao</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Descrição do terreno</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">movimento</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Indica se pode se movimentar nesse tipo de terreno</td>
+<td style="text-align: center;">true ou false</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-terreno">Entidade: Terreno</h2>
+<p><strong>Descrição</strong>: Descreve a entidade terreno, que são as coordenadas do player.</p>
+<p><strong>Observação</strong>: Essa tabela possui chave estrangeira da entidade <code>Tipo_Terreno</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_terreno</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_tipo_terreno</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do tipo de terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_andar</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do andar onde o terreno está inserido</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Coordenada do terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">y</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Coordenada do terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-tipo_elemental">Entidade: Tipo_Elemental</h2>
+<p><strong>Descrição</strong>: Característica fundamental que define suas habilidades, forças e fraquezas do Pokemón.</p>
+<p><strong>Observação</strong>: Essa tabela possui chave estrangeira da entidade <code>Interação</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">nome</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Indetificador da interação do tipo</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-interacao">Entidade: Interacao</h2>
+<p><strong>Descrição</strong>: A entidade Interação armazena as relações de eficácia entre diferentes tipos de ataques e defesas do Pokémon.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador da interação</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_tipo_atacante</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Tipo elemental da habilidade do atacante</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_tipo_defensor</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Tipo elemental do pokemon defensor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">valor</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Fator multiplicativo do dano</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-efeito">Entidade: Efeito</h2>
+<p><strong>Descrição</strong>: Representa o efeito que uma habilidade pode causar</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">nome</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do efeito</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">dano</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Dano causado pelo efeito</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-terreno_loot">Entidade: Terreno_Loot</h2>
+<p><strong>Descrição</strong>: Tabela auxiliar para indicar qual loot está no terreno.</p>
+<p><strong>Observação</strong>: Essa tabela possui chaves estrangeiras das entidades <code>Terreno</code> e <code>Loot</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_terreno_loot</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do local onde está o loot</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_terreno</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do terreno onde o loot está</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_loot</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do loot que está no terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-loot">Entidade: Loot</h2>
+<p><strong>Descrição</strong>: Tabela que representa a recompensa da missão ou do terreno.</p>
+<p><strong>Observação</strong>: Essa tabela possui chaves estrangeiras das entidades <code>Terreno</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_loot</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do loot</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_terreno</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do terreno onde o loot está</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-inimigo">Entidade: Inimigo</h2>
+<p><strong>Descrição</strong>: A entidade Inimigo descreve as informações ligadas aos inimigos do jogo.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_inimigo</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do inimigo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">tipo_elemental</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Condições que podem afetar um Pokémon durante as batalhas</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">posicao</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Poisição do inimigo no terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">nivel</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Nível do inimigo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">nome</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do inimigo</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">vida</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Vida do inimigo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">ataque_fisico</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor do ataque físico do inimigo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">defesa_fisica</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da defesa físico do inimigo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">ataque_especial</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor do ataque especial do inimigo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">velocidade</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da velocidade do inimigo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">acuracia</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da precisão do ataque do inimigo</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">evasao</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Capacidade de esquivar do ataque</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">status</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Condições que podem afetar um Pokémon durante as batalhas</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-instancia_item">Entidade: instancia_item</h2>
+<p><strong>Descrição</strong>: A entidade instancia_item relaciona o item com ao inventário do jogador.</p>
+<p><strong>Observação</strong>: Essa tabela possui chave estrangeira da entidade <code>item</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_instancia_item</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador da instância do item</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_item</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador dos itens</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-loot_item">Entidade: loot_item</h2>
+<p><strong>Descrição</strong>: A entidade instancialoot_item_item relaciona os itens com loot.</p>
+<p><strong>Observação</strong>: Essa tabela possui chave estrangeira das entidades <code>item</code> e <code>loot</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_loot_item</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador da instância do item</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_item</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador dos itens</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_loot</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do loot ao qual o item faz parte</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">quantidade</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Quantidade de itens que o loot armazena</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-vendedor">Entidade: vendedor</h2>
+<p><strong>Descrição</strong>: A entidade vendedor descreve as informações ligadas aos vendedores do jogo.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_vendedor</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do vendedor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">tipo_elemental</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Condições que podem afetar um Pokémon durante as batalhas</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">posicao</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Poisição do vendedor no terreno</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">nivel</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Nível do vendedor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">nome</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do vendedor</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">vida</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Vida do vendedor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">ataque_fisico</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor do ataque físico do vendedor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">defesa_fisica</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da defesa físico do vendedor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">ataque_especial</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor do ataque especial do vendedor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">velocidade</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da velocidade do vendedor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">acuracia</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Valor da precisão do ataque do vendedor</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">evasao</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Capacidade de esquivar do ataque</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr>
+<td style="text-align: center;">status</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Condições que podem afetar um Pokémon durante as batalhas</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">sim</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-instancia_missao">Entidade: instancia_missao</h2>
+<p><strong>Descrição</strong>: A entidade instancia_missao relaciona o a missão ao jogador.</p>
+<p><strong>Observação</strong>: Essa tabela possui chaves estrangeiras das entidades <code>missao</code> e <code>jogador</code>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">id_missao</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador da missão</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">id_jogador</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Identificador do jogador</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">FK</td>
+</tr>
+<tr>
+<td style="text-align: center;">concluida</td>
+<td style="text-align: center;">BOOLEAN</td>
+<td style="text-align: center;">Indica se a missão foi concluída</td>
+<td style="text-align: center;">true ou false</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="entidade-mapa">Entidade: mapa</h2>
+<p><strong>Descrição</strong>: A entidade mapa possui as informações dos mapas do jogo.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Nome Variável</th>
+<th style="text-align: center;">Tipo</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Valores permitidos</th>
+<th style="text-align: center;">Permite valores nulos?</th>
+<th style="text-align: center;">É chave?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">nome</td>
+<td style="text-align: center;">VARCHAR</td>
+<td style="text-align: center;">Nome do mapa</td>
+<td style="text-align: center;">a-z, A-Z</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">PK</td>
+</tr>
+<tr>
+<td style="text-align: center;">quantidade_andares</td>
+<td style="text-align: center;">INT</td>
+<td style="text-align: center;">Quantidade de andares que o mapa possui</td>
+<td style="text-align: center;">1-5000</td>
+<td style="text-align: center;">não</td>
+<td style="text-align: center;">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="historico-de-versao">Histórico de Versão</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Versão</th>
+<th style="text-align: center;">Data</th>
+<th style="text-align: center;">Descrição</th>
+<th style="text-align: center;">Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><code>1.0</code></td>
+<td style="text-align: center;">22/04/2024</td>
+<td style="text-align: center;">Primeira versão do dicionário de dados</td>
+<td style="text-align: center;"><a href="https://github.com/GabrielMR360">Gabriel Marcolino</a> e <a href="ttps://github.com/ShaineOliveira">Shaíne Oliveira</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.1</code></td>
+<td style="text-align: center;">27/06/2024</td>
+<td style="text-align: center;">Ajustando e corrigindo o dinionário de dados</td>
+<td style="text-align: center;"><a href="https://github.com/GabrielMR360">Gabriel Marcolino</a> e <a href="ttps://github.com/ShaineOliveira">Shaíne Oliveira</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.2</code></td>
+<td style="text-align: center;">12/07/2024</td>
+<td style="text-align: center;">Adicionando atributos e tabelas</td>
+<td style="text-align: center;"><a href="https://github.com/GabrielMR360">Gabriel Marcolino</a> e <a href="ttps://github.com/ShaineOliveira">Shaíne Oliveira</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.3</code></td>
+<td style="text-align: center;">20/07/2024</td>
+<td style="text-align: center;">Correção de valores permitidos e descrição</td>
+<td style="text-align: center;"><a href="https://github.com/GabrielMR360">Gabriel Marcolino</a> e <a href="ttps://github.com/ShaineOliveira">Shaíne Oliveira</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.4</code></td>
+<td style="text-align: center;">20/07/2024</td>
+<td style="text-align: center;">Adição de tabelas e correção de chaves estrangeiras</td>
+<td style="text-align: center;"><a href="https://github.com/LeoFacB">Leonardo Bonetti</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.5</code></td>
+<td style="text-align: center;">05/08/2024</td>
+<td style="text-align: center;">Correção das entidades</td>
+<td style="text-align: center;"><a href="https://github.com/GabrielMR360">Gabriel Marcolino</a> e <a href="ttps://github.com/ShaineOliveira">Shaíne Oliveira</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.6</code></td>
+<td style="text-align: center;">07/09/2024</td>
+<td style="text-align: center;">Atualização do dicionário de dados</td>
+<td style="text-align: center;"><a href="https://github.com/GabrielMR360">Gabriel Marcolino</a> e <a href="ttps://github.com/ShaineOliveira">Shaíne Oliveira</a></td>
+</tr>
+<tr>
+<td style="text-align: center;"><code>1.7</code></td>
+<td style="text-align: center;">07/09/2024</td>
+<td style="text-align: center;">Atualização do dicionário de dados</td>
+<td style="text-align: center;"><a href="https://github.com/LeoFacB">Leonardo Fachinello Bonetti</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "content.code.copy"], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
