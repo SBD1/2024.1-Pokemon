@@ -19,9 +19,38 @@ O projeto tem como objetivo a criação de um jogo baseado no Pokemon Mistery Du
 ## Como executar o jogo
 
 Para jogar a aplicação é necessário acessar a raiz do diretório e executar o comando
+
+Clone o repositório
+```
+git clone https://github.com/SBD1/2024.1-Pokemon.git
+```
+
+Suba o docker
+```
+docker compose up -d --build
+```
+
+Criar venv na pasta python:
+```
+python3 -m venv venv
+```
+Ativa o venv
+```
+source venv/bin/activate
+```
+Instale as dependências:
+```
+pip install pygame
+pip install psycopg2-binary
+pip install tabulate
+```
+
+Rode a aplicação
 ```
 python python/game.py
 ```
+
+Obs.: Alguns sistemas operacionais não precisam fazer o passo de criação do venv e pode pular direto para o passo de instalar as dependências, depois que já tiver subido o docker.
 
 ## Contribuidores
 
@@ -40,4 +69,4 @@ python python/game.py
 | :----: | ----------------------------------------------------------------- | --------------- |
 |   1    | [Vídeo de Apresentação do Módulo 1](https://youtu.be/Rox907B7eAI) | 17/07/2024      |
 |   2    | [Vídeo de Apresentação do Módulo 2](https://www.youtube.com/watch?v=88DrSI6KnoY)   |  19/08/2024     |
-|   3    | [Vídeo de Apresentação do Módulo 3]()                             |                 |
+|   3    | [Vídeo de Apresentação do Módulo 3](https://www.youtube.com/watch?v=OPj2FF_moPY)       |  09/09/2024               |
