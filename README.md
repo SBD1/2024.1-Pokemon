@@ -30,7 +30,7 @@ Suba o docker
 docker compose up -d --build
 ```
 
-Criar venv na pasta python:
+Criar venv na pasta python
 ```
 python3 -m venv venv
 ```
@@ -38,7 +38,7 @@ Ativa o venv
 ```
 source venv/bin/activate
 ```
-Instale as dependências:
+Instale as dependências
 ```
 pip install pygame
 pip install psycopg2-binary
